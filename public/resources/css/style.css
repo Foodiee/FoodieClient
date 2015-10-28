@@ -10,7 +10,7 @@ html{
     background-color: #fff;
     color: #000;
     font-family: 'Roboto','Arial',sans-serif;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 300;
     text-rendering: optimizeLegibility;
 }
@@ -30,8 +30,8 @@ h1 {
     margin: 0;
     margin-bottom: 20px;
     color: #fff;
-    font-size: 240%;
-     word-spacing: 4px;
+    font-size: 340%;
+     word-spacing: 8px;
 }
 
 h2{
@@ -75,26 +75,29 @@ section{
     
 }
 
+
 header{
     background-image: linear-gradient(rgba(0, 0, 0, 0.59),rgba(0, 0, 0, 0.59)),url(img/hero.jpg);
     height: 100vh;
     background-size: cover;
     background-position: center;
+
 }
 
 .hero-text-box{
     position: absolute;
     width: 1140px;
-    top: 50%;
-    left:50%;
-    transform: translate(-50%,-50%);
+    top: 35%;
+    left:10%;
+
     
 }
 .logo{
-    height: 130px;
+    height: 100px;
     width: auto;
-    float: left;
-    margin: 8% 5%;
+    margin: 8% 5% 20% 0%;
+    margin-right: 50px;
+
 }
 .sub-navbar{
     position: fixed;
@@ -131,10 +134,12 @@ header{
 }
 
 .main-nav{
-    margin-top: 120px;
-    margin-right: 2%;
-    float: right;
+
+    margin-top: 40px;
+    position: fixed;
+    float: left;
     list-style: none;
+    margin-left: 15%;
 }
 
 .main-nav li,.sub-nav li{
@@ -144,11 +149,12 @@ header{
 
 .main-nav li a:link,
 .main-nav li a:visited{
+    z-index: 99999999;
     padding: 8px;
-    color: #fff;
+    color: #D4B8B8;
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 110%;
+    font-size: 150%;
     transition: border-bottom 0.2s;
 }
 
@@ -159,10 +165,31 @@ header{
     border-bottom: 2px solid #e67e22;
 }
 
+
+input{
+    border-radius: 10px;
+    font-size: 12px;
+    padding: 8px;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+#modal{
+    display: none;
+    padding: 20px;
+    border-radius:25px; 
+    margin-top: 20px;
+    max-width:700px; 
+    background: rgba(255, 255, 255,1);
+
+}
+
+
+
 /*-------------------------*/
 /* HEADER */
 /*-------------------------*/
-.btn:link,
+button,.btn:link,
 .btn:visited {
     display: inline-block;
     padding: 10px 30px;
@@ -172,12 +199,12 @@ header{
     transition: background-color 1s, color 1s;
 }
 
-.btn:hover,
+button,.btn:hover,
 .btn:active{
     background-color: #cf6d17;
 }
 
-.btn-full:link,
+button,.btn-full:link,
 .btn-full:visited{
     background-color: #e67e22;
     border: 1px solid #e67e22;
@@ -185,18 +212,18 @@ header{
     margin-right: 15px;
 }
 
-.btn-ghost:link,
+button,.btn-ghost:link,
 .btn-ghost:visited{
     border: 1px solid #e67e22;
     color: #e67e22;
 }
 
-.btn-full:hover,
+button,.btn-full:hover,
 .btn-full:active{
     background-color: #cf6d17;
 }
 
-.btn-ghost:hover,
+button,.btn-ghost:hover,
 .btn-ghost:active{
     background-color: #cf6d17;
     color: #fff;
@@ -204,6 +231,36 @@ header{
 
 /*-------------------------*/
 /* BUTTON */
+/*-------------------------*/
+.bar{
+    display: none;
+     background-color: white;
+    height: 25px;
+    padding: 3px;
+    width: 350px;       
+    border-radius: 5px;
+    box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444; 
+    
+}
+
+
+.bar-fill{
+    display: inline-block;
+    height: 100%;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
+    transition: width 6s ease-in-out; 
+    background-color: orange;
+    background-image: linear-gradient(top, #fecf23, #fd9215); 
+    background-size: 30px 30px;
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+                        transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+                        transparent 75%, transparent);            
+    
+    animation: animate-stripes 3s linear infinite;
+}
+/*-------------------------*/
+/* Progress Bar */
 /*-------------------------*/
 
 .icon-big{

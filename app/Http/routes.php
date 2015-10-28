@@ -12,13 +12,27 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+	/* if(Cookie::get('user') != null){
+		return view('layout.master');
+	}else{
+    	return view('mainpage');
+    } */
+	return view('layout.master');
 });
-
-
+Route::get('/home', function () {
+	/* if(Cookie::get('user') != null){
+		return view('layout.master');
+	}else{
+    	return view('mainpage');
+    } */
+	return view('layout.master');
+});
 Route::get('/profile', function () {
     return view('profile');
 });
-Route::get('/meal', function () {
-    return view('meals');
+
+Route::get('/modal', function () {
+    return view('modal');
 });
+
+Route::controller('/facebook','FaceBookController');

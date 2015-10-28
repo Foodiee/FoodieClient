@@ -14,8 +14,8 @@ class CreateNotiTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->bigIncrements('notifi_id');
-			$table->string('type');
-			$table->integer('sender_id')->unsigned();
+			$table->integer('type');
+			$table->integer('user_id')->unsigned();
 			$table->integer('receiver_id')->unsigned();
 			$table->boolean('is_read');
 			$table->integer('objectID')->unsigned()->nullable();

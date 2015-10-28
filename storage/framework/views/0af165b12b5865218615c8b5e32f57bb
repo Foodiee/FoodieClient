@@ -3,19 +3,47 @@
 <html lang="en">
 	<meta charset="UTF-8">
     <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,300italic,300,100' rel='stylesheet' type='text/css'>
+
         <link rel="stylesheet" type="text/css" href="vendors/css/nomalize.css">
         <link rel="stylesheet" type="text/css" href="vendors/css/ionicons.min.css">
         <link rel="stylesheet" type="text/css" href="vendors/css/grid.css">
         <link rel="stylesheet" type="text/css" href="resources/css/style.css">
-      <link href='http://fonts.googleapis.com/css?family=Roboto:400,300italic,300,100' rel='stylesheet' type='text/css'>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+              <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
         <title>Fresh Food</title>
+            <script>
+$(document).ready(function(){
+    $("#showup").click(function(){
+        $("#modal").toggle(1000); 
+    });
+
+    $("#upload-img").click(function(){
+        $("#modal").toggle(1000); 
+        $(".bar").toggle(2000);
+        $(".bar-fill").css("width","100%");
+    });
+
+
+        }); 
+    
+</script>
+
     </head>
     <body>
+        
         <header>
-            <nav class="row">
-                <img src="resources/css/img/logo.png" alt="logo by NGUYENDEPTRAI" class="logo">
+            <nav>
                 <ul class="main-nav">
+                    <li><img src="resources/css/img/logo.png" alt="logo by NGUYENDEPTRAI" class="logo"></li>
                     <li><a href="#">Main Page</a></li>
                     <li><a href="mypage.html">My Page</a></li>
                     <li><a href="#">About Us</a></li>
@@ -24,8 +52,19 @@
             </nav>
             <div class="hero-text-box">    
             <h1>Discover Food!<br> Discover The World!</h1>
-             <a class="btn btn-full" href="#">Upload</a>
+             <button class="btn btn-full" id="showup">Upload</button>
+             
              <a class="btn btn-ghost" href="#">Show me more</a>
+             <center><div class="bar"><span class="bar-fill stripes" style="width:0%;"></span></div></center>
+             <div id="modal">
+                <b>Tên:</b> <input placeholder="Tên..." size="35">
+                <b>Địa Chỉ:</b> <input placeholder="Địa Chỉ:..." size="35">
+                <br>
+                <b>IMG:</b> <input type="file" name="pic" accept="image/*">
+                <b>Mô Tả:</b> <input placeholder="Mô Tả..."  size="35">
+                <br>
+                <center><button id="upload-img" style="font-size:30px; margin-top:10px; border-radius:10px;">Submit</button></center>
+             </div>
             </div>
         
         </header>
@@ -170,7 +209,7 @@
             
     </body>
 
-
+   
         
         
         
