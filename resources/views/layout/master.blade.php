@@ -133,6 +133,7 @@
     $(document).ready(function(){
         $("img").click(function(){
             $(".modal").modal('show'); 
+            getPost();
         });
 
         $("#upload-img").click(function(){
@@ -145,4 +146,19 @@
             minBoxWidth: 250 
         });
     }); 
+    function getPost() {
+        $.ajax(
+            {
+                type:"POST",
+                data: {id:"John"},
+                url:"{{URL::to('photo')}}",
+                success: function(data)
+                {
+                    console.log(data);
+                    $('#modal_title').text(data.title);
+                    $('#modal_description').text(data.description);
+                }
+            });
+
+    }
 </script>

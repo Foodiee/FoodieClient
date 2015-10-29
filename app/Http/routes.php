@@ -34,5 +34,5 @@ Route::get('/profile', function () {
 Route::get('/modal', function () {
     return view('modal');
 });
-
+Route::post('/photo','PostController@view');
 Route::controller('/facebook','FaceBookController');
