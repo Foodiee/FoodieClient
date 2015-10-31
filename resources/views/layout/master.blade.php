@@ -42,7 +42,7 @@
                 </form> 
                 
                 <ul class="nav navbar-nav navbar-right" style="margin-top:15px; margin-left:65px;">
-                    <li><a href="/facebook/login">Đăng nhập bằng fb</a></li>
+                    <li><a href="{{URL::to("/facebook/login")}}">Đăng nhập bằng fb</a></li>
                     
                 </ul>
             </div>

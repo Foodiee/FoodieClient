@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Http\Response;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
@@ -21,7 +21,8 @@ class PostController extends Controller
         $post->id = $request->input("id");
         $post->title = "Phở bò";
         $post->description= "Pho 24h ngon tuyet cu meo";
-        return response()->json($post);
+        $cookie = cookie()->forever('userID','345');
+        return response()->json($post)->withCookie($cookie);
     }
     public function index()
     {
