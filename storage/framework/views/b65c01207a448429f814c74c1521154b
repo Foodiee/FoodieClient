@@ -1,19 +1,20 @@
 <?php $__env->startSection('grid-layout'); ?>
-    <div class="row">
-        <section class="self-information">
-            <div class="self-avarta">
-                <img src="resources/css/img/avarta.jpg">
-            </div>
-            <div class="self-address">
-                <b>Tên:</b> Phạm Duy Nguyễn<br>
-                <b>Ngày Sinh:</b> 20/11/1994<br>
-                <b>Địa Chỉ:</b> Hải Dương-Việt Nam<br>
-                <b>Facebook:</b> https://www.facebook.com/WhiteNn<br>
-            </div>
-        </section>
-    </div>        
+    <div class="container" style="width:60%;margin-top:100px;">
+        <div class="left-side col-md-5">
+            <img src="vendors/img/5.jpg" class="logo-profile" height="150" width="150">
+        </div>
+        <div class="right-side col-md-6">
+            <h3>Hoàng Thanh Tùng</h3>
+            <ul class="user-info">
+                <li><span>7</span> Bài viết</li>
+                <li><span>7</span> Album</li>
+                <li><span>7</span> Người theo dõi</li>
+                <li><span>7</span> theo dõi</li>
+            </ul>
+        </div>
+    </div>
 
-    <div class="wf-container">
+    <div class="wf-container" style="margin-top:40px;width:60%;">
         <div class="wf-box">
             <img src="vendors/img/5.jpg">
             <div class="content">

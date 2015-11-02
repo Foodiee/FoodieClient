@@ -18,41 +18,6 @@ html{
 /*-------------------------*/
 /* PHAN DE SU DUNG LAI CHO PRJ KHAC*/
 /*-------------------------*/
-h1,h2{
-    
-    font-weight: 300;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-   
-}
-
-h1 {
-    margin: 0;
-    margin-bottom: 20px;
-    color: #fff;
-    font-size: 340%;
-    word-spacing: 8px;
-}
-
-h2{
-    font-size: 180%;
-    word-spacing: 2px;
-    text-align: center;
-}
-
-h2:after{
-    display: block;
-    height: 2px;
-    background-color: #e67e22;
-    content: " ";
-    width: 120px;
-    margin: 0 auto;
-    margin-top: 20px;
-}
-
-h3{
-    text-align: center;
-}
 
 .row{
     max-width: 1140px;
@@ -76,143 +41,6 @@ section{
 }
 
 
-header{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.59),rgba(0, 0, 0, 0.59)),url(../img/hero.jpg);
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-
-}
-
-.hero-text-box{
-    position: absolute;
-    width: 1140px;
-    top: 35%;
-    left:10%;
-
-    
-}
-
-.sub-navbar{
-    position: fixed;
-    width: 100%;
-    height: 13%;
-    background-color: #F0E5D7;
-}
-
-.sub-nav{
-    margin-top: 2%;
-    margin-right: 10%;
-    float: right;
-    list-style: none;
-    margin-bottom: 5%;
-}
-
-.sub-nav li a:link,
-.sub-nav li a:visited{
-    padding: 8px;
-    color: #121111;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 110%;
-    transition: border-bottom 0.2s;
-}
-
-.main-nav{
-
-    margin-top: 40px;
-    position: fixed;
-    float: left;
-    list-style: none;
-    margin-left: 15%;
-}
-
-.main-nav li,.sub-nav li{
-    display: inline-block;
-    margin-right: 20px;
-}
-
-.main-nav li a:link,
-.main-nav li a:visited{
-    z-index: 99999999;
-    padding: 8px;
-    color: #D4B8B8;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 150%;
-    transition: border-bottom 0.2s;
-}
-
-.main-nav li a:hover,
-.main-nav li a:active,
-.sub-nav li a:hover,
-.sub-nav li a:active{
-    border-bottom: 2px solid #e67e22;
-}
-
-
-input{
-    border-radius: 10px;
-    font-size: 12px;
-    padding: 8px;
-    margin-top: 5px;
-    margin-right: 10px;
-}
-
-#modal{
-    display: none;
-    padding: 20px;
-    border-radius:25px; 
-    margin-top: 20px;
-    max-width:700px; 
-    background: rgba(255, 255, 255,1);
-
-}
-
-
-
-/*-------------------------*/
-/* HEADER */
-/*-------------------------*/
-button,.btn:link,
-.btn:visited {
-    display: inline-block;
-    padding: 10px 30px;
-    font-weight: 300;
-    text-decoration: none;
-    border-radius: 200px;
-    transition: background-color 1s, color 1s;
-}
-
-button,.btn:hover,
-.btn:active{
-    background-color: #cf6d17;
-}
-
-button,.btn-full:link,
-.btn-full:visited{
-    background-color: #e67e22;
-    border: 1px solid #e67e22;
-    color: #fff;
-    margin-right: 15px;
-}
-
-button,.btn-ghost:link,
-.btn-ghost:visited{
-    border: 1px solid #e67e22;
-    color: #e67e22;
-}
-
-button,.btn-full:hover,
-.btn-full:active{
-    background-color: #cf6d17;
-}
-
-button,.btn-ghost:hover,
-.btn-ghost:active{
-    background-color: #cf6d17;
-    color: #fff;
-}
 
 /*-------------------------*/
 /* BUTTON */
@@ -255,175 +83,7 @@ button,.btn-ghost:hover,
     font-size: 300%;
 }
 
-/*-------------------------*/
-/* ICON */
-/*-------------------------*/
 
-.grid-meal{
-    clear: both;   
-}
-
-
-.grid-col1{
-    width: 25%;
-    float: left;
-    overflow: hidden;
-    height: auto;
-    overflow: hidden;   
-}
-
-.grid-col2{
-    width: 25%;
-    float: left;
-    height: auto;
-    overflow: hidden;
-}
-.grid-col3{
-    width: 25%;
-    float: left;
-    height: auto;
-    overflow: hidden;
-}
-
-.grid-col4{
-    width: 25%;
-    float: left;
-    height: auto;
-    overflow: hidden;
-}
-.grid-meal img{
-    position: relative;
-    width: 100%;
-    height: auto;
-    transition: transform 1s, opacity 0.5s;
-    padding-right: 2px;
-    padding-left: 2px;
-}
-
-
-
-.grid-meal img:hover{
-    opacity: 0.9;
-    padding-right: 2px;
-    padding-left: 2px;
-    transform: scale(1.04);
-    overflow: hidden;
-    
-}
-
-
-.grid:hover .text{
-    opacity: 1;
-    z-index: 9999;
-}
-
-.meals-showcase{
-    list-style: none;
-    width: 100%;
-}
-.meals-showcase li{
-    display: block;
-    float: left;
-    width: 25%;
-     
-}
-
-.meal-photo{
-    width: 100%;
-    margin: 0; 
-
-}
-
-.meal-photo img{
-    opacity: 0.7;
-    width: 100%;
-    padding: 20px 20px 5px 20px;
-    height: 220px;
-    transform: scale(1.1);
-    transition: transform 1s, opacity 1s;
-}
-
-.meal-photo img:hover{
-    opacity: 1;
-    transform: scale(1.04);
-}
-
-.next-photo{
-    margin-top: 20px;
-    font-size: 150%;
-    margin-bottom: 20px;
-}
-
-.next-photo a{
-    text-decoration: none;
-    color: #030303;
-}
-/*-------------------------*/
-/* MEALS */
-/*-------------------------*/
-
-footer{
-    background-color: #333;
-    
-    clear: both;
-}
-
-.footer-nav li{
-    float:left;
-    list-style: none; 
-    margin: 10px;
-    
-}
-.footer-nav li a:link,
-.footer-nav li a:visited{
-    text-decoration: none;
-    color: #888;
-    transition: color 0.5s;
-}
-
-.social-links li{
-    float:right;
-    list-style: none; 
-    margin: 10px;
-}
-
-.social-links li a{
-    text-decoration: none;
-    font-size: 100%;
-    color: #888;    
-}
-
-.footer-nav li a:hover,
-.footer-nav li a:active{
-    padding-bottom: 5px;
-    border-bottom: 2px solid #f48e18;
-    color:#000000;   
-}
-
-
-.ion-social-facebook:hover{
-color: #3b5988;
-}
-
-.ion-social-twitter:hover{
-color: #00aced;
-}
-
-.ion-social-instagram:hover{
-color: #3f729b;
-}
-
-.ion-social-googleplus:hover{
-color: #dd4b39;
-}
-
-
-
-
-
-/*-------------------------*/
-/* Footer */
-/*-------------------------*/
 footer{
     background-color: #F0E5D7;
     clear: both;
@@ -531,8 +191,18 @@ font-size: 16px;
 /* self-info */
 /*-------------------------*/
 
+.findfr, .invitefr{
+    cursor:pointer;
+}
+.findfr i, .invitefr i{
+    margin-top: 3px;
+}
+.findfr:hover, .invitefr:hover{
+    background-color: #F3F3F3;
+}
 .wf-container {
     margin: 0 auto;
+    margin-top: 100px;
 }
 .wf-container:before,.wf-container:after {
     content: '';
@@ -543,14 +213,19 @@ font-size: 16px;
 }
 .wf-box {
     margin: 10px;
+    border-radius: 10px;
 }
 .wf-box img { 
     display: block;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
     width: 100%;
 }
 .wf-box .content {
     border: 1px solid #ccc;
-    border-top-width: 0;
+    border-top-width: 1px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
     padding: 5px 8px;
 }
 .wf-column {
@@ -607,14 +282,86 @@ input::-webkit-input-placeholder {
     color: #999;
 }
 
+.logo-profile {
+  -webkit-border-top-left-radius: 50%;
+  -webkit-border-top-right-radius: 50%;
+  -webkit-border-bottom-right-radius: 50%;
+  -webkit-border-bottom-left-radius: 50%;
+
+  -moz-border-radius-topleft: 50%;
+  -moz-border-radius-topright: 50%;
+  -moz-border-radius-bottomright: 50%;
+  -moz-border-radius-bottomleft: 50%;
+
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.left-side{
+    height: 150px;
+    float: left;
+}
+
+.left-side img{
+   margin-left: 50px; 
+}
+
+.right-side{
+    height: 150px;
+}
+
+.right-side h3{
+    text-align: left;
+}
+
+.user-info{
+    list-style-type: none;
+}
+
+.user-info li{
+    float: left;
+    margin-right: 20px;
+}
+
+.user-info span{
+    font-weight: bold;
+}
+
+/*upload modal*/
+.left-upload-modal{
+    background: #D9D9D9;
+    height: 400px;
+}
+.left-upload-modal img{
+    max-width:100%;
+    max-height:100%;
+}
+.left-upload-modal .content{
+    background: #fff;
+    border: none;
+}
+.left-upload-modal textarea{
+    background: #fff;
+    width: 100%;
+    border: none;
+}
+.right-upload-modal{
+    background: #fff;
+    height: 400px;
+}
+
+/*End upload modal*/
+
 @media screen and (min-width: 768px) {
-    .wf-container { width: 750px; }
+    .wf-container { width: 90%; }
     .navbar-collapse {width: 75%;}
     .logo{margin-left: 10px;}
 }
 @media screen  and (min-width: 992px) {
-    .wf-container { width: 970px; }
+    .wf-container { width: 90%; }
 }
 @media screen and (min-width: 1200px) {
-    .wf-container { width: 1170px; }
+    .wf-container { width: 90%; }
 }

@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+    <link rel="stylesheet" href="vendors/css/font-awesome.min.css">
     <link rel="stylesheet" href="vendors/css/bootstrap.min.css">
     
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300italic,300,100' rel='stylesheet' type='text/css'>
@@ -25,10 +25,10 @@
     
 <body>
     {{-- Thanh menu --}}
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top" style='background-color:#fff;webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);'>
         <div class="container-fluid">
             <div class="navbar-header"> 
-                <a class="navbar-brand logo" href="/" style="margin-left:80px;">
+                <a class="navbar-brand logo" href="/home" style="margin-left:80px;">
                     <img src="vendors/img/logo.png" height="50" width="50">
                 </a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style="margin-top:25px;">
@@ -44,70 +44,35 @@
                 </form> 
                 
                 <ul class="nav navbar-nav navbar-right" style="margin-top:15px; margin-left:65px;">
-                    <li><a href="{{URL::to('home')}}">Home</a></li>
-                    <li><a href="{{URL::to('profile')}}">MyPage</a></li>
-                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Upload</a></li>
+                    <li><a href="/profile">Home</a></li>
+                    <li class="dropdown" style="margin-top:10px;">
+                        <img src="vendors/img/5.jpg" height="30" width="30" class="logo-profile">       
+                        <span class="caret dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"></span>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="margin-top:26px;">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sửa thông tin</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Đăng xuất</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-        
-    <section class="section-features">           
-        <div class="row">
-            <h2><i class="ion-heart " style="color:rgba(255, 0, 0, 0.74);"></i> Get Interesting Food <i class="ion-heart " style="color:rgba(255, 0, 0, 0.74);"></i></h2>
-        </div>
-        
-        <div class="row">            
-            <div class="col span_1_of_3 box">
-                <i class="ion-coffee icon-big"></i>
-                <h3>Just Taste</h3>
-                <p>Những món ăn ngon nhất, rẻ nhất và hấp dẫn nhất </p>
-            </div>
-            
-            <div class="col span_1_of_3 box">
-                <i class="ion-android-walk icon-big"></i>
-                <h3> Easy Find A Way To</h3>
-                <p> Tìm đường đến 1 cách vô cùng dễ dàng</p>
-            </div>
-            
-            <div class="col span_1_of_3 box">
-                <i class="ion-android-camera icon-big"></i>
-                <h3>Take Photos For It</h3>
-                <p>Hãy chụp những bức ảnh đẹp nhất để chia sẻ cùng bạn bè mình nhé!</p>
-            </div>
-        </div>
-    </section>
        
-    <section>
+    <section style='background-color:#E9E9E9;'>
         @yield('grid-layout')
     </section>
-                        
-    <footer>
-        <div class="row">
-            <div class="col span_1_of_2">
-                <ul class="footer-nav">
-                    <li><a href="#"> Main Page</a></li>
-                    <li><a href="mypage.html"> My Page</a></li>
-                    <li><a href="#"> About Us</a></li>
-                </ul>
-            </div>
-                
-            <div class="col span_1_of_2">
-                <ul class="social-links">
-                    <li><a href="#"> <i class="ion-social-facebook"></i></a></li>
-                    <li><a href="#"> <i class="ion-social-twitter"></i></a></li>
-                    <li><a href="#"> <i class="ion-social-googleplus"></i></a></li>
-                    <li><a href="#"> <i class="ion-social-instagram"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>   
+
+    @include('layout.modal')
 </body>
 
 <script>
     $(document).ready(function(){
-        $("#showup").click(function(){
-            $("#modal").toggle(1000); 
+        $("img").click(function(){
+            $(".modal").modal('show'); 
         });
 
         $("#upload-img").click(function(){
