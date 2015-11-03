@@ -45,7 +45,7 @@
                 
                 <ul class="nav navbar-nav navbar-right" style="margin-top:15px; margin-left:65px;">
                     <li><a href="#" id="upload">Upload</a></li>
-                    <li><a href="/profile">Home</a></li>
+                    <li><a href="{{URL::to('profile')}}">Home</a></li>
                     <li class="dropdown" style="margin-top:10px;">
                         <img src="vendors/img/5.jpg" height="30" width="30" class="logo-profile" id="dropdownMenu2" data-toggle="dropdown" style='cursor:pointer;'>   
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2" style="margin-top:26px;">
