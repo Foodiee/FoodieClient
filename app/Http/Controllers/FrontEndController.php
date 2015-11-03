@@ -38,4 +38,9 @@ class FrontEndController extends Controller{
 	public function homeview(Request $request){
 		return view('mainpage');
 	}
+
+	//get view tìm kiem do an
+	public function searchfoodview(Request $request){
+		return view('search-food');
+	}
 }

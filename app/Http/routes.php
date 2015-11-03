@@ -10,5 +10,6 @@ Route::get('/modal', function () {
 
 Route::get('/', 'FrontEndController@mainview');
 Route::get('/home', 'FrontEndController@homeview');
+Route::get('/an-gi-bay-gio', 'FrontEndController@searchfoodview');
 
 Route::post('facebook/login', 'FrontEndController@login');

@@ -20,9 +20,7 @@
             <img src="vendors/img/5.jpg">
             <div class="content">
                 <h3>Title</h3>
-                <p>Content Here</p>
-                <p>Content Here</p>    
-                <p>Content Here</p>
+                <p>Content aa asdfasdfjal</p>    
             </div>
         </div>
         <div class="wf-box">
@@ -45,6 +43,7 @@
                 <h3>Heading</h3>
                 <p>Content aa asdfasdfjal</p>    
             </div>
-        </div>      
+        </div>  
+    </div> 
 @stop
 
