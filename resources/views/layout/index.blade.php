@@ -121,7 +121,7 @@
         });
 
         $('.test1').on('click', function(){
-            window.location = '/an-gi-bay-gio';
+            window.location = '{{URL::to('/an-gi-bay-gio')}}';
         });
     }); 
 </script>
