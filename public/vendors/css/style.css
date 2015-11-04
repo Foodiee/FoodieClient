@@ -332,7 +332,7 @@ input::-webkit-input-placeholder {
 /*upload modal*/
 .left-upload-modal{
     background: #D9D9D9;
-    height: 400px;
+    height: 500px;
 }
 .left-upload-modal img{
     max-width:100%;
@@ -349,7 +349,7 @@ input::-webkit-input-placeholder {
 }
 .right-upload-modal{
     background: #fff;
-    height: 400px;
+    height: 500px;
 }
 
 /*End upload modal*/
@@ -381,7 +381,7 @@ input::-webkit-input-placeholder {
     top:25%;
     left:25%;
     z-index:19;
-    transition: all 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
+    transition: all 200ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
     position:absolute;
 }
 .test2 {
@@ -396,7 +396,7 @@ input::-webkit-input-placeholder {
     top:25%;
     left:25%;
     z-index:19;
-    transition: all 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550) .2s;
+    transition: all 200ms cubic-bezier(0.680, -0.550, 0.265, 1.550) .2s;
 }
 .test3 {
     width:60%;
@@ -409,7 +409,7 @@ input::-webkit-input-placeholder {
     line-height:35px;
     top:25%;
     left:25%;
-    transition: all 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550) .4s;  
+    transition: all 200ms cubic-bezier(0.680, -0.550, 0.265, 1.550) .4s;  
 }
 .test4 {
     width:60%;
@@ -422,7 +422,7 @@ input::-webkit-input-placeholder {
     line-height:35px;
     top:25%;
     left:25%;
-    transition: all 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550) .6s;  
+    transition: all 200ms cubic-bezier(0.680, -0.550, 0.265, 1.550) .6s;  
 }
 .mask2 {
     bottom:15px;
@@ -472,7 +472,11 @@ input::-webkit-input-placeholder {
     padding-top: 4px;
     width:41%;
 }
-.ajbh-list-hastag li,.ajbh-list-hastag1 li{
+.ajbh-list-hastag2{
+    padding-top: 10px;
+    width:100%;
+}
+.ajbh-list-hastag li,.ajbh-list-hastag1 li,.ajbh-list-hastag2 li{
     margin-right: 10px;
     font-size: 14px;
     line-height: 14px;
@@ -589,6 +593,30 @@ input::-webkit-input-placeholder {
 }
 /*an j bay h*/
 
+/*cho popup gia giữa màn hình*/
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px; /* Adjusts for spacing */
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+/*cho popup gia giữa màn hình*/
+
+.progress{
+    margin-bottom: 0px !important;
+}
 @media screen and (min-width: 768px) {
     .wf-container { width: 90%; }
     .navbar-collapse {width: 75%;}

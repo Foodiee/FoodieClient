@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="vendors/img/logo.png" rel="icon" type="image/x-icon">
     <link rel="stylesheet" href="vendors/css/font-awesome.min.css">
     <link rel="stylesheet" href="vendors/css/bootstrap.min.css">
     
@@ -44,7 +45,10 @@
                 </form> 
                 
                 <ul class="nav navbar-nav navbar-right" style="margin-top:15px; margin-left:65px;">
-                    <li><a href="#" id="upload">Upload</a></li>
+                    <li>
+                        <input type="file" name="image" id="imgInp" class="file">
+                        <a href="#" id="upload">Upload</a>
+                    </li>
                     <li><a href="{{URL::to('profile')}}">Home</a></li>
                     <li class="dropdown" style="margin-top:10px;">
                         <img src="vendors/img/5.jpg" height="30" width="30" class="logo-profile" id="dropdownMenu2" data-toggle="dropdown" style='cursor:pointer;'>   
@@ -82,6 +86,18 @@
         <div class="test4"><i class="fa fa-envelope-o" data-toggle="tooltip" title="Hooray!" style='cursor:pointer;'></i></div>
         <div class="mask2"><i class="fa fa-home fa-2x" data-toggle="tooltip" title="Menu"style='cursor:pointer;'></i></div>
     </div>
+
+    <div class="modal fade modal-prgbar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                    00%
+                    </div>
+                </div>    
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 </body>
 
 <script>
@@ -93,6 +109,16 @@
 
         var waterfall = new Waterfall({ 
             minBoxWidth: 250 
+        });
+
+        //sự kiện upload ảnh
+        $('#imgInp').hide();
+        $('#upload').on('click', function(){
+            document.getElementById("imgInp").click();
+        });
+    
+        $("#imgInp").change(function(){
+            readURL(this);
         });
 
         $('.parent2').on('mousedown touchstart', function() {
@@ -110,19 +136,74 @@
             active4 = !active4;  
         });
 
-        $("#upload").click(function(){
-            $(".modal").modal('show'); 
+        $('.test1 i').on('click', function(){
+            window.location = '/an-gi-bay-gio';
         });
 
-        $("#upload-img").click(function(){
-            $("#modal").toggle(1000); 
-            $(".bar").toggle(2000);
-            $(".bar-fill").css("width","100%");
-        });
+        $(window).on('click', '#pinit', function(){
+            board_id = $(this).data('option');
+            description = $('.description').val();
+            place_id = 1;
+            hashtag = $(".ajbh-list-hastag2 li").map(function(){
+                return $(this).text();
+            }).get();
+            $.ajax({
+                url :"{{url('/upload-post')}}",
+                data: {board_id:board_id, description:description, place_id:place_id, hashtag:hashtag},
+                type :'POST',
+                cache :false,
+            }).done(function(data) {
+                
+            }).fail(function(data) {
 
-        $('.test1').on('click', function(){
-            window.location = '{{URL::to('/an-gi-bay-gio')}}';
+            }).always(function(data) {
+
+            });
         });
     }); 
+    
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (theFile) {
+            var image = new Image();
+            image.src = theFile.target.result;
+            $('.modal-prgbar .progress-bar').css('width', '0%');
+            $('.modal-prgbar .progress-bar').text('00%');
+            $('.modal-prgbar').modal('show');
+            
+            i = 0;
+            var myVar = setInterval(function(){
+                $('.modal-prgbar .progress-bar').css('width', i+'%');
+                $('.modal-prgbar .progress-bar').text(i+'%'); 
+                if(i == 100){
+                    clearInterval(myVar);
+                }else{
+                    i = i + 1;
+                }
+            }, 200);
+            $.ajax({
+                url :"{{url('/upload-img')}}",
+                data: {src : image.src},
+                type :'POST',
+                cache :false,
+            }).done(function(data) {
+                clearInterval(myVar);
+                $('.modal-prgbar .progress-bar').css('width', '100%');
+                $('.modal-prgbar .progress-bar').text('100%');
+                setTimeout(function(){ 
+                    $('.modal-prgbar').modal('hide');
+                    $('#blah').attr('src', image.src);
+                    $('.modal-upload').modal('show'); 
+                }, 3000);
+            }).fail(function(data) {
+
+            }).always(function(data) {
+
+            });
+        }           
+        reader.readAsDataURL(input.files[0]);
+        }
+    }
 </script>
 </html>

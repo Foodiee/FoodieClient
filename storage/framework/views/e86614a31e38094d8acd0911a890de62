@@ -3,8 +3,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
+    <link href="vendors/img/logo.png" rel="icon" type="image/x-icon">
     <link rel="stylesheet" href="vendors/css/bootstrap.min.css">
-    
+    <link rel="stylesheet" href="vendors/css/font-awesome.min.css">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300italic,300,100' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" type="text/css" href="vendors/css/nomalize.css">
@@ -19,11 +20,30 @@
 
     <script src="vendors/js/responsive_waterfall.js"></script>
     <title>Fresh Food</title>
+
+    <script>
+        window.fbAsyncInit = function() {
+                FB.init({
+                appId      : '1473244306316838',
+                xfbml      : true,
+                version    : 'v2.5'
+            });
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 </head>
     
 <body>
     <?php /* Thanh menu */ ?>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top" style='background-color:#fff;webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);'>
         <div class="container-fluid">
             <div class="navbar-header"> 
                 <a class="navbar-brand logo" href="/" style="margin-left:80px;">
@@ -42,14 +62,14 @@
                 </form> 
                 
                 <ul class="nav navbar-nav navbar-right" style="margin-top:15px; margin-left:65px;">
-                    <li><a href="<?php echo e(URL::to("/facebook/login")); ?>">Đăng nhập bằng fb</a></li>
+                    <li><a href="#" class="loginfb">Đăng nhập bằng fb</a></li>
                     
                 </ul>
             </div>
         </div>
     </nav>
        
-    <section style="margin-top:40px;">
+    <section style="margin-top:40px;background-color:#E9E9E9;">
         <div class="wf-container">
             <div class="wf-box">
                 <img src="vendors/img/5.jpg">
@@ -74,66 +94,37 @@
                     <p>Content aa asdfasdfjal</p>    
                 </div>
             </div>
-			    <div class="wf-box">
-            <img src="vendors/img/5.jpg">
-            <div class="content">
-                <h3>Title</h3>
-                <p>Content aa asdfasdfjal</p>    
-            </div>
-        </div>
-        <div class="wf-box">
-            <img src="vendors/img/15.jpg">
-            <div class="content">
-                <h3>Heading</h3>
-                <p>Content aa asdfasdfjal</p>    
-            </div>
-        </div>
-        <div class="wf-box">
-            <img src="vendors/img/11.jpg">
-            <div class="content">
-                <h3>Heading</h3>
-                <p>Content aa asdfasdfjal</p>    
-            </div>
-        </div>
-        <div class="wf-box">
-            <img src="vendors/img/18.jpg">
-            <div class="content">
-                <h3>Heading</h3>
-                <p>Content aa asdf ljaljaljal</p>    
-            </div>
-        </div>
         </div>    
     </section>
                         
-    <footer>
-        <div class="row">
-            <div class="col span_1_of_2">
-                <ul class="footer-nav">
-                    <li><a href="#"> Main Page</a></li>
-                    <li><a href="mypage.html"> My Page</a></li>
-                    <li><a href="#"> About Us</a></li>
-                </ul>
-            </div>
-                
-            <div class="col span_1_of_2">
-                <ul class="social-links">
-                    <li><a href="#"> <i class="ion-social-facebook"></i></a></li>
-                    <li><a href="#"> <i class="ion-social-twitter"></i></a></li>
-                    <li><a href="#"> <i class="ion-social-googleplus"></i></a></li>
-                    <li><a href="#"> <i class="ion-social-instagram"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </footer> 
-
     <?php echo $__env->make('layout.modal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 </body>
 
 <script>
     $(document).ready(function(){
+        $('.loginfb').on('click', function(){
+            FB.login(function(response) {
+                if (response.authResponse) {
+                    FB.api('/me?fields=id,name,email,birthday,gender', function(response) {
+                        console.log(response);
+                        $.ajax({
+                            type: "POST",
+                            url: "<?php echo e(url('/facebook/login')); ?>",
+                            cache: false,
+                            data: {response : response},
+                            success: function(data){
+                                window.location = '/home';
+                            }
+                        });
+                    });
+                } else {
+                    console.log('User cancelled login or did not fully authorize.');
+                }
+            }, {scope: ('email','user_about_me','user_birthday')});
+        });
+
         $("img").click(function(){
             $(".modal").modal('show'); 
-            getPost();
         });
 
         $("#upload-img").click(function(){
@@ -146,19 +137,4 @@
             minBoxWidth: 250 
         });
     }); 
-    function getPost() {
-        $.ajax(
-            {
-                type:"POST",
-                data: {id:"John"},
-                url:"<?php echo e(URL::to('photo')); ?>",
-                success: function(data)
-                {
-                    console.log(data);
-                    $('#modal_title').text(data.title);
-                    $('#modal_description').text(data.description);
-                }
-            });
-
-    }
 </script>

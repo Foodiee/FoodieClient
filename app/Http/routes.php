@@ -11,5 +11,7 @@ Route::get('/modal', function () {
 Route::get('/', 'FrontEndController@mainview');
 Route::get('/home', 'FrontEndController@homeview');
 Route::get('/an-gi-bay-gio', 'FrontEndController@searchfoodview');
-
+Route::get('/search','SearchController@view');
 Route::post('facebook/login', 'FrontEndController@login');
+Route::post('/upload-img', 'FrontEndController@uploadimg');
+Route::post('/upload-post', 'FrontEndController@uploadpost');
