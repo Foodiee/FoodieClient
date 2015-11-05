@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="wf-box">
-            <img src="vendors/img/5.jpg">
+            <img src="vendors/img/5.jpg" class="box-img"/>
             <div class="content">
                 <h3>Title</h3>
                 <p>Content aa asdfasdfjal</p>    

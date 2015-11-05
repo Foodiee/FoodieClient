@@ -220,9 +220,11 @@ font-size: 16px;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     width: 100%;
+    cursor: pointer;
 }
 .wf-box .content {
     border: 1px solid #ccc;
+    background: #fff;
     border-top-width: 1px;
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
@@ -617,6 +619,159 @@ input::-webkit-input-placeholder {
 .progress{
     margin-bottom: 0px !important;
 }
+
+/*pop up hiển thị chi tiết nội dung ảnh*/
+.modal-view .col-md-1{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    height: 500px;
+}
+.left-arrow, .right-arrow{
+    margin-top: 250px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #fff;
+    border: none;
+}
+.left-arrow i{
+    margin-left: 3px;
+    margin-top: 3px;
+}
+.right-arrow i{
+    margin-left: 8px;
+    margin-top: 3px;
+}
+.center-right-side{
+    height: 500px;
+    background: #fff;
+    webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
+    box-shadow: 0 4px 2px 0 rgba(0,0,0,0.22);
+}
+.mv-title{
+    width: 100%;
+    height: 50px;
+    background: #fff;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
+}
+.mv-img{
+    width: 100%;
+    background-position: center center;
+    margin-top: 3px;
+    
+    background-size: cover;
+}
+.mv-img img{
+    border-radius: 6px;
+}
+.mv-img-footer p{
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #444;
+    font-size: 15px;
+    font-weight: bold;
+    padding-left: 10px;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.33);
+}
+.col-right-arrow{
+    margin-left: -15px;
+}
+.right-arrow{
+    float: right;
+    margin-top: 55px;
+}
+.col-md-7{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.center-left-side{
+    height: auto;
+    background: #fff;
+    border-radius: 6px;
+    webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
+    box-shadow: 0 4px 2px 0 rgba(0,0,0,0.22);
+}
+.center-left-side .cls-title{
+    height: 40px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+.center-left-side .cls-title img{
+    float: left
+}
+.center-left-side .cls-user{
+    float: left;
+    height: 38px;
+    margin-left: 8px;
+}
+.cls-user .cls-name{
+    color: #8e8e8e;
+    font-size: 13px;
+    line-height: 17px;
+    font-weight: bold;
+}
+.cls-user .cls-board{
+    color: #333;
+    font-size: 15px;
+    line-height: 17px;
+    font-weight: bold;
+}
+.cls-user p{
+    margin: 0px 0 7px !important;
+}
+.cls-album{
+    height: 120px;
+    overflow-y:scroll; 
+    margin-bottom: 10px;
+    webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
+    background: url("https://s-passets-cache-ak0.pinimg.com/webapp/style/app/common/images/boardPinsGridShadowBottom-a1fc902f.png") repeat-x left bottom;
+}
+.cls-album .wf-box{
+    width: 23%;
+    float: left;
+}
+.cls-album .wf-box img{
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.mv-cmt{
+    margin-top: -180px;
+    height: 200px;
+    background: #fff;
+    webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
+    box-shadow: 0 4px 2px 0 rgba(0,0,0,0.22);
+    border-radius: 6px;
+}
+.mv-map{
+    margin-top: 14px;
+    height: 200px;
+    background: #fff;
+    webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
+    box-shadow: 0 4px 2px 0 rgba(0,0,0,0.22);
+    border-radius: 6px;
+}
+.mv-related-post{
+    margin-top: 14px;
+    height: auto;
+    border-radius: 6px;
+    webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
+    box-shadow: 0 4px 2px 0 rgba(0,0,0,0.22);
+}
+.mv-related-post .wf-box{
+    width: 30%;
+    float: left;
+    margin: 0px;
+    margin-right: 10px;
+}
+.modal-view .col-md-10{
+    padding-right: 0px;
+    padding-left: 0px;
+}
+/*pop up hiển thị chi tiết nội dung ảnh*/
+
 @media screen and (min-width: 768px) {
     .wf-container { width: 90%; }
     .navbar-collapse {width: 75%;}

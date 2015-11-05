@@ -78,6 +78,7 @@
     </section>
 
     @include('layout.modal')
+    @include('layout.modal-view')
     
     <div class="parent2">
         <div class="test1"><i class="fa fa-map" data-toggle="tooltip" title="Ăn j bây h!" style='cursor:pointer;'></i></div>
@@ -139,6 +140,10 @@
         $('.test1 i').on('click', function(){
             window.location = '/an-gi-bay-gio';
         });
+
+        $('.box-img').on('click', function(){
+            $('.modal-view').modal('show');
+        });        
 
         $(window).on('click', '#pinit', function(){
             board_id = $(this).data('option');
