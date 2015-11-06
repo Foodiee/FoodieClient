@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use DB;
 use Validator;
 use Auth;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 class LoginController extends Controller {
 
@@ -94,9 +94,9 @@ class LoginController extends Controller {
           'password' => $request->password
         );
         if (Auth::attempt($auth)) {
-            echo Auth::user()->user_id;
+            return redirect()->route('home');
         } else {
-            echo "sai ten mat khau";
+            echo "sai ten mat khau. Nhap bacukha/tuankha";
         }
         
     }
