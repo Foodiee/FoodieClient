@@ -1,5 +1,4 @@
 <?php
-
 Route::get('/profile', function () {
     return view('profile');
 });
@@ -9,7 +8,11 @@ Route::get('/modal', function () {
 });
 
 Route::get('/', ['as'=>'timeline','uses'=>'FrontEndController@mainview']);
+<<<<<<< HEAD
 Route::get('/home', ['as'=>'home','uses'=>'FrontEndController@homeview','middleware'=>'auth']);
+=======
+Route::get('/home', ['as'=>'home','uses'=>'FrontEndController@homeview']);
+>>>>>>> b84a6a5bee1cd6633455eab57b3ccadf9b6ee77e
 Route::get('/an-gi-bay-gio', 'FrontEndController@searchfoodview');
 Route::group(['prefix'=>'search'],function()
 {
@@ -36,6 +39,11 @@ Route::get('register', function (){
 });
 Route::get('callback','LoginController@callback');
 Route::post('register',['as'=>'sendRegister', 'uses'=>'LoginController@register']);
+<<<<<<< HEAD
 Route::post('login',['as'=>'postLogin', 'uses'=>'LoginController@login']);
 // Route::post('postLogin','LoginController@login');
 Route::get('logout','UserController@logout');
+=======
+// Route::post('login',['as'=>'postLogin', 'uses'=>'Auth\AuthController@login']);
+Route::post('postLogin',['as'=>'postLogin', 'uses'=>'LoginController@login']);
+>>>>>>> b84a6a5bee1cd6633455eab57b3ccadf9b6ee77e

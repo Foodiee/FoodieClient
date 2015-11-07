@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use DB;
 use Validator;
 use Auth;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 class LoginController extends Controller {
 
@@ -90,10 +90,15 @@ class LoginController extends Controller {
           'username' => $request->username,
           'password' => $request->password
         );
+<<<<<<< HEAD
         if (Auth::attempt($auth,true)) {
                 return redirect()->route('home');
+=======
+        if (Auth::attempt($auth)) {
+            return redirect()->route('home');
+>>>>>>> b84a6a5bee1cd6633455eab57b3ccadf9b6ee77e
         } else {
-            echo "sai ten mat khau";
+            echo "sai ten mat khau. Nhap bacukha/tuankha";
         }
         
     }
