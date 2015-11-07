@@ -51,35 +51,35 @@
             </div>
         </div>
         <div class="wf-box">
-            <img src="vendors/img/5.jpg" class="box-img">
+            <img src="vendors/img/5.jpg">
             <div class="content">
                 <h3>Heading</h3>
                 <p>Content aa asdfasdfjal</p>    
             </div>
         </div>
         <div class="wf-box">
-            <img src="vendors/img/5.jpg" class="box-img">
+            <img src="vendors/img/5.jpg">
             <div class="content">
                 <h3>Heading</h3>
                 <p>Content aa asdf ljaljaljal</p>    
             </div>
         </div>
         <div class="wf-box">
-            <img src="vendors/img/5.jpg" class="box-img">
+            <img src="vendors/img/5.jpg">
             <div class="content">
                 <h3>Heading</h3>
                 <p>Content aa asdfasdfjal</p>    
             </div>
         </div>
         <div class="wf-box">
-            <img src="vendors/img/5.jpg" class="box-img">
+            <img src="vendors/img/5.jpg">
             <div class="content">
                 <h3>Heading</h3>
                 <p>Content aa asdfasdfjal</p>    
             </div>
         </div>
         <div class="wf-box">
-            <img src="vendors/img/5.jpg" class="box-img">
+            <img src="vendors/img/5.jpg">
             <div class="content">
                 <h3>Heading</h3>
                 <p>Content aa asdf ljaljaljal</p>    
