@@ -59,16 +59,14 @@ class LoginController extends Controller {
 
     public function register(Request $request) {
         $v = Validator::make($request->all(), [
-                    'username' => 'required|unique:users,account',
+                    'username' => 'required|unique:users',
                     'password' => 'required',
                     'rePassword' => 'required|same:password',
-                    'name' => 'required',
                     'email' => 'required',
                         ], [
                     'username.required' => 'Vui lòng nhập accout',
                     'password.required' => 'Vui lòng nhập password',
                     'email.required' => 'Vui lòng nhập email',
-                    'name.required' => 'Vui lòng nhập Tên hiển thị',
                     'rePassword.same:password' => 'Mật khẩu nhập lại không đúng, vui lòng kiểm tra lại mật khẩu',
                     'username.unique' => 'Tên đăng nhập đã tồn tại',
                         ]
@@ -76,15 +74,14 @@ class LoginController extends Controller {
         if ($v->fails()) {
             return redirect()->back()->withErrors($v->errors());
         }
-        $id = DB::table('users')->insertGetId(['account' => $request->username, 'name' => $request->name, 'email' => $request->email,'password' => Hash::make($request->password)]);
-//        $member = new User;
-//        $member->account = $request->username;
-//        $member->name = $request->name;
-//        $member->email = $request->email;
-//        $member->password = Hash::make($request->password);
-//        $member->save();
+        // $id = DB::table('users')->insertGetId(['account' => $request->username, 'name' => $request->name, 'email' => $request->email,'password' => Hash::make($request->password)]);
+       $member = new User;
+       $member->username = $request->username; 
+       $member->email = $request->email;
+       $member->password = Hash::make($request->password);
+       $member->save();
 //        echo "a";
-        echo $id;
+        // echo $id;
     }
 
     public function login(Request $request) {
@@ -94,7 +91,6 @@ class LoginController extends Controller {
           'password' => $request->password
         );
         if (Auth::attempt($auth,true)) {
-               
                 return redirect()->route('home');
         } else {
             echo "sai ten mat khau";

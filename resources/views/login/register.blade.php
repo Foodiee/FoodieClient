@@ -5,8 +5,6 @@
 {!!Form::password('password','',array('class'=> 'inpput'))!!}<br><br>
 {!!Form::label('','RePassword')!!}
 {!!Form::password('rePassword','',array('class'=> 'inpput'))!!}<br><br>
-{!!Form::label('','Tên đăng nhập')!!}
-{!!Form::text('name','',array('class'=> 'inpput'))!!}<br><br>
 {!!Form::label('','Email')!!}
 {!!Form::email('email','',array('class'=> 'inpput'))!!}<br><br>
 @if(count($errors)>0)

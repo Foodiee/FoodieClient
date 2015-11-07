@@ -49,7 +49,10 @@ class UserController extends Controller {
     public function logout()
     {
         if(Auth::check())
+		{
+			Auth::logout();
             return redirect()->route('timeline');
+		}
         else 
             echo "Already logout";
     }

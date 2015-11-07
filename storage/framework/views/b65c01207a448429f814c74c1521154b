@@ -1,11 +1,10 @@
-@extends('layout.index')
-@section('grid-layout')
+<?php $__env->startSection('grid-layout'); ?>
     <div class="container" style="width:60%;margin-top:100px;">
         <div class="left-side col-md-5">
             <img src="vendors/img/5.jpg" class="logo-profile" height="150" width="150">
         </div>
         <div class="right-side col-md-6">
-            <h3>{{Auth::user()->username}}</h3>
+            <h3>Hoàng Thanh Tùng</h3>
             <ul class="user-info">
                 <li><span>7</span> Bài viết</li>
                 <li><span>7</span> Album</li>
@@ -45,5 +44,7 @@
             </div>
         </div>  
     </div> 
-@stop
+<?php $__env->stopSection(); ?>
 
+
+<?php echo $__env->make('layout.index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

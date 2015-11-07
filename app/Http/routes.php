@@ -8,7 +8,7 @@ Route::get('/modal', function () {
     return view('modal');
 });
 
-Route::get('/', ['as'=>'timeline','uses'=>'FrontEndController@mainview','middleware'=>'auth']);
+Route::get('/', ['as'=>'timeline','uses'=>'FrontEndController@mainview']);
 Route::get('/home', ['as'=>'home','uses'=>'FrontEndController@homeview','middleware'=>'auth']);
 Route::get('/an-gi-bay-gio', 'FrontEndController@searchfoodview');
 Route::group(['prefix'=>'search'],function()

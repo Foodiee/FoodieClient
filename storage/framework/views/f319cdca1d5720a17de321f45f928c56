@@ -46,7 +46,7 @@
                         <input type="file" name="image" id="imgInp" class="file" accept="image/*">
                         <a href="#" id="upload">Upload</a>
                     </li>
-                    <li><a href="<?php echo e(URL::to('profile')); ?>">Home</a></li>
+                    <li><a href="<?php echo e(URL::to('profile')); ?>"><?php echo e(Auth::user()->username); ?></a></li>
                     <li class="dropdown" style="margin-top:10px;">
                         <img src="vendors/img/5.jpg" height="30" width="30" class="logo-profile" id="dropdownMenu2" data-toggle="dropdown" style='cursor:pointer;'>   
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2" style="margin-top:26px;">
