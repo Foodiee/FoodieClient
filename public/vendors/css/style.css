@@ -958,3 +958,25 @@ input::-webkit-input-placeholder {
 @media screen and (min-width: 1200px) {
     .wf-container { width: 90%; }
 }
+.object-fit_contain {
+    object-fill:contain;
+}
+.image-fit {
+    width:100%;
+}
+.board_choose:hover{
+    background: #f6f6f6;
+}
+.board-edit-name{
+    border-top: 1px solid #f3f3f3;
+    padding:16px 25px 13px;
+    margin-bottom: 22px;
+}
+.board-name-input
+{
+    border:none !important;
+}
+.board-name-input::selection;
+{
+    color:blue;
+}

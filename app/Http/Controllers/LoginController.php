@@ -79,7 +79,15 @@ class LoginController extends Controller {
        $member->username = $request->username; 
        $member->email = $request->email;
        $member->password = Hash::make($request->password);
-       $member->save();
+       if($member->save()) {
+            $auth = array(
+              'email' => $member->email,
+              'password' => $member->password
+             );
+            Auth::attempt($auth,true);
+            return redirect()->to('home');
+       };
+
 //        echo "a";
         // echo $id;
     }
@@ -87,7 +95,7 @@ class LoginController extends Controller {
     public function login(Request $request) {
          
         $auth = array(
-          'username' => $request->username,
+          'email' => $request->email,
           'password' => $request->password
         );
         if (Auth::attempt($auth,true)) {

@@ -1,9 +1,9 @@
 <?php $__env->startSection('modal'); ?>
-  <div class="modal fade modal-upload">
-    <div class="modal-dialog" style="width:65%;">
+  <div class="modal fade modal-upload" tabindex="-1">
+    <div class="modal-dialog" style="width:70%;">
       <div class="modal-content">
-          <div class="col-md-6 left-upload-modal">
-            <div class="wf-box" style="margin-top:25px;">
+          <div class="col-md-7 left-upload-modal">
+            <div class="wf-box object-fit_contain image-fit" id = "img_preview" style="margin-top:55px;">
               <img src="vendors/img/5.jpg" id="blah">
               <div class="content">
                 <textarea placeholder='Viết chú thích' class="description"></textarea>
@@ -14,7 +14,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6 right-upload-modal">
+          <div id="board-choose-form" class="col-md-5 right-upload-modal">
             <div class="row" style="margin-top:20px;">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
@@ -31,19 +31,36 @@
               </div>
             </div>
             <input type="text" class="form-control" placeholder="Search" style="margin-top:30px;">
-            <div class="row" style="margin-top:30px;border-radius:6px;">
+            <div class="row board_choose" style="margin-top:30px;border-radius:6px;">
               <img src="vendors/img/5.jpg" width="50" height="50">
               <span style='margin-left:10px;'>Album 1</span>
               <div style="cursor:pointer;" class="pinit" data-option='1'>Pin it</div>
             </div>
-            <div class="row" style="margin-top:30px;border-radius:6px;">
+            <div class="row board_choose" style="margin-top:30px;border-radius:6px;">
               <img src="vendors/img/5.jpg" width="50" height="50">
               <span style='margin-left:10px;'>Album 1</span>
             </div>
-            <div class="row" style="margin-top:30px;border-radius:6px;">
+            <div class="row board_choose " id="create_div" style="margin-top:30px;border-radius:6px;cursor:pointer">
               <img src="vendors/img/red-plus.png" width="50" height="50"> 
               <span style='margin-left:10px;'>Tạo thêm 1 bảng</span>
             </div>
+          </div>
+          <div id="board-create-form" class="col-md-5 right-upload-modal hidden">
+             <div  class="row" style="margin-top:20px;">
+              <h1>
+                <div class="col-md-10">Tạo bảng</div>
+                <div class="col-md-2">
+              </h1>
+              </div>
+              <div class="row board-edit-name">
+                <label for="Tên">Tên</label>
+                <br>
+                <input id="boardname" name="boardname" class="board-name-input " placeholder="Nhập tên bảng"/>
+              </div>
+              <div class="row board-edit-name">
+                <button id = "btnCreate" class="btn btn-default">Create</button>
+                <button id="btnCancel" class="btn btn-default">Cancel</button>
+              </div>
           </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -53,7 +70,35 @@
     // This example adds a search box to a map, using the Google Place Autocomplete
     // feature. People can enter geographical searches. The search box will return a
     // pick list containing a mix of places and predicted search terms.
-
+    var current = 1;
+    $('#btnCreate').click(function(){
+       changeClass(1);
+    });
+    $('#btnCancel').click(function(){
+       changeClass(1);
+    });
+    
+    $('#create_div').click(function(){
+        changeClass(2);
+    });
+    function changeClass(divNumber)
+    {
+      if(divNumber==1) 
+        {
+          $("#board-choose-form").removeClass("hidden");
+          $("#board-create-form").addClass("hidden");
+          // $("#board-choose-form").fadeIn();
+          // $("#board-create-form").fadeOut();
+        }
+        else
+        {
+        // {
+          $("#board-choose-form").addClass("hidden");
+          $("#board-create-form").removeClass("hidden");
+        // $("#board-choose-form").fadeIn();
+        //   $("#board-create-form").fadeOut();
+        }
+    }
     function initAutocomplete() {
       var map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: -33.8688, lng: 151.2195},

@@ -15,7 +15,7 @@
             {!!Form::open(array('route'=>'postLogin','method' => 'post','files' => true))!!}
             <div class="fluid-container ml-formlogin">
               <div class="form-group">
-                <input type="text" class="form-control" id="username" name="username" placeholder='Tài khoản'>
+                <input type="text" class="form-control" id="email" name="email" placeholder='Email'>
               </div>
               <div class="form-group">
                 <input type="password" class="form-control" id="password" name="password" placeholder='Mật khẩu'>
