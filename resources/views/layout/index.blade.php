@@ -10,9 +10,6 @@
     
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300italic,300,100' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" type="text/css" href="vendors/css/nomalize.css">
-    <link rel="stylesheet" type="text/css" href="vendors/css/ionicons.min.css">
-    <link rel="stylesheet" type="text/css" href="vendors/css/grid.css">
     <link rel="stylesheet" type="text/css" href="vendors/css/style.css">
     <!-- Latest compiled and minified CSS -->
 
@@ -40,13 +37,13 @@
             </div>
         
             <div class="collapse navbar-collapse container" id="myNavbar">
-                <form class="nav navbar-nav navbar-left" style="margin-top:17px;">
+                <form class="nav navbar-nav navbar-left" style="margin-top:22px;">
                     <input type="search" placeholder="Search">
                 </form> 
                 
                 <ul class="nav navbar-nav navbar-right" style="margin-top:15px; margin-left:65px;">
                     <li>
-                        <input type="file" name="image" id="imgInp" class="file">
+                        <input type="file" name="image" id="imgInp" class="file" accept="image/*">
                         <a href="#" id="upload">Upload</a>
                     </li>
                     <li><a href="{{URL::to('profile')}}">Home</a></li>
@@ -65,7 +62,7 @@
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
                             <li role="presentation" class="divider"></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Đăng xuất</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="{{URL::to('logout')}}">Đăng xuất</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -136,6 +133,14 @@
             active3 = !active3;
             active4 = !active4;  
         });
+    
+        $('.locate-map').on('click',function(){
+            $('.locate-map').hide();
+            $('.locate-text').hide();
+            $('#pac-input').show();
+            $('#map').show();
+            initAutocomplete();
+        });
 
         $('.test1 i').on('click', function(){
             window.location = '/an-gi-bay-gio';
@@ -145,7 +150,7 @@
             $('.modal-view').modal('show');
         });        
 
-        $(window).on('click', '#pinit', function(){
+        $(document).on('click', '#pinit', function(){
             board_id = $(this).data('option');
             description = $('.description').val();
             place_id = 1;
@@ -165,10 +170,19 @@
 
             });
         });
+
+
     }); 
+
     
+
     function readURL(input) {
         if (input.files && input.files[0]) {
+            if(input.files[0].size > 5*1024*1024)
+            {
+                alert("Qua dung luong");
+                return;
+            }
             var reader = new FileReader();
             reader.onload = function (theFile) {
             var image = new Image();
@@ -211,4 +225,5 @@
         }
     }
 </script>
+
 </html>

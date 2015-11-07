@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use DB;
 
 class UserController extends Controller {
@@ -45,5 +45,12 @@ class UserController extends Controller {
         session_start();
         $_SESSION['user_status'] = true;
         $_SESSION['user_id'] = $id;
+    }
+    public function logout()
+    {
+        if(Auth::check())
+            return redirect()->route('timeline');
+        else 
+            echo "Already logout";
     }
 }

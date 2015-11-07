@@ -1,14 +1,14 @@
 <?php
 namespace App\Http\Controllers;
 use Cookie;
-
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\LikeEvent;
 use App\Models\CommentEvent;
-
+use Auth;
 class FrontEndController extends Controller{
 	//post login fb
 	public function login(Request $request){
@@ -50,17 +50,36 @@ class FrontEndController extends Controller{
 		Post::CreatePost($board_id, $description, $photo_link, $user_id, $place_id, $hashtag);
 	}
 
+	//lấy ra thông tin chi tiết của ảnh
+	public function detailimage(Request $request){
+		$post_id = $request->input("post_id");
+		$detail_post = Post::GetDetailPost($post_id);
+		dd($detail_post);
+	}
+
+	//load more
+	public function loadmore(Request $request){
+		$skip = $request->session()->get('skip');
+		$skip = $skip + 8;
+
+		$data = Post::GetPopularPost(LikeEvent::GetMostPost(), $skip);
+		$request->session()->put('skip', $skip);
+
+		return $data;
+	}
+
 	//get view trang chủ
 	public function mainview(Request $request){
-		if($request->cookie('user') == null){
-			return view('layout.master');
-		}else{
-			dd($request->cookie('user'));
-		}
+		$request->session()->put('skip', 0);
+		if(Auth::check())
+			return redirect()->to('home');
+		return view('layout.master');
 	}
 
 	//get view trang chủ
 	public function homeview(Request $request){
+		
+		//print_r(Auth::user()->user_id);
 		return view('mainpage');
 	}
 

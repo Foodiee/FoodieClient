@@ -332,13 +332,36 @@ input::-webkit-input-placeholder {
 }
 
 /*upload modal*/
+.modal-upload .content{
+    padding: 0px 0px;
+}
+.modal-upload .description{
+    margin-bottom: 10px;
+}
 .left-upload-modal{
     background: #D9D9D9;
-    height: 500px;
+    height: 570px;
 }
 .left-upload-modal img{
     max-width:100%;
     max-height:100%;
+}
+.modal-upload .locate-map{
+    cursor: pointer;
+    padding-left: 10px;
+}
+#map-detail{
+    height: 200px;
+    width: 200px;
+}
+.modal-upload .locate-text{
+    font-size: 14px;
+    float: right;
+    width: 360px;
+    height: 28px;
+}
+.modal-upload .locate-map:hover{
+    background: #F2F2F2;
 }
 .left-upload-modal .content{
     background: #fff;
@@ -351,7 +374,7 @@ input::-webkit-input-placeholder {
 }
 .right-upload-modal{
     background: #fff;
-    height: 500px;
+    height: 570px;
 }
 
 /*End upload modal*/
@@ -770,6 +793,158 @@ input::-webkit-input-placeholder {
     padding-right: 0px;
     padding-left: 0px;
 }
+
+/*pop up đăng nhập*/
+.ml-content{
+    background-image: url('../img/bingsu.jpg');
+    background-size: cover;
+    background-position: center 65%;
+    height: 360px;
+}
+.ml-content .container{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.ml-logo{
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    background-image: url('../img/logo.png');
+    background-size: cover;
+    top: -25px;
+    left: 44%;
+}
+.ml-title{
+    font-size: 27px;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: -1px;
+    margin-top: 50px;
+    text-align: center;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.58)
+}
+.ml-fblogin{
+    position: absolute;
+    width: 45%;
+    top: 100px;
+    left: 30%;
+    background: #435f9c;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.32);
+}
+.ml-fblogin-icon{
+    padding-left: 5px;
+    background: #5a78b9;
+}
+.ml-fblogin-icon i{
+    float: left;
+    margin-right: 4px;
+}
+.ml-fblogin-text{
+    height: 42px;
+    padding-top: 10px;
+    padding-left: 10px;
+    float: left;
+    width: 60%;
+    color: #fff;
+     border-left: 1px solid #2953ad;
+    text-shadow: 0 -1px rgba(0,0,0,0.25);
+}
+.ml-line-text{
+    position: absolute;
+    top: 160px;
+    left: 46%;
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+}
+.ml-line-text:before{
+    content: "";
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 70px;
+    left: -15px;
+    margin-left: -55px;
+    background: rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.5);
+}
+.ml-line-text:after{
+    content: "";
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 70px;
+    right: -15px;
+    background: rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.5);
+}
+.ml-formlogin{
+    position: absolute;
+    top:200px;
+    width: 45%;
+    left: 30%;
+}
+.ml-formlogin #username{
+    -webkit-box-shadow: 0 0 2px rgba(0,0,0,0.38),0 1px 3px rgba(0,0,0,0.32);
+    box-shadow: 0 0 2px rgba(0,0,0,0.38),0 1px 3px rgba(0,0,0,0.32);
+    font-size: 14px;
+}
+.ml-formlogin #password{
+    -webkit-box-shadow: 0 0 2px rgba(0,0,0,0.38),0 1px 3px rgba(0,0,0,0.32);
+    box-shadow: 0 0 2px rgba(0,0,0,0.38),0 1px 3px rgba(0,0,0,0.32);
+    font-size: 14px;
+}
+.btn-block{
+    height: 40px;
+    border-color: #435f9c;
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
+    box-shadow: 0 3px 2px 0 rgba(0,0,0,0.22);
+    background: #435f9c;
+}
+/*pop up đăng nhập*/
+.modal{
+    overflow-y: hidden;
+    top: -30px !important; 
+}
+/*map*/
+#map {
+    height: 200px;
+    width: 388px;
+}
+
+#autocomplete{
+    z-index: 1000000;
+}
+#pac-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    height: 31px;
+    position: absolute;
+    z-index: 100000;
+    margin-top: 10px;
+    margin-left: 130px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 250px;
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}
+
+.pac-container {
+  font-family: Roboto;
+  z-index: 10000;
+}
+
+/*map*/
+
 /*pop up hiển thị chi tiết nội dung ảnh*/
 
 @media screen and (min-width: 768px) {

@@ -51,7 +51,9 @@
               </div> 
             </div>
           </div>
-          <div class="col-md-3 mv-map"></div>
+          <div class="col-md-3 mv-map">
+            <div id="map-detail"></div>
+          </div>
           <div class="col-md-1 col-right-arrow">
             <div class="right-arrow">
               <i class="fa fa-chevron-right fa-2x"></i>
@@ -88,4 +90,29 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
+  <script>
+
+            function initMap(lat, lng) {
+                var myLatLng = new google.maps.LatLng(lat, lng);
+                var options = {
+                    zoom: 18,
+                    
+                    center: myLatLng,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                }
+                var mapdetail = new google.maps.Map(document.getElementById('map-detail'), options);           
+
+              
+                var name = "Place.name";
+                var infowindow = new google.maps.InfoWindow({
+                    content: name
+                });
+                var marker = new google.maps.Marker({
+                    position: {lat: lat, lng: lng},
+                    map: mapdetail,
+                    title: name,
+                    draggable: true
+                });
+            }    
+        </script>
 {{-- @stop  --}}

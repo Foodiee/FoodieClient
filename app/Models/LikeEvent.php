@@ -8,4 +8,15 @@ class LikeEvent extends Model
 {
     //
 	protected $table = 'like_event';
+
+	public static function GetMostPost(){
+		$post_id = LikeEvent::select('post_id')->orderBy('total_like', 'desc')->get();
+
+		$array = array();
+		foreach ($post_id as $key => $value) {
+			array_push($array, $value['post_id']);
+		}
+
+		return $array;
+	}
 }

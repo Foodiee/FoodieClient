@@ -93,8 +93,9 @@ class LoginController extends Controller {
           'username' => $request->username,
           'password' => $request->password
         );
-        if (Auth::attempt($auth)) {
-            echo Auth::user()->user_id;
+        if (Auth::attempt($auth,true)) {
+               
+                return redirect()->route('home');
         } else {
             echo "sai ten mat khau";
         }

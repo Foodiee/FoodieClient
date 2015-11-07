@@ -8,13 +8,21 @@ Route::get('/modal', function () {
     return view('modal');
 });
 
-Route::get('/', 'FrontEndController@mainview');
-Route::get('/home', 'FrontEndController@homeview');
+Route::get('/', ['as'=>'timeline','uses'=>'FrontEndController@mainview','middleware'=>'auth']);
+Route::get('/home', ['as'=>'home','uses'=>'FrontEndController@homeview','middleware'=>'auth']);
 Route::get('/an-gi-bay-gio', 'FrontEndController@searchfoodview');
-Route::get('/search','SearchController@view');
+Route::group(['prefix'=>'search'],function()
+{
+	Route::get('user','SearchController@searchUser');
+	Route::get('board','SearchController@searchBoard');
+	Route::get('post','SearchController@searchPost');
+
+});
 Route::post('facebook/login', 'FrontEndController@login');
 Route::post('/upload-img', 'FrontEndController@uploadimg');
 Route::post('/upload-post', 'FrontEndController@uploadpost');
+Route::post('/load-more', 'FrontEndController@loadmore');
+Route::post('/detail-image', 'FrontEndController@detailimage');
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
@@ -28,5 +36,6 @@ Route::get('register', function (){
 });
 Route::get('callback','LoginController@callback');
 Route::post('register',['as'=>'sendRegister', 'uses'=>'LoginController@register']);
-Route::post('login',['as'=>'postLogin', 'uses'=>'Auth\AuthController@login']);
-Route::post('postLogin',['as'=>'postLogin', 'uses'=>'LoginController@login']);
+Route::post('login',['as'=>'postLogin', 'uses'=>'LoginController@login']);
+// Route::post('postLogin','LoginController@login');
+Route::get('logout','UserController@logout');

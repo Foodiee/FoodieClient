@@ -23,7 +23,7 @@
 </head>
     
 <body>
-    {{-- Thanh menu --}}
+    <?php /* Thanh menu */ ?>
     <nav class="navbar navbar-inverse navbar-fixed-top" style='background-color:#fff;webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
     box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);'>
         <div class="container-fluid">
@@ -53,20 +53,20 @@
        
     <section style="background-color:#E9E9E9;">
         <div class="wf-container">
-            @foreach(App\Models\Post::GetPopularPost(App\Models\LikeEvent::GetMostPost(),0) as $key => $value)
+            <?php foreach(App\Models\Post::GetPopularPost(App\Models\LikeEvent::GetMostPost(),0) as $key => $value): ?>
                 <div class="wf-box">
-                    <img src="vendors/img/{{$value->photo_link}}" class="box-img" data-option='{{$value->post_id}}'>
+                    <img src="vendors/img/<?php echo e($value->photo_link); ?>" class="box-img" data-option='<?php echo e($value->post_id); ?>'>
                     <div class="content">
-                        <h3>{{$value->title}}</h3>
-                        <p>{{$value->description}}</p>
+                        <h3><?php echo e($value->title); ?></h3>
+                        <p><?php echo e($value->description); ?></p>
                     </div>
                 </div>
-            @endforeach    
+            <?php endforeach; ?>    
         </div>    
     </section>
                         
-    @include('layout.modal-view')
-    @include('layout.modal-login')
+    <?php echo $__env->make('layout.modal-view', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('layout.modal-login', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 </body>
 
 <script>
@@ -87,7 +87,7 @@
             // post_id = $(this).data('option');
             // $.ajax({
             //     type: "POST",
-            //     url: "{{url('/detail-image')}}",
+            //     url: "<?php echo e(url('/detail-image')); ?>",
             //     cache: false,
             //     data: {post_id : post_id},
             //     success: function(data){
@@ -109,7 +109,7 @@
                     chek = true;
                     $.ajax({
                         type: "POST",
-                        url: "{{url('/load-more')}}",
+                        url: "<?php echo e(url('/load-more')); ?>",
                         cache: false,
                         data: {},
                         success: function(data){

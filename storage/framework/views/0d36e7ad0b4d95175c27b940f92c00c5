@@ -1,4 +1,4 @@
-@section('modal')
+<?php $__env->startSection('modal'); ?>
   <div class="modal fade modal-upload">
     <div class="modal-dialog" style="width:65%;">
       <div class="modal-content">
@@ -126,4 +126,4 @@
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFo1vaTwz6NILG9inO-5HOEQ14yYWSf9U&signed&libraries=places"
   async defer></script>
-{{-- @stop  --}}
+<?php /* <?php $__env->stopSection(); ?>  */ ?>
