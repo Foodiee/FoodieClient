@@ -61,11 +61,13 @@ class LoginController extends Controller {
     public function register(Request $request) {
         $v = Validator::make($request->all(), [
                     'username' => 'required|unique:users',
+                    'name' =>'required',
                     'password' => 'required',
                     'rePassword' => 'required|same:password',
                     'email' => 'required',
                         ], [
                     'username.required' => 'Vui lòng nhập accout',
+                    'name.required' => 'Vui lòng nhập họ tên đầy đủ',
                     'password.required' => 'Vui lòng nhập password',
                     'email.required' => 'Vui lòng nhập email',
                     'rePassword.same:password' => 'Mật khẩu nhập lại không đúng, vui lòng kiểm tra lại mật khẩu',

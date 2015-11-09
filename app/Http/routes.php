@@ -18,6 +18,7 @@ Route::group(['prefix'=>'search'],function()
 	Route::get('post','SearchController@searchPost');
 
 });
+Route::get('/{user_name}','UserController@getUser');
 Route::get('post/{post_id}','PostController@getPostById');
 Route::group(['prefix'=>'api'],function()
 {

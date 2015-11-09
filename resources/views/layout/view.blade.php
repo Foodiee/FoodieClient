@@ -25,5 +25,5 @@
      @include('layout.modal-view')
 </body>
 <script>
-    $(".modal-view").modal('show'); 
+    $(".modal-dialog").modal('show'); 
 </script>

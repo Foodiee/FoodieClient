@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Auth;
 use DB;
-
+use App\Models\User;
 class UserController extends Controller {
 
     public function callback() {
@@ -45,6 +45,14 @@ class UserController extends Controller {
         session_start();
         $_SESSION['user_status'] = true;
         $_SESSION['user_id'] = $id;
+    }
+    public function getUser($user_name)
+    {
+        $user = User::getUserByName($user_name);
+        if($user)
+            return response()->view('profile',["user"=>$user]);
+        else 
+            return response()->json("Not found");
     }
     public function logout()
     {

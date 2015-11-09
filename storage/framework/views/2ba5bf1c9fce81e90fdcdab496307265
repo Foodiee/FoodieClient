@@ -1,6 +1,6 @@
 <?php $__env->startSection('modal'); ?>
   <div class="modal fade modal-view">
-    <div class="modal-view" id="modal-view-post" style="width:75%;">
+    <div class="modal-dialog" style="width:75%;">
       <div class="modal-content">
           <div class="col-md-1">
             <div class="left-arrow">
@@ -96,7 +96,6 @@
                 var myLatLng = new google.maps.LatLng(lat, lng);
                 var options = {
                     zoom: 18,
-                    
                     center: myLatLng,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 }
@@ -104,9 +103,6 @@
 
               
                 var name = "Place.name";
-                var infowindow = new google.maps.InfoWindow({
-                    content: name
-                });
                 var marker = new google.maps.Marker({
                     position: {lat: lat, lng: lng},
                     map: mapdetail,
@@ -115,4 +111,6 @@
                 });
             }    
         </script>
+       
+
 <?php /* <?php $__env->stopSection(); ?>  */ ?>

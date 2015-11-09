@@ -1,10 +1,10 @@
-@section('modal')
+<?php $__env->startSection('modal'); ?>
   <div class="modal fade modal-upload" tabindex="-1">
     <div class="modal-dialog" style="width:70%;">
       <div class="modal-content">
           <div class="col-md-7 left-upload-modal">
             <div class="wf-box object-fit_contain image-fit" id = "img_preview" style="margin-top:55px;">
-              <img src="{{URL::asset('img/5.jpg')}}" id="blah">
+              <img src="<?php echo e(URL::asset('img/5.jpg')); ?>" id="blah">
               <div class="content">
                 <textarea placeholder='Viết chú thích' id='board_description' class="description"></textarea>
                 <i class="fa fa-map-marker fa-2x locate-map"></i>
@@ -33,7 +33,7 @@
             <input type="text" class="form-control" placeholder="Search" style="margin-top:30px;">
             <div id="board-list" class="board-list-scrollable">
               <div class="row board_choose" style="margin-top:30px;border-radius:6px;">
-                <img id="board_cover_link" src=""{{URL::asset('img/5.jpg')}}"" width="50" height="50">
+                <img id="board_cover_link" src=""<?php echo e(URL::asset('img/5.jpg')); ?>"" width="50" height="50">
                 <span id ="title" style='margin-left:10px;' data-id="">Album 1</span>
                 <button class="btn pinit_btn hidden">
                   <em></em>
@@ -100,7 +100,7 @@
     });
     $('#board-list').on("click","button.pinit_btn",function(){
         console.log($(this).parent());
-        var url ="{{URL::to('api/post')}}";
+        var url ="<?php echo e(URL::to('api/post')); ?>";
         var data ={
           'description':$('board_description').text(),
           'board_id':$(this).parent().find('span:first').data('id'),
@@ -137,7 +137,7 @@
     }
     function createBoard()
     {
-      $url = "{{URL::to('api/board')}}";
+      $url = "<?php echo e(URL::to('api/board')); ?>";
       $method = "POST";
       $.post($url,$('#board-create-form').serialize(),function(data)
         { 
@@ -218,7 +218,7 @@
     }
     function listBoardUser()
     {
-       url = "{{URL::to('api/board')}}";
+       url = "<?php echo e(URL::to('api/board')); ?>";
        $.get(url,function(data){
           for(var i = 0;i<data.length;i++)
           {
@@ -241,4 +241,4 @@
   </script>
  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFo1vaTwz6NILG9inO-5HOEQ14yYWSf9U&signed&libraries=places"
   async defer></script> 
-{{-- @stop  --}}
+<?php /* <?php $__env->stopSection(); ?>  */ ?>

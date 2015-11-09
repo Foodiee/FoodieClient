@@ -1,6 +1,8 @@
 {!!Form::open(array('route'=>'sendRegister','method' => 'post','files' => true))!!}
 {!!Form::label('','Username')!!}
 {!!Form::text('username','',array('class'=> 'inpput'))!!}<br><br>
+{!!Form::label('','Full name')!!}
+{!!Form::text('name','',array('class'=> 'inpput'))!!}<br><br>
 {!!Form::label('','Password')!!}
 {!!Form::password('password','',array('class'=> 'inpput'))!!}<br><br>
 {!!Form::label('','RePassword')!!}

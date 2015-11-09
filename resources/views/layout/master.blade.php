@@ -12,9 +12,10 @@
     <!-- Latest compiled and minified CSS -->
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://www.google.com/jsapi?key=AIzaSyDFo1vaTwz6NILG9inO-5HOEQ14yYWSf9U"></script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    
+    
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFo1vaTwz6NILG9inO-5HOEQ14yYWSf9U&signed_in=true"
+  async defer></script>
     <script src="vendors/js/jquery.min.js"></script>
     <script src="vendors/js/bootstrap.min.js"></script>
 
