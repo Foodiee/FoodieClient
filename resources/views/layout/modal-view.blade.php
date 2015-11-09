@@ -101,7 +101,7 @@
                 }
                 var mapdetail = new google.maps.Map(document.getElementById('map-detail'), options);           
 
-              
+                
                 var name = "Place.name";
                 var marker = new google.maps.Marker({
                     position: {lat: lat, lng: lng},
@@ -111,6 +111,6 @@
                 });
             }    
         </script>
-       
+
 
 {{-- @stop  --}}

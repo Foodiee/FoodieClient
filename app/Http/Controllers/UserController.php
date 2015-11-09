@@ -1,10 +1,113 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+use App\Http\Requests;
 use Auth;
 use DB;
 use App\Models\User;
-class UserController extends Controller {
+use App\Models\Board;
+use App\Models\FollowEvent;
+class UserController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+
+    }
+    public function follow(Request $request)
+    {
+        $current_user_id = Auth::user()->user_id;
+        $user_id = $request->input('following_id');
+        $bool = FollowEvent::checkFollowed($current_user_id,$user_id);
+        if($bool==false){
+            FollowEvent::followUser($current_user_id,$user_id);
+            $follow = "followed";
+        }
+        else {
+            FollowEvent::unfollowUser($current_user_id,$user_id);
+            $follow = "unfollowed";
+        }
+        return response()->json(array(
+            "result"=>$follow,
+            ));
+        // return response()->json($book)
+    }   
+    public function getBoards($user_id)
+    {
+        $boards = Board::getBoardsByUserId($user_id);
+        return response()->json($boards);
+    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
 
     public function callback() {
 
@@ -49,6 +152,15 @@ class UserController extends Controller {
     public function getUser($user_name)
     {
         $user = User::getUserByName($user_name);
+        if(Auth::check())
+        {
+            $current_user_id = Auth::user()->user_id;
+            $bool = FollowEvent::checkFollowed($current_user_id,$user["user_id"]);
+            if($bool==true)
+            {
+                $user["follow"]="true";
+            }
+        }
         if($user)
             return response()->view('profile',["user"=>$user]);
         else 
@@ -57,11 +169,38 @@ class UserController extends Controller {
     public function logout()
     {
         if(Auth::check())
-		{
-			Auth::logout();
-            return redirect()->route('timeline');
-		}
+        {
+            Auth::logout();
+            return redirect()->route('explorer');
+        }
         else 
             echo "Already logout";
+    }
+    public function login(Request $request) {
+         
+        $auth = array(
+          'email' => $request->email,
+          'password' => $request->password
+        );
+        if (Auth::attempt($auth,true)) {
+            $result = array(
+                "login"=>'true');
+              return redirect()->intended('home');
+        } else {
+            $result = array(
+                "login"=>'true');
+            echo "sai ten mat khau";
+        }
+        
+    }
+    public function getFollowing($user_id)
+    {
+        $result = FollowEvent::getFollowing($user_id);
+        return response()->json($result);
+    }
+    public function getFollower($user_id)
+    {
+        $result = FollowEvent::getFollower($user_id);
+        return response()->json($result);
     }
 }

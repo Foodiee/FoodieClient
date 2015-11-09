@@ -9,6 +9,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Auth;
+use App\Models\Board;
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract, AuthorizableContract
      {
     protected $table = 'users';
@@ -26,6 +27,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+    /*
+    */
+    public function boards()
+    {
+        return $this->hasMany('App\Models\Board');
+    }
     //lưu thông tin người sử dụng vào db
     public static function CreateUser($response){
         $user = new User();

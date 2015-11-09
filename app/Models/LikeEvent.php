@@ -8,7 +8,7 @@ class LikeEvent extends Model
 {
     //
 	protected $table = 'like_event';
-
+	protected $primaryKey = "like_event_id";
 	public static function GetMostPost(){
 		$post_id = LikeEvent::select('post_id')->orderBy('total_like', 'desc')->get();
 

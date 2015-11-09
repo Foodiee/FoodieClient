@@ -3,12 +3,26 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\User;
+use App\Models\Post;
 class Board extends Model
 {
     //
 	protected $table = 'boards';
 	protected $primaryKey = 'board_id';
+	public function user()
+	{
+		return $this->belongsTo('App\Models\User');
+	}
+	public function posts()
+	{
+		return $this->hasMany('App\Models\Post');
+	}
+	public static function getBoardsByUserId($user_id)
+	{
+		$boards = User::find($user_id)->boards;
+		return $boards;
+	}
 	public static function createBoard($boardName,$boardDescription=null,$cover_link=null,$user_id)
 	{
 		$board = new Board();

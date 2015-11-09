@@ -5,7 +5,10 @@ use Illuminate\Database\Eloquent\Model;
 use DB;
 class Post extends Model{
 	protected $table = 'posts';
-
+	public function board()
+	{
+		return $this->belongsTo('App\Models\Board');
+	}
 	public static function CreatePost($board_id, $description, $photo_link, $user_id, $place_id, $hashtag){
 		$post = new Post();
 		$post->description = $description;

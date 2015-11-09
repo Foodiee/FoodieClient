@@ -1,6 +1,6 @@
 @section('modal-profile')
-  <div class="modal fade modal-login">
-    <div class="modal-dialog">
+  <div class="modal fade modal-profile">
+    <div class="modal-profile">
       <div class="modal-content">
           <div class="row fluid-container ml-content">
             <div class="logo-profile ml-logo"></div>

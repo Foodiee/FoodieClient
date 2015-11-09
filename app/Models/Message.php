@@ -8,4 +8,5 @@ class Message extends Model
 {
     //
 	protected $table = 'messages';
+	protected $primaryKey = "conversation_id";
 }
