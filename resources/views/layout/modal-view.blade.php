@@ -1,6 +1,6 @@
 @section('modal')
   <div class="modal fade modal-view">
-    <div class="modal-dialog" style="width:75%;">
+    <div class="modal-view" id="modal-view-post" style="width:75%;">
       <div class="modal-content">
           <div class="col-md-1">
             <div class="left-arrow">
@@ -15,7 +15,7 @@
             </div>
             <div class="fluid-container mv-img">
               <div class="wf-box">
-                <img src="vendors/img/5.jpg" class="box-img"/>
+                <img src="{{URL::asset('img/5.jpg')}}" class="box-img"/>
               </div>  
             </div>
             <div class="fluid-container mv-img-footer">
@@ -24,7 +24,7 @@
           </div>
           <div class="col-md-3 center-left-side">
             <div class="fluid-container cls-title">
-              <img src="vendors/img/5.jpg" height="38" width="38" class="logo-profile">
+              <img src="{{URL::asset('img/5.jpg')}}" height="38" width="38" class="logo-profile">
               <div class="cls-user">
                 <p class="cls-board">hh</p>
                 <p class="cls-name">HoTung</p>
@@ -32,22 +32,22 @@
             </div>
             <div class="row fluid-container cls-album">
               <div class="wf-box">
-                <img src="vendors/img/5.jpg" class="box-img"/>
+                <img src="{{URL::asset('img/5.jpg')}}" class="box-img"/>
               </div> 
               <div class="wf-box">
-                <img src="vendors/img/5.jpg" class="box-img"/>
+                <img src="{{URL::asset('img/5.jpg')}}" class="box-img"/>
               </div> 
               <div class="wf-box">
-                <img src="vendors/img/5.jpg" class="box-img"/>
+                <img src="{{URL::asset('img/5.jpg')}}" class="box-img"/>
               </div> 
               <div class="wf-box">
-                <img src="vendors/img/5.jpg" class="box-img"/>
+                <img src="{{URL::asset('img/5.jpg')}}" class="box-img"/>
               </div> 
               <div class="wf-box">
-                <img src="vendors/img/5.jpg" class="box-img"/>
+                <img src="{{URL::asset('img/5.jpg')}}" class="box-img"/>
               </div> 
               <div class="wf-box">
-                <img src="vendors/img/5.jpg" class="box-img"/>
+                <img src="{{URL::asset('img/5.jpg')}}" class="box-img"/>
               </div> 
             </div>
           </div>
@@ -64,7 +64,7 @@
           </div>
           <div class="col-md-10 col-md-offset-1 mv-related-post">
               <div class="wf-box">
-                <img src="vendors/img/5.jpg">
+                <img src="{{URL::asset('img/5.jpg')}}">
                 <div class="content">
                   <h3>Title</h3>
                   <p>Content Here</p>
@@ -73,14 +73,14 @@
                 </div>
               </div>
               <div class="wf-box">
-                <img src="vendors/img/5.jpg">
+                <img src="{{URL::asset('img/5.jpg')}}">
                 <div class="content">
                     <h3>Title</h3>
                     <p>Content aa asdfasdfjal</p>    
                 </div>
               </div>
               <div class="wf-box">
-                <img src="vendors/img/5.jpg">
+                <img src="{{URL::asset('img/5.jpg')}}">
                 <div class="content">
                     <h3>Heading</h3>
                     <p>Content aa asdfasdfjal</p>    

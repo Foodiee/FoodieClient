@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\CommentEvent;
+use Auth;
+use Storage;
 class PostController extends Controller
 {
     /**
@@ -27,6 +29,7 @@ class PostController extends Controller
     public function index()
     {
         //
+
     }
 
     /**
@@ -48,6 +51,14 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
+        if(!Auth::check())
+            return response()->json("Please login");
+        $description = $request->input('description');
+        $board_id = $request->input('board_id');
+        $user_id = Auth::user()->user_id;
+        $photo_link = $request->input('photo_link');
+        $post = Post::CreatePost($board_id,$description,$photo_link,$user_id,null,null);
+        return response()->json($post);
     }
 
     /**
@@ -56,9 +67,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($post_id)
     {
         //
+        $post = Post::getPostById($post_id);
+        return response()->json($post);
     }
 
     /**
@@ -93,5 +106,9 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function getPostById($post_id)
+    {
+        return view('layout.view');
     }
 }

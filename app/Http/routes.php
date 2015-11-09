@@ -18,6 +18,13 @@ Route::group(['prefix'=>'search'],function()
 	Route::get('post','SearchController@searchPost');
 
 });
+Route::get('post/{post_id}','PostController@getPostById');
+Route::group(['prefix'=>'api'],function()
+{
+	Route::resource('board','BoardController');
+	Route::resource('post','PostController');
+	Route::resource('photo','StorageController');
+});
 Route::post('facebook/login', 'FrontEndController@login');
 Route::post('/upload-img', 'FrontEndController@uploadimg');
 Route::post('/upload-post', 'FrontEndController@uploadpost');

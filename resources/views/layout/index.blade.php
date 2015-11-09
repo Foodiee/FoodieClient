@@ -43,7 +43,7 @@
                 
                 <ul class="nav navbar-nav navbar-right" style="margin-top:15px; margin-left:65px;">
                     <li>
-                        <input type="file" name="image" id="imgInp" class="file" accept="image/*">
+                        <input type="file" name="image" id="imgInp" data-id = "" class="file" accept="image/*">
                         <a href="#" id="upload">Upload</a>
                     </li>
                     <li><a href="{{URL::to('profile')}}">{{Auth::user()->username}}</a></li>
@@ -78,7 +78,11 @@
     @include('layout.modal-view')
     
     <div class="parent2">
-        <div class="test1"><i class="fa fa-map" data-toggle="tooltip" title="Ăn j bây h!" style='cursor:pointer;'></i></div>
+        <div class="test1">
+            <i class="fa fa-map" data-toggle="tooltip" title="Ăn j bây h!" style='cursor:pointer;'>
+                <a href="{{URL::to('an-gi-bay-gio')}}"></a>
+            </i>
+        </div>
         <div class="test2"><i class="fa fa-graduation-cap" data-toggle="tooltip" title="Hooray!" style='cursor:pointer;'></i></div>
         <div class="test3"><i class="fa fa-code" data-toggle="tooltip" title="Hooray!" style='cursor:pointer;'></i></div>
         <div class="test4"><i class="fa fa-envelope-o" data-toggle="tooltip" title="Hooray!" style='cursor:pointer;'></i></div>
@@ -100,6 +104,7 @@
 
 <script>
     $(document).ready(function(){
+
         var active1 = false;
         var active2 = false;
         var active3 = false;
@@ -112,7 +117,10 @@
         //sự kiện upload ảnh
         $('#imgInp').hide();
         $('#upload').on('click', function(){
+
             document.getElementById("imgInp").click();
+            //Ham nay o trang modal.blade.php
+            listBoardUser();
         });
     
         $("#imgInp").change(function(){
@@ -170,12 +178,9 @@
 
             });
         });
-
-
     }); 
 
-    
-
+ 
     function readURL(input) {
         if (input.files && input.files[0]) {
             if(input.files[0].size > 5*1024*1024)
@@ -183,45 +188,84 @@
                 alert("Qua dung luong");
                 return;
             }
+            console.log(input.files[0]);
+            var formData = new FormData();
+            $('.modal-prgbar').modal('show');
+            formData.append("src",input.files[0]);
+            $.ajax({
+                    url :"{{url('/api/photo')}}",
+                    data: formData,
+                    type :'POST',
+                    dataType: 'json',
+                    processData: false, // Don't process the files
+                    contentType: false,
+                    xhr: function()
+                    {
+                        var xhr = new window.XMLHttpRequest();
+                        //Upload progress
+                        xhr.upload.addEventListener("progress", function(evt){
+                            var percentComplete = (evt.loaded / evt.total)*100;
+                            //Do something with upload progress
+                            console.log(percentComplete);
+                            $('.modal-prgbar .progress-bar').css('width', percentComplete+'%');
+                            $('.modal-prgbar .progress-bar').text(percentComplete+'%'); 
+                        }, false);
+                        return xhr;
+                   },
+                }).success(function(evt){
+                    // console.log(evt);
+                    $('.modal-prgbar').modal('hide');
+                    image_url = "{{url('api/photo/')}}"+"/"+evt;
+                    $('#blah').attr('src', image_url);
+                    $('#blah').attr('data-id',evt);
+                    $('.modal-upload').modal('show'); 
+                });
             var reader = new FileReader();
             reader.onload = function (theFile) {
-            var image = new Image();
-            image.src = theFile.target.result;
-            $('.modal-prgbar .progress-bar').css('width', '0%');
-            $('.modal-prgbar .progress-bar').text('00%');
-            $('.modal-prgbar').modal('show');
-            
-            i = 0;
-            var myVar = setInterval(function(){
-                $('.modal-prgbar .progress-bar').css('width', i+'%');
-                $('.modal-prgbar .progress-bar').text(i+'%'); 
-                if(i == 100){
-                    clearInterval(myVar);
-                }else{
-                    i = i + 1;
-                }
-            }, 200);
-            $.ajax({
-                url :"{{url('/upload-img')}}",
-                data: {src : image.src},
-                type :'POST',
-                cache :false,
-            }).done(function(data) {
-                clearInterval(myVar);
-                $('.modal-prgbar .progress-bar').css('width', '100%');
-                $('.modal-prgbar .progress-bar').text('100%');
-                setTimeout(function(){ 
-                    $('.modal-prgbar').modal('hide');
-                    $('#blah').attr('src', image.src);
-                    $('.modal-upload').modal('show'); 
-                }, 3000);
-            }).fail(function(data) {
-
-            }).always(function(data) {
-
-            });
-        }           
-        reader.readAsDataURL(input.files[0]);
+                var image = new Image();
+                image.src = theFile.target.result;
+                $('.modal-prgbar .progress-bar').css('width', '0%');
+                $('.modal-prgbar .progress-bar').text('00%');
+                $('.modal-prgbar').modal('show');
+                
+                // var formData = new FormData();
+                // formData.append("src",input.files[0]);
+                // console.log(formData);
+                // i = 0;
+                // var myVar = setInterval(function(){
+                //     $('.modal-prgbar .progress-bar').css('width', i+'%');
+                //     $('.modal-prgbar .progress-bar').text(i+'%'); 
+                //     if(i == 100){
+                //         clearInterval(myVar);
+                //     }else{
+                //         i = i + 1;
+                //     }
+                // }, 200);
+                // $.ajax({
+                //     url :"{{url('/api/photo')}}",
+                //     data: {src : image.src},
+                //     type :'POST',
+                //     dataType: 'json',
+                //     processData: false, // Don't process the files
+                //     contentType: false,
+                //    //  xhr: function()
+                //    //  {
+                //    //      var xhr = new window.XMLHttpRequest();
+                //    //      //Upload progress
+                //    //      xhr.upload.addEventListener("progress", function(evt){
+                //    //        if (evt.lengthComputable) {
+                //    //          var percentComplete = evt.loaded / evt.total;
+                //    //          //Do something with upload progress
+                //    //          console.log(percentComplete);
+                //    //        }
+                //    //      }, false);
+                //    //      return xhr;
+                //    // },
+                // }).success(function(evt){
+                //     console.log(evt);
+                // });
+            }           
+        // reader.readAsDataURL(input.files[0]);
         }
     }
 </script>

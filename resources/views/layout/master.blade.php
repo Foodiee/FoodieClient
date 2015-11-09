@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link href="vendors/img/logo.png" rel="icon" type="image/x-icon">
-    <link rel="stylesheet" href="vendors/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{HTML::style('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="vendors/css/font-awesome.min.css">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300italic,300,100' rel='stylesheet' type='text/css'>
 
@@ -57,14 +57,13 @@
                 <div class="wf-box">
                     <img src="vendors/img/{{$value->photo_link}}" class="box-img" data-option='{{$value->post_id}}'>
                     <div class="content">
-                        <h3>{{$value->title}}</h3>
+                        <h3>Nhuận</h3>
                         <p>{{$value->description}}</p>
                     </div>
                 </div>
             @endforeach    
         </div>    
-    </section>
-                        
+    </section>          
     @include('layout.modal-view')
     @include('layout.modal-login')
 </body>

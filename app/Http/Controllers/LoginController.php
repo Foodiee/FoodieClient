@@ -10,6 +10,7 @@ use Validator;
 use Auth;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Storage;
 class LoginController extends Controller {
 
     /**
@@ -85,6 +86,7 @@ class LoginController extends Controller {
               'password' => $member->password
              );
             Auth::attempt($auth,true);
+            Storage::makeDirectory($member->user_id.'/'.'tmp');
             return redirect()->to('home');
        };
 
