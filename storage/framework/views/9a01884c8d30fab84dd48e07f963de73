@@ -1,5 +1,5 @@
-@section('modal-profile')
-  <div class="modal fade modal-profile">
+<?php $__env->startSection('modal'); ?>
+  <div class="modal fade modal-login">
     <div class="modal-dialog">
       <div class="modal-content">
           <div class="row fluid-container ml-content">
@@ -12,7 +12,8 @@
               </div>  
             </div>
             <div class="ml-line-text">hoặc</div>
-            {!!Form::open(array('route'=>'postLogin','method' => 'post','files' => true))!!}
+            <?php echo Form::open(array('route'=>'postLogin','method' => 'post','files' => true)); ?>
+
             <div class="fluid-container ml-formlogin">
               <div class="form-group">
                 <input type="text" class="form-control" id="email" name="email" placeholder='Email'>
@@ -27,4 +28,4 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
-{{-- @stop  --}}
+<?php /* <?php $__env->stopSection(); ?>  */ ?>

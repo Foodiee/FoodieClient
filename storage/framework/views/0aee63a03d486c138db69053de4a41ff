@@ -1,7 +1,6 @@
-@extends('layout.index')
-@include('layout.modal-profile')
-@include('layout.modal-login')
-@section('grid-layout')
+<?php echo $__env->make('layout.modal-profile', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('layout.modal-login', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->startSection('grid-layout'); ?>
     <div class="container" style="width:100%;margin-top:100px;">
         <div class="left-side col-md-4">
             <img src="vendors/img/5.jpg" class="logo-profile" height="150" width="150">
@@ -9,32 +8,32 @@
         <div class="right-side col-md-7">
             <div class="row">
             <h3>
-                <span id="user-span" data-user="{{$user["user_id"]}}">{{$user["name"]}}</span>
-                @if(Auth::user()!=null)
-                    @if($user["user_id"]==Auth::user()->user_id)
+                <span id="user-span" data-user="<?php echo e($user["user_id"]); ?>"><?php echo e($user["name"]); ?></span>
+                <?php if(Auth::user()!=null): ?>
+                    <?php if($user["user_id"]==Auth::user()->user_id): ?>
                         <button id="btn-edit" class="btn follow_btn">
                             <em></em>
                             <span>Chỉnh sửa trang cá nhân</span>
                         </button>
-                    @else
-                        @if(!isset($user["follow"]))
+                    <?php else: ?>
+                        <?php if(!isset($user["follow"])): ?>
                             <button id="btn-follow" class="btn follow_btn" data-id="1">
                                 <em></em>
                                 <span>Theo dõi</span>
                             </button>
-                        @else
+                        <?php else: ?>
                             <button id="btn-follow" class="btn follow_btn" data-id="1">
                                 <em></em>
                                 <span>Đang theo dõi</span>
                             </button>
-                        @endif
-                    @endif
-                @else
+                        <?php endif; ?>
+                    <?php endif; ?>
+                <?php else: ?>
                     <button id="btn-follow" class="btn follow_btn" data-id="0">
                         <em></em>
                         <span>Theo dõi</span>
                     </button>
-                @endif
+                <?php endif; ?>
                 
             </h3>
           
@@ -72,8 +71,8 @@
                 menu.find('.active-profile-li').removeClass('active-profile-li');
                 $(this).addClass('active-profile-li');
                 var user_id = $('#user-span').data("user");
-                var photoUrl = "{{URL::to('api/photo/')}}"; 
-                var url = "{{URL::to('api/user/')}}"+"/"+user_id+"/post";
+                var photoUrl = "<?php echo e(URL::to('api/photo/')); ?>"; 
+                var url = "<?php echo e(URL::to('api/user/')); ?>"+"/"+user_id+"/post";
                 listContainer = $("#user-container");
                 listContainer.empty();
                 createListBox = function(data)
@@ -143,7 +142,7 @@
                 $('.modal-login').modal('show');
             else {
                 var following_id = $('h3 span').data("user");
-                var url = "{{URL::to('api/user/follow')}}";
+                var url = "<?php echo e(URL::to('api/user/follow')); ?>";
                 var data = {
                     "following_id":following_id
                 };
@@ -166,7 +165,9 @@
             }
         });
     </script>
-@stop
+<?php $__env->stopSection(); ?>
 
 
 
+
+<?php echo $__env->make('layout.index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

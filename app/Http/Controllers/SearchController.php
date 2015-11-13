@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Es;
 use Elasticsearch\Client;
+use App\Models\UserProfile;
 class SearchController extends Controller
 {
     /**
@@ -99,7 +100,7 @@ class SearchController extends Controller
         return response()->json($result);
     }
     public function searchBoard(){
-        return 1;
+        return response()->json(UserProfile::all());
     }
     public function searchPost(Request $request){
         $kw = $request->input('q');

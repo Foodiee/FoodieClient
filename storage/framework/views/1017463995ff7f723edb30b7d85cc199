@@ -4,30 +4,30 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{{URL::asset('img/logo.png')}}" rel="icon" type="image/x-icon">
-    <link rel="stylesheet" href="{{URL::asset('css/font-awesome.min.css')}}">
-    <link rel="stylesheet" href="{{URL::asset('css/bootstrap.min.css')}}">
+    <link href="<?php echo e(URL::asset('img/logo.png')); ?>" rel="icon" type="image/x-icon">
+    <link rel="stylesheet" href="<?php echo e(URL::asset('css/font-awesome.min.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(URL::asset('css/bootstrap.min.css')); ?>">
     
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300italic,300,100' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" type="text/css" href="{{URL::asset('css/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(URL::asset('css/style.css')); ?>">
     <!-- Latest compiled and minified CSS -->
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="{{URL::asset('js/jquery.min.js')}}"></script>
-    <script src="{{URL::asset('js/bootstrap.min.js')}}"></script>
+    <script src="<?php echo e(URL::asset('js/jquery.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('js/bootstrap.min.js')); ?>"></script>
 
     <script src="vendors/js/responsive_waterfall.js"></script>
     <title>Fresh Food</title>
 </head>
     
 <body>
-    {{-- Thanh menu --}}
+    <?php /* Thanh menu */ ?>
     <nav class="navbar navbar-inverse navbar-fixed-top" style='background-color:#fff;webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);'>
         <div class="container-fluid">
             <div class="navbar-header"> 
                 <a class="navbar-brand logo" href="/home" style="margin-left:80px;">
-                    <img src="{{URL::asset("img/logo.png")}}" height="50" width="50">
+                    <img src="<?php echo e(URL::asset("img/logo.png")); ?>" height="50" width="50">
                 </a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style="margin-top:25px;">
                     <span class="icon-bar"></span>
@@ -47,11 +47,11 @@
                         <a href="#" id="upload">Upload</a>
                     </li>
                     <li>
-                        <a href="{{URL::to('home')}}">Home</a>
+                        <a href="<?php echo e(URL::to('home')); ?>">Home</a>
                     </li>
-                    @if(Auth::user()!=null)
-                    <li><a href="{{URL::to(Auth::user()->username)}}">{{Auth::user()->username}}</a></li>
-                    @endif
+                    <?php if(Auth::user()!=null): ?>
+                    <li><a href="<?php echo e(URL::to(Auth::user()->username)); ?>"><?php echo e(Auth::user()->username); ?></a></li>
+                    <?php endif; ?>
                     <li class="dropdown" style="margin-top:10px;">
                         <img src="vendors/img/5.jpg" height="30" width="30" class="logo-profile" id="dropdownMenu2" data-toggle="dropdown" style='cursor:pointer;'>   
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2" style="margin-top:26px;">
@@ -67,7 +67,7 @@
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
                             <li role="presentation" class="divider"></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="{{URL::to('user/logout')}}">Đăng xuất</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo e(URL::to('user/logout')); ?>">Đăng xuất</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -76,15 +76,15 @@
     </nav>
        
     <section class="layout-mainpage">
-        @yield('grid-layout')
+        <?php echo $__env->yieldContent('grid-layout'); ?>
     </section>
-    @include('layout.modal')
-    @include('layout.modal-view')
+    <?php echo $__env->make('layout.modal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('layout.modal-view', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
     
     <div class="parent2">
         <div class="test1">
             <i class="fa fa-map" data-toggle="tooltip" title="Ăn j bây h!" style='cursor:pointer;'>
-                <a href="{{URL::to('an-gi-bay-gio')}}"></a>
+                <a href="<?php echo e(URL::to('an-gi-bay-gio')); ?>"></a>
             </i>
         </div>
         <div class="test2"><i class="fa fa-graduation-cap" data-toggle="tooltip" title="Hooray!" style='cursor:pointer;'></i></div>
@@ -170,7 +170,7 @@
                 return $(this).text();
             }).get();
             $.ajax({
-                url :"{{url('/upload-post')}}",
+                url :"<?php echo e(url('/upload-post')); ?>",
                 data: {board_id:board_id, description:description, place_id:place_id, hashtag:hashtag},
                 type :'POST',
                 cache :false,
@@ -197,7 +197,7 @@
             $('.modal-prgbar').modal('show');
             formData.append("src",input.files[0]);
             $.ajax({
-                    url :"{{url('/api/photo')}}",
+                    url :"<?php echo e(url('/api/photo')); ?>",
                     data: formData,
                     type :'POST',
                     dataType: 'json',
@@ -219,7 +219,7 @@
                 }).success(function(evt){
                     // console.log(evt);
                     $('.modal-prgbar').modal('hide');
-                    image_url = "{{url('api/photo/')}}"+"/"+evt;
+                    image_url = "<?php echo e(url('api/photo/')); ?>"+"/"+evt;
                     $('#blah').attr('src', image_url);
                     $('#blah').attr('data-id',evt);
                     $('.modal-upload').modal('show'); 
@@ -246,7 +246,7 @@
                 //     }
                 // }, 200);
                 // $.ajax({
-                //     url :"{{url('/api/photo')}}",
+                //     url :"<?php echo e(url('/api/photo')); ?>",
                 //     data: {src : image.src},
                 //     type :'POST',
                 //     dataType: 'json',

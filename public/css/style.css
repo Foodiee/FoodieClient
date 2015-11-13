@@ -307,7 +307,7 @@ input::-webkit-input-placeholder {
 }
 
 .left-side img{
-   margin-left: 50px; 
+   margin-left: 250px; 
 }
 
 .right-side{
@@ -1008,4 +1008,10 @@ input::-webkit-input-placeholder {
 }
 .layout-mainpage{
     background-color: #fafafa;
+}
+.user-profile-info{
+    cursor: pointer;
+}
+.active-profile-li {
+    color:#2d6599;
 }

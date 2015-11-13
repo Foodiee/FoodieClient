@@ -22,7 +22,12 @@ class Post extends Model{
 	public static function getPostById($post_id)
 	{
 		if(isset($post_id))
-			return Post::where('post_id',$post_id);
+			return Post::where('post_id',$post_id)->get();
+	}
+	public static function getPostByUserId($user_id)
+	{
+		if(isset($user_id))
+			return Post::where('user_id',$user_id)->get();
 	}
 	public static function GetPopularPost($arr_postid, $skip){
 		$posts = Post::whereIn('post_id', $arr_postid)->skip($skip)->take(8)->get();

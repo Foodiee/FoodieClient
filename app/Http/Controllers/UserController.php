@@ -6,8 +6,10 @@ use App\Http\Requests;
 use Auth;
 use DB;
 use App\Models\User;
+use App\Models\Post;
 use App\Models\Board;
 use App\Models\FollowEvent;
+use App\Models\UserPosts;
 class UserController extends Controller
 {
     /**
@@ -201,6 +203,11 @@ class UserController extends Controller
     public function getFollower($user_id)
     {
         $result = FollowEvent::getFollower($user_id);
+        return response()->json($result);
+    }
+    public function getPosts($user_id)
+    {
+        $result = UserPosts::getPostByUserId($user_id);
         return response()->json($result);
     }
 }
