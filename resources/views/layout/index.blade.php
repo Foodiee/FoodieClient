@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{URL::asset('img/logo.png')}}" rel="icon" type="image/x-icon">
+    <link rel="stylesheet" href="{{URL::asset('css/kc.fab.css')}}">
     <link rel="stylesheet" href="{{URL::asset('css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{URL::asset('css/bootstrap.min.css')}}">
     
@@ -16,7 +17,6 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="{{URL::asset('js/jquery.min.js')}}"></script>
     <script src="{{URL::asset('js/bootstrap.min.js')}}"></script>
-
     <script src="vendors/js/responsive_waterfall.js"></script>
     <title>Fresh Food</title>
 </head>
@@ -72,7 +72,7 @@
                     </li>
                 </ul>
             </div>
-        </div>`x
+        </div>
     </nav>
        
     <section class="layout-mainpage">
@@ -80,18 +80,9 @@
     </section>
     @include('layout.modal')
     @include('layout.modal-view')
-    
-    <div class="parent2">
-        <div class="test1">
-            <i class="fa fa-map" data-toggle="tooltip" title="Ăn j bây h!" style='cursor:pointer;'>
-                <a href="{{URL::to('an-gi-bay-gio')}}"></a>
-            </i>
-        </div>
-        <div class="test2"><i class="fa fa-graduation-cap" data-toggle="tooltip" title="Hooray!" style='cursor:pointer;'></i></div>
-        <div class="test3"><i class="fa fa-code" data-toggle="tooltip" title="Hooray!" style='cursor:pointer;'></i></div>
-        <div class="test4"><i class="fa fa-envelope-o" data-toggle="tooltip" title="Hooray!" style='cursor:pointer;'></i></div>
-        <div class="mask2"><i class="fa fa-home fa-2x" data-toggle="tooltip" title="Menu"style='cursor:pointer;'></i></div>
-    </div>
+
+    @include('layout.sub-menu')
+    @include('layout.modal-message')
 
     <div class="modal fade modal-prgbar">
         <div class="modal-dialog">
@@ -105,7 +96,7 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 </body>
-
+<script src="{{URL::asset('js/kc.fab.min.js')}}"></script>
 <script>
     $(document).ready(function(){
 
@@ -131,20 +122,6 @@
             readURL(this);
         });
 
-        $('.parent2').on('mousedown touchstart', function() {
-            if (!active1) $(this).find('.test1').css({'background-color': 'gray', 'transform': 'translate(0px,-125px)'});
-            else $(this).find('.test1').css({'background-color': 'dimGray', 'transform': 'none'}); 
-            if (!active2) $(this).find('.test2').css({'background-color': 'gray', 'transform': 'translate(-60px,-105px)'});
-            else $(this).find('.test2').css({'background-color': 'darkGray', 'transform': 'none'});
-            if (!active3) $(this).find('.test3').css({'background-color': 'gray', 'transform': 'translate(-105px,-60px)'});
-            else $(this).find('.test3').css({'background-color': 'silver', 'transform': 'none'});
-            if (!active4) $(this).find('.test4').css({'background-color': 'gray', 'transform': 'translate(-125px,0px)'});
-            else $(this).find('.test4').css({'background-color': 'silver', 'transform': 'none'});
-            active1 = !active1;
-            active2 = !active2;
-            active3 = !active3;
-            active4 = !active4;  
-        });
     
         $('.locate-map').on('click',function(){
             $('.locate-map').hide();

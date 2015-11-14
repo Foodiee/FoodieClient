@@ -8,10 +8,58 @@
             </div>
           </div>
           <div class="col-md-7 center-right-side" style="border-radius:6px;margin-right:15px;">
-            <div class="mv-title">
-              <button type="button" class="btn btn-default btn-lg">
-  <span class="glyphicon glyphicon-star"></span> Star
-</button>
+            <div class="mv-title keep-open">
+              <div class="mv-title-pinit">Thêm</div>
+              <div class="mv-title-like">
+                <em></em>
+                <span>Thích</span>
+              </div>
+              <div class="mv-title-share">
+                <em></em>
+                <span>Chia sẻ</span>
+              </div> 
+              <div class="mv-title-send" id="dropdownMenu3" data-toggle="dropdown">
+                <em></em>
+                <span>Gửi</span>
+              </div> 
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3" style="margin-top:26px;">
+                <li class="mv-square"></li>
+                <li role="presentation">
+                  <textarea class="mv-mess" placeholder="Thêm tin nhắn..."></textarea>
+                </li>
+                <li role="presentation">
+                  <ul class="mv-listfr">
+                    <li>
+                      <img src="{{URL::asset("img/logo.png")}}" width="35" height="35" class="logo-profile">
+                      <p>đsadá</p>
+                    </li>
+                    <li>
+                      <img src="{{URL::asset("img/logo.png")}}" width="35" height="35" class="logo-profile">
+                      <p>đsadá</p>
+                    </li>
+                    <li>
+                      <img src="{{URL::asset("img/logo.png")}}" width="35" height="35" class="logo-profile">
+                      <p>đsadá</p>
+                    </li>
+                    <li>
+                      <img src="{{URL::asset("img/logo.png")}}" width="35" height="35" class="logo-profile">
+                      <p>đsadá</p>
+                    </li>
+                    <li>
+                      <img src="{{URL::asset("img/logo.png")}}" width="35" height="35" class="logo-profile">
+                      <p>đsadá</p>
+                    </li>
+                    <li>
+                      <img src="{{URL::asset("img/logo.png")}}" width="35" height="35" class="logo-profile">
+                      <p>đsadá</p>
+                    </li>
+                    <li>
+                      <img src="{{URL::asset("img/logo.png")}}" width="35" height="35" class="logo-profile">
+                      <p>đsadá</p>
+                    </li>
+                  </ul>
+                </li>
+            </ul>
             </div>
             <div class="fluid-container mv-img">
               <div class="wf-box">
@@ -91,26 +139,27 @@
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
   <script>
+    $('.dropdown-menu li, .dropdown-menu textarea').click(function(e) {
+      e.stopPropagation();
+    });
+      
+    function initMap(lat, lng) {
+      var myLatLng = new google.maps.LatLng(lat, lng);
+      var options = {
+          zoom: 18,
+          center: myLatLng,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+      }
+      var mapdetail = new google.maps.Map(document.getElementById('map-detail'), options);           
 
-            function initMap(lat, lng) {
-                var myLatLng = new google.maps.LatLng(lat, lng);
-                var options = {
-                    zoom: 18,
-                    center: myLatLng,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                }
-                var mapdetail = new google.maps.Map(document.getElementById('map-detail'), options);           
-
-                
-                var name = "Place.name";
-                var marker = new google.maps.Marker({
-                    position: {lat: lat, lng: lng},
-                    map: mapdetail,
-                    title: name,
-                    draggable: true
-                });
-            }    
-        </script>
-
-
+      
+      var name = "Place.name";
+      var marker = new google.maps.Marker({
+          position: {lat: lat, lng: lng},
+          map: mapdetail,
+          title: name,
+          draggable: true
+      });
+    }    
+  </script>
 {{-- @stop  --}}
