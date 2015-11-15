@@ -75,6 +75,11 @@ class UserController extends Controller
     public function show($id)
     {
         //
+        $result = User::getUserById($id);
+        if($result!=null)
+            return response()->json($result);
+        else
+            return response()->json("Not found");
     }
 
     /**
@@ -98,6 +103,17 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user = User::getUserById($id);
+        $user["name"] = $request->input("name");
+        $user["description"] = $request->input("description");
+        $user["username"] = $request->input('username');
+        $user["email"] = $request->input('email');
+        if($request->input("avatar_link")!=null)
+        {
+            $user["avatar_link"] = $request->input("avatar_link");
+        }
+        $result = $user->save();
+        return response()->json(["result"=>$result]);
     }
 
     /**

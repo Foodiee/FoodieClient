@@ -11,6 +11,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Storage;
 use Auth;
+use Image;
 class StorageController extends Controller
 {
     /**
@@ -51,6 +52,9 @@ class StorageController extends Controller
             // "11/".$input_name,
             file_get_contents($request->file('src')->getRealPath())
         );
+        $image = Image::make(storage_path('app').'/'.Auth::user()->user_id."/".$input_name);
+        $image->resize(75,75);
+        $image->save(storage_path('app').'/'.Auth::user()->user_id."/".$input_name.'_75');
         return response()->json($input_name);
     }
     /**

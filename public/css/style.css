@@ -311,7 +311,9 @@ input::-webkit-input-placeholder {
 }
 
 .left-side img{
-   margin-left: 250px; 
+   margin-left: 300px;
+    width:180px;
+    height: 180px;
 }
 
 .right-side{
@@ -1205,7 +1207,6 @@ input::-webkit-input-placeholder {
     background: #EEEEEE;
     border-left: 1px solid rgba(0,0,0,0.15);
     border-bottom: 1px solid rgba(0,0,0,0.15);
-    background: 
     -ms-transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
@@ -1306,7 +1307,7 @@ input::-webkit-input-placeholder {
 {
     border:none !important;
 }
-.board-name-input::selection;
+.board-name-input::selection
 {
     color:blue;
 }
@@ -1344,3 +1345,38 @@ input::-webkit-input-placeholder {
 .active-profile-li {
     color:#2d6599;
 }
+.standardForm {
+    background-color: #fff;
+    border-radius: 6px;
+    margin-bottom: 0;
+    width: auto;
+}
+.standardForm > div
+{
+    padding-bottom: 10px;
+    /*border-top: 1px solid #dfdfdf;*/
+}
+/*.standardForm > ul{*/
+    /*background: #fff;*/
+    /*border-radius: 6px;*/
+    /*margin: 0;*/
+/*}*/
+/*.standardForm > ul > li{*/
+    /*padding: 15px 21px 15px 27px;*/
+/*}*/
+/*.standardForm >ul >li >h3{*/
+    /*width: 60%;*/
+    /*color: #555;*/
+    /*float: left;*/
+    /*font-size: 13px;*/
+    /*font-weight: bold;*/
+    /*padding: 4px 10px 0 0;*/
+/*}*/
+/*.standardForm >ul >li >div{*/
+    /*margin-top: 10px;*/
+    /*margin-left: 76px;*/
+    /*width: 25px;*/
+/*}*/
+/*.standardForm >ul >li >div > input{*/
+    /*width:195px !important;*/
+/*}*/

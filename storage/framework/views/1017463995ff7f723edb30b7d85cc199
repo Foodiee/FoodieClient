@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="<?php echo e(URL::asset('img/logo.png')); ?>" rel="icon" type="image/x-icon">
+    <link rel="stylesheet" href="<?php echo e(URL::asset('css/kc.fab.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(URL::asset('css/font-awesome.min.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(URL::asset('css/bootstrap.min.css')); ?>">
     
@@ -16,7 +17,6 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="<?php echo e(URL::asset('js/jquery.min.js')); ?>"></script>
     <script src="<?php echo e(URL::asset('js/bootstrap.min.js')); ?>"></script>
-
     <script src="vendors/js/responsive_waterfall.js"></script>
     <title>Fresh Food</title>
 </head>
@@ -37,8 +37,8 @@
             </div>
         
             <div class="collapse navbar-collapse container" id="myNavbar">
-                <form class="nav navbar-nav navbar-left" style="margin-top:22px;">
-                    <input type="search" placeholder="Search">
+                <form class="nav navbar-nav navbar-left" >
+                    <input type="search" placeholder="Search" style="margin-top:22px;">
                 </form> 
                 
                 <ul class="nav navbar-nav navbar-right" style="margin-top:15px; margin-left:65px;">
@@ -53,7 +53,9 @@
                     <li><a href="<?php echo e(URL::to(Auth::user()->username)); ?>"><?php echo e(Auth::user()->username); ?></a></li>
                     <?php endif; ?>
                     <li class="dropdown" style="margin-top:10px;">
-                        <img src="vendors/img/5.jpg" height="30" width="30" class="logo-profile" id="dropdownMenu2" data-toggle="dropdown" style='cursor:pointer;'>   
+                         <?php if(Auth::user()!=null): ?>
+                        <img src="<?php echo e(URL::to('/api/photo/')."/".Auth::user()["avatar_link"]."_75"); ?>" height="30" width="30" class="logo-profile" id="dropdownMenu2" data-toggle="dropdown" style='cursor:pointer;'>
+                        <?php endif; ?>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2" style="margin-top:26px;">
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sửa thông tin</a></li>
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
@@ -72,7 +74,7 @@
                     </li>
                 </ul>
             </div>
-        </div>`x
+        </div>
     </nav>
        
     <section class="layout-mainpage">
@@ -80,18 +82,9 @@
     </section>
     <?php echo $__env->make('layout.modal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
     <?php echo $__env->make('layout.modal-view', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-    
-    <div class="parent2">
-        <div class="test1">
-            <i class="fa fa-map" data-toggle="tooltip" title="Ăn j bây h!" style='cursor:pointer;'>
-                <a href="<?php echo e(URL::to('an-gi-bay-gio')); ?>"></a>
-            </i>
-        </div>
-        <div class="test2"><i class="fa fa-graduation-cap" data-toggle="tooltip" title="Hooray!" style='cursor:pointer;'></i></div>
-        <div class="test3"><i class="fa fa-code" data-toggle="tooltip" title="Hooray!" style='cursor:pointer;'></i></div>
-        <div class="test4"><i class="fa fa-envelope-o" data-toggle="tooltip" title="Hooray!" style='cursor:pointer;'></i></div>
-        <div class="mask2"><i class="fa fa-home fa-2x" data-toggle="tooltip" title="Menu"style='cursor:pointer;'></i></div>
-    </div>
+
+    <?php echo $__env->make('layout.sub-menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('layout.modal-message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
     <div class="modal fade modal-prgbar">
         <div class="modal-dialog">
@@ -105,7 +98,7 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 </body>
-
+<script src="<?php echo e(URL::asset('js/kc.fab.min.js')); ?>"></script>
 <script>
     $(document).ready(function(){
 
@@ -131,20 +124,6 @@
             readURL(this);
         });
 
-        $('.parent2').on('mousedown touchstart', function() {
-            if (!active1) $(this).find('.test1').css({'background-color': 'gray', 'transform': 'translate(0px,-125px)'});
-            else $(this).find('.test1').css({'background-color': 'dimGray', 'transform': 'none'}); 
-            if (!active2) $(this).find('.test2').css({'background-color': 'gray', 'transform': 'translate(-60px,-105px)'});
-            else $(this).find('.test2').css({'background-color': 'darkGray', 'transform': 'none'});
-            if (!active3) $(this).find('.test3').css({'background-color': 'gray', 'transform': 'translate(-105px,-60px)'});
-            else $(this).find('.test3').css({'background-color': 'silver', 'transform': 'none'});
-            if (!active4) $(this).find('.test4').css({'background-color': 'gray', 'transform': 'translate(-125px,0px)'});
-            else $(this).find('.test4').css({'background-color': 'silver', 'transform': 'none'});
-            active1 = !active1;
-            active2 = !active2;
-            active3 = !active3;
-            active4 = !active4;  
-        });
     
         $('.locate-map').on('click',function(){
             $('.locate-map').hide();
@@ -173,7 +152,7 @@
                 url :"<?php echo e(url('/upload-post')); ?>",
                 data: {board_id:board_id, description:description, place_id:place_id, hashtag:hashtag},
                 type :'POST',
-                cache :false,
+                cache :false
             }).done(function(data) {
                 
             }).fail(function(data) {

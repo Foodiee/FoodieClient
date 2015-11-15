@@ -59,4 +59,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         $result = User::where('username',$user_name)->first();
         return $result;
     }
+    public static function getUserById($user_id)
+    {
+        $result = User::where('user_id',$user_id)->first();
+        return $result;
+    }
 }

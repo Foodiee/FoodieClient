@@ -37,8 +37,8 @@
             </div>
         
             <div class="collapse navbar-collapse container" id="myNavbar">
-                <form class="nav navbar-nav navbar-left" style="margin-top:22px;">
-                    <input type="search" placeholder="Search">
+                <form class="nav navbar-nav navbar-left" >
+                    <input type="search" placeholder="Search" style="margin-top:22px;">
                 </form> 
                 
                 <ul class="nav navbar-nav navbar-right" style="margin-top:15px; margin-left:65px;">
@@ -53,7 +53,9 @@
                     <li><a href="{{URL::to(Auth::user()->username)}}">{{Auth::user()->username}}</a></li>
                     @endif
                     <li class="dropdown" style="margin-top:10px;">
-                        <img src="vendors/img/5.jpg" height="30" width="30" class="logo-profile" id="dropdownMenu2" data-toggle="dropdown" style='cursor:pointer;'>   
+                         @if(Auth::user()!=null)
+                        <img src="{{URL::to('/api/photo/')."/".Auth::user()["avatar_link"]."_75"}}" height="30" width="30" class="logo-profile" id="dropdownMenu2" data-toggle="dropdown" style='cursor:pointer;'>
+                        @endif
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2" style="margin-top:26px;">
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sửa thông tin</a></li>
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
@@ -150,7 +152,7 @@
                 url :"{{url('/upload-post')}}",
                 data: {board_id:board_id, description:description, place_id:place_id, hashtag:hashtag},
                 type :'POST',
-                cache :false,
+                cache :false
             }).done(function(data) {
                 
             }).fail(function(data) {

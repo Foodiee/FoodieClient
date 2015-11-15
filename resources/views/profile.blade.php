@@ -3,8 +3,8 @@
 @include('layout.modal-login')
 @section('grid-layout')
     <div class="container" style="width:100%;margin-top:100px;">
-        <div class="left-side col-md-4">
-            <img src="vendors/img/5.jpg" class="logo-profile" height="150" width="150">
+        <div class="left-side col-md-5">
+            <img src="{{URL::to('/api/photo/')."/".$user["avatar_link"]}}" class="logo-profile">
         </div>
         <div class="right-side col-md-7">
             <div class="row">
@@ -136,6 +136,7 @@
         }
         $("#btn-edit").click(function(){
             $('.modal-profile').modal('show');
+            showProfile($("#user-span").data("user"));
         });
         $('#btn-follow').click(function(){
             //Neu = 0 thi chua dang nhap con = 1 da dang nhap
