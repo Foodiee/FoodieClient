@@ -9,7 +9,11 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Auth;
+use App\Models\FollowEvent;
 use App\Models\Board;
+use App\Models\Post;
+use Psy\ExecutionLoop\ForkingLoop;
+
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract, AuthorizableContract
      {
     protected $table = 'users';
@@ -63,5 +67,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         $result = User::where('user_id',$user_id)->first();
         return $result;
+    }
+    public static function getProfile($user_id){
+        $number_of_following = FollowEvent::countFollowing($user_id);
+        $number_of_follower = FollowEvent::countFollower($user_id);
+        $number_of_boards = Board::countBoardsByUserId($user_id);
+        $number_of_posts = Post::countPostsByUserId($user_id);
+        return array(
+            "number_of_posts"=>$number_of_posts,
+            "number_of_boards"=>$number_of_boards,
+            "number_of_follower"=>$number_of_follower,
+            "number_of_following"=>$number_of_following
+        );
     }
 }

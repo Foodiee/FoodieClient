@@ -179,8 +179,11 @@ class UserController extends Controller
                 $user["follow"]="true";
             }
         }
+        $id = $user->user_id;
+        $list = UserPosts::getPostByUserId($id);
+        $profile = User::getProfile($id);
         if($user)
-            return response()->view('profile',["user"=>$user]);
+            return response()->view('profile',["user"=>$user,"posts"=>$list,"profile"=>$profile]);
         else 
             return response()->json("Not found");
     }
@@ -223,7 +226,17 @@ class UserController extends Controller
     }
     public function getPosts($user_id)
     {
+
         $result = UserPosts::getPostByUserId($user_id);
+        return response()->json($result);
+    }
+    public function getPostsByFollowingUserId($user_id){
+        $result = UserPosts::getPostsByFollowingUserId($user_id);
+        return response()->json($result);
+    }
+    public function getProfile($user_id)
+    {
+        $result = User::getProfile($user_id);
         return response()->json($result);
     }
 }

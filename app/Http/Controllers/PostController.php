@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\UserPosts;
 use App\Models\CommentEvent;
 use Auth;
 use Storage;
@@ -70,7 +71,7 @@ class PostController extends Controller
     public function show($post_id)
     {
         //
-        $post = Post::getPostById($post_id);
+        $post = UserPosts::getPostById($post_id);
         return response()->json($post);
     }
 
@@ -107,8 +108,8 @@ class PostController extends Controller
     {
         //
     }
-    public function getPostById($post_id)
-    {
-        return view('layout.view');
-    }
+//    public function getPostById($post_id)
+//    {
+//        return view('layout.view');
+//    }
 }

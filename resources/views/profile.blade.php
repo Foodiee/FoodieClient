@@ -35,45 +35,41 @@
                         <span>Theo dõi</span>
                     </button>
                 @endif
-                
+                   
             </h3>
-          
+            <h4>{{$user["description"]}}</h4>
             </div>
             <ul class="user-info" id="user-profile-list">
-                <li id="post-list" class="user-profile-info"><span>7</span> Bài viết</li>
-                <li id="board-list"class="user-profile-info"><span>7</span> Album</li>
-                <li id="follower-list" class="user-profile-info"><span>7</span> Người theo dõi</li>
-                <li id="following-list" class="user-profile-info"><span>7</span> Người đang theo dõi</li>
+                <li id="post-list" class="user-profile-info"><span>{{$profile["number_of_posts"]}}</span> Bài viết</li>
+                <li id="board-list"class="user-profile-info"><span>{{$profile["number_of_boards"]}}</span> Album</li>
+                <li id="follower-list" class="user-profile-info"><span>{{$profile["number_of_follower"]}}</span> Người theo dõi</li>
+                <li id="following-list" class="user-profile-info"><span>{{$profile["number_of_following"]}}</span> Người đang theo dõi</li>
             </ul>
         </div>
     </div>
     <div id="user-container" class="wf-container" style="margin-top:40px;width:60%;">
-        <div class="wf-box">
-            <img src="vendors/img/5.jpg">
-            <div class="content">
-                <h3>Title</h3>
-                <p>Content aa asdfasdfjal</p>    
+        @foreach($posts as $post)
+            <div class="wf-box" data-id="{{$post["post_id"]}}">
+                <img src="{{URL::to('api/photo').'/'.$post["photo_link"]}}" class="box-img" data-id="{{$post["post_id"]}}"/>
+                <div class="content">
+                    <h3>{{$post["owner"]}}</h3>
+                    <p>{{$post["description"]}}</p>
+                </div>
             </div>
-        </div>
-        <div class="wf-box">
-            <img src="vendors/img/5.jpg">
-            <div class="content">
-                <h3>Title</h3>
-                <p>Content aa asdfasdfjal</p>    
-            </div>
-        </div>
+        @endforeach
     </div> 
    
     <script type="text/javascript">
     
         menu = $("#user-profile-list");
+        $("#post-list").addClass('active-profile-li');
         $("#post-list").click(function()
             {
                 menu.find('.active-profile-li').removeClass('active-profile-li');
                 $(this).addClass('active-profile-li');
                 var user_id = $('#user-span').data("user");
                 var photoUrl = "{{URL::to('api/photo/')}}"; 
-                var url = "{{URL::to('api/user/')}}"+"/"+user_id+"/post";
+                var url = "{{URL::to('api/user/')}}"+"/"+user_id+"/posts";
                 listContainer = $("#user-container");
                 listContainer.empty();
                 createListBox = function(data)
@@ -86,7 +82,7 @@
                     }   
                     var waterfall = new Waterfall({
                              containerSelector: '.wf-container',
-                             boxSelector: '.wf-box',
+                             boxSelector: '.wf-box'
                             });
                 }
                 $.get(url,function(data){createListBox(data)},'json');
@@ -166,6 +162,7 @@
                 },'json');
             }
         });
+        // $("#post-list").trigger("click");
     </script>
 @stop
 

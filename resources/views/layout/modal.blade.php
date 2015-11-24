@@ -102,14 +102,14 @@
         console.log($(this).parent());
         var url ="{{URL::to('api/post')}}";
         var data ={
-          'description':$('board_description').text(),
+          'description':$('#board_description').val(),
           'board_id':$(this).parent().find('span:first').data('id'),
           'photo_link':getId($('#img_preview').find('img').attr("src"))
         };
         $.post(url,data,function(data){
           console.log(data);
-          alert("pin successfull");
           $('.modal-upload').modal('hide'); 
+          location.reload(true);
         },'json');
     });
     function getId(url) 

@@ -46,4 +46,9 @@ class Board extends Model
 		$boards = Board::where('user_id',$user_id)->get();
 		return $boards;
 	}
+    public static function countBoardsByUserId($user_id){
+        $boards = Board::where('user_id',$user_id)->count();
+        return $boards;
+    }
+
 }

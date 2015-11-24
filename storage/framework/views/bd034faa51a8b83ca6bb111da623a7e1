@@ -21,105 +21,15 @@
                 <p>Content Here</p>
             </div>
         </div>
-        <div class="wf-box">
-            <img src="vendors/img/5.jpg" class="box-img"/>
-            <div class="content">
-                <h3>Title</h3>
-                <p>Content aa asdfasdfjal</p>    
+        <?php foreach($posts as $post): ?>
+            <div class="wf-box" data-id="<?php echo e($post["post_id"]); ?>">
+                <img src="<?php echo e(URL::to('api/photo').'/'.$post["photo_link"]); ?>" class="box-img" data-id="<?php echo e($post["post_id"]); ?>"/>
+                <div class="content">
+                    <h3><?php echo e($post["owner"]); ?></h3>
+                    <p><?php echo e($post["description"]); ?></p>
+                </div>
             </div>
-        </div>
-        <div class="wf-box">
-            <img src="vendors/img/5.jpg" class="box-img">
-            <div class="content">
-                <h3>Heading</h3>
-                <p>Content aa asdfasdfjal</p>    
-            </div>
-        </div>
-        <div class="wf-box">
-            <img src="vendors/img/5.jpg" class="box-img">
-            <div class="content">
-                <h3>Heading</h3>
-                <p>Content aa asdfasdfjal</p>    
-            </div>
-        </div>
-        <div class="wf-box">
-            <img src="vendors/img/5.jpg" class="box-img">
-            <div class="content">
-                <h3>Heading</h3>
-                <p>Content aa asdfasdfjal</p>    
-            </div>
-        </div>
-        <div class="wf-box">
-            <img src="vendors/img/5.jpg">
-            <div class="content">
-                <h3>Heading</h3>
-                <p>Content aa asdfasdfjal</p>    
-            </div>
-        </div>
-        <div class="wf-box">
-            <img src="vendors/img/5.jpg">
-            <div class="content">
-                <h3>Heading</h3>
-                <p>Content aa asdf ljaljaljal</p>    
-            </div>
-        </div>
-        <div class="wf-box">
-            <img src="vendors/img/5.jpg">
-            <div class="content">
-                <h3>Heading</h3>
-                <p>Content aa asdfasdfjal</p>    
-            </div>
-        </div>
-        <div class="wf-box">
-            <img src="vendors/img/5.jpg">
-            <div class="content">
-                <h3>Heading</h3>
-                <p>Content aa asdfasdfjal</p>    
-            </div>
-        </div>
-        <div class="wf-box">
-            <img src="vendors/img/5.jpg">
-            <div class="content">
-                <h3>Heading</h3>
-                <p>Content aa asdf ljaljaljal</p>    
-            </div>
-        </div>
-        <div class="wf-box">
-            <img src="vendors/img/5.jpg">
-            <div class="content">
-                <h3>Title</h3>6.jpg
-                <p>Content Here</p>    
-            </div>
-        </div>
-        <div class="wf-box">
-            <img src="vendors/img/5.jpg">
-            <div class="content">
-                <h3>Title</h3>
-                <p>Content aa asdfasdfjal</p>    
-            </div>
-        </div>
-        <div class="wf-box">
-            <img src="vendors/img/15.jpg">
-            <div class="content">
-                <h3>Heading</h3>
-                <p>Content aa asdfasdfjal</p>    
-            </div>
-        </div>
-        <div class="wf-box">
-            <img src="vendors/img/11.jpg">
-            <div class="content">
-                <h3>Heading</h3>
-                <p>Content aa asdfasdfjal</p>    
-            </div>
-        </div>
-        <div class="wf-box">
-            <img src="vendors/img/18.jpg">
-            <div class="content">
-                <h3>Heading</h3>
-                <p>Content aa asdf ljaljaljal</p>    
-            </div>
-        </div>
-        
+        <?php endforeach; ?>
     </div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layout.index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -7,7 +7,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Es;
 use Elasticsearch\Client;
-use App\Models\UserProfile;
 class SearchController extends Controller
 {
     /**

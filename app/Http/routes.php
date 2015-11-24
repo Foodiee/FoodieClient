@@ -27,10 +27,12 @@ Route::group(['prefix'=>'api'],function()
 	Route::resource('photo','StorageController');
 	Route::resource('user','UserController');
 	Route::post('user/follow','UserController@follow');
-	Route::get('user/{user_id}/board','UserController@getBoards');
-	Route::get('user/{user_id}/post','UserController@getPosts');
+	Route::get('user/{user_id}/boards','UserController@getBoards');
+	Route::get('user/{user_id}/posts','UserController@getPosts');
 	Route::get('user/{user_id}/following','UserController@getFollowing');
 	Route::get('user/{user_id}/follower','UserController@getFollower');
+    Route::get('user/{user_id}/profile','UserController@getProfile');
+	Route::get('user/{user_id}/timeline','UserController@getPostsByFollowingUserId');
 });
 Route::post('facebook/login', 'FrontEndController@login');
 Route::post('/upload-img', 'FrontEndController@uploadimg');

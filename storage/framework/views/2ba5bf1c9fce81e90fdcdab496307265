@@ -63,11 +63,13 @@
             </div>
             <div class="fluid-container mv-img">
               <div class="wf-box">
-                <img src="<?php echo e(URL::asset('img/5.jpg')); ?>" class="box-img"/>
+                <img id="main-photo-post" src="<?php echo e(URL::asset('img/5.jpg')); ?>" class="box-img"/>
               </div>  
             </div>
             <div class="fluid-container mv-img-footer">
-              <p>Upload bởi tùng</p>
+              <p>
+                 Upload bởi <span id="owner-post"></span>
+              </p>
             </div>
           </div>
           <div class="col-md-3 center-left-side">
@@ -160,6 +162,7 @@
           title: name,
           draggable: true
       });
-    }    
+    }
+
   </script>
 <?php /* <?php $__env->stopSection(); ?>  */ ?>

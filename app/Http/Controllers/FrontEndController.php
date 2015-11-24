@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Post;
 use App\Models\LikeEvent;
 use App\Models\CommentEvent;
+use App\Models\UserPosts;
 use Auth;
 class FrontEndController extends Controller{
 	//post login fb
@@ -79,8 +80,9 @@ class FrontEndController extends Controller{
 	//get view trang chủ
 	public function homeview(Request $request){
 		
-		//print_r(Auth::user()->user_id);
-		return view('mainpage');
+		$id = Auth::user()->user_id;
+        $list = UserPosts::getPostsByFollowingUserId($id);
+		return view('mainpage',["posts"=>$list]);
 	}
 
 	//get view tìm kiem do an

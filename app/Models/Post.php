@@ -43,4 +43,8 @@ class Post extends Model{
             ->where('post_id', $post_id)
             ->first();
 	}
+    public static function countPostsByUserId($user_id){
+        $posts = Post::where('user_id',$user_id)->count();
+        return $posts;
+    }
 }

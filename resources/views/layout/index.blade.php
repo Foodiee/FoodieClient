@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{URL::asset('css/bootstrap.min.css')}}">
     
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300italic,300,100' rel='stylesheet' type='text/css'>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/style.css')}}">
     <!-- Latest compiled and minified CSS -->
 
@@ -20,7 +20,6 @@
     <script src="vendors/js/responsive_waterfall.js"></script>
     <title>Fresh Food</title>
 </head>
-    
 <body>
     {{-- Thanh menu --}}
     <nav class="navbar navbar-inverse navbar-fixed-top" style='background-color:#fff;webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);'>
@@ -50,7 +49,7 @@
                         <a href="{{URL::to('home')}}">Home</a>
                     </li>
                     @if(Auth::user()!=null)
-                    <li><a href="{{URL::to(Auth::user()->username)}}">{{Auth::user()->username}}</a></li>
+                    <li><a id="user-id-info" data-id="{{Auth::user()->user_id}}" href="{{URL::to(Auth::user()->username)}}">{{Auth::user()->username}}</a></li>
                     @endif
                     <li class="dropdown" style="margin-top:10px;">
                          @if(Auth::user()!=null)
@@ -76,16 +75,14 @@
             </div>
         </div>
     </nav>
-       
+    <script>console.log("index");</script>
     <section class="layout-mainpage">
         @yield('grid-layout')
     </section>
     @include('layout.modal')
     @include('layout.modal-view')
-
     @include('layout.sub-menu')
     @include('layout.modal-message')
-
     <div class="modal fade modal-prgbar">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -138,9 +135,13 @@
         });
 
         $('.box-img').on('click', function(){
-            $('.modal-view').modal('show');
-        });        
-
+//             $('.modal-view').find("#main-photo-post").attr("src");
+//            console.log($(this).data('id'));
+            getPostById($('.modal-view'),$(this).data('id'));
+        });
+//        $('.wf-box').on('click', function(){
+//            $('.modal-view').modal('show');
+//        });
         $(document).on('click', '#pinit', function(){
             board_id = $(this).data('option');
             description = $('.description').val();
@@ -163,7 +164,19 @@
         });
     }); 
 
- 
+    function getPostById(modal,id){
+        var url ="http://localhost/FoodieWeb/public/api/post/"+id;
+        $.ajax({
+            url: url,
+            type:"GET",
+            success:function(data){
+                // console.log(data);
+                modal.find("#owner-post").text(data.owner);
+                modal.find("#main-photo-post").attr("src","{{URL::to('api/photo')}}"+"/"+data.photo_link);
+                modal.modal('show');
+            }
+        });
+    }
     function readURL(input) {
         if (input.files && input.files[0]) {
             if(input.files[0].size > 5*1024*1024)

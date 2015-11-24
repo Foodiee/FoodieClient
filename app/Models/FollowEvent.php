@@ -45,4 +45,12 @@ class FollowEvent extends Model
 		$result = User::whereIn('user_id',$list_id)->get(['username','name','user_id']);
 		return $result;
 	}
+    public static function countFollowing($user_id){
+        $number_following_id = FollowEvent::where('follower_id',$user_id)->count();
+        return $number_following_id;
+    }
+    public static function countFollower($user_id){
+        $number_following_id = FollowEvent::where('following_id',$user_id)->count();
+        return $number_following_id;
+    }
 }
