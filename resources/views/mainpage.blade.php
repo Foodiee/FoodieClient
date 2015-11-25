@@ -26,8 +26,9 @@
             <div class="wf-box" data-id="{{$post["post_id"]}}">
                 <img src="{{URL::to('api/photo').'/'.$post["photo_link"]}}" class="box-img" data-id="{{$post["post_id"]}}"/>
                 <div class="content">
-                    <h3>{{$post["owner"]}}</h3>
-                    <p>{{$post["description"]}}</p>
+                    <h3>{{$post["description"]}}</h3>
+                    <h4>{{$post['board_title']}}</h4>
+                    <p>{{$post["owner"]}}</p>
                 </div>
             </div>
         @endforeach

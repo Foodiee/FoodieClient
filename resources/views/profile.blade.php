@@ -41,7 +41,7 @@
             </div>
             <ul class="user-info" id="user-profile-list">
                 <li id="post-list" class="user-profile-info"><span>{{$profile["number_of_posts"]}}</span> Bài viết</li>
-                <li id="board-list"class="user-profile-info"><span>{{$profile["number_of_boards"]}}</span> Album</li>
+                <li id="board-count-list"class="user-profile-info"><span>{{$profile["number_of_boards"]}}</span> Album</li>
                 <li id="follower-list" class="user-profile-info"><span>{{$profile["number_of_follower"]}}</span> Người theo dõi</li>
                 <li id="following-list" class="user-profile-info"><span>{{$profile["number_of_following"]}}</span> Người đang theo dõi</li>
             </ul>
@@ -162,7 +162,7 @@
                 },'json');
             }
         });
-        // $("#post-list").trigger("click");
+//        $("#post-list").trigger("click");
     </script>
 @stop
 

@@ -1,5 +1,5 @@
 @section('modal')
-  <div class="modal fade modal-view">
+  <div class="modal fade modal-view" tabindex="-1">
     <div class="modal-dialog" style="width:75%;">
       <div class="modal-content">
           <div class="col-md-1">
@@ -9,16 +9,18 @@
           </div>
           <div class="col-md-7 center-right-side" style="border-radius:6px;margin-right:15px;">
             <div class="mv-title keep-open">
-              <div class="mv-title-pinit">Thêm</div>
-              <div class="mv-title-like">
+              <div class="mv-title-pinit" id="post_pin_btn">
+                <span>Đánh dấu</span>
+              </div>
+              <div id="post_like_btn" class="mv-title-like">
                 <em></em>
                 <span>Thích</span>
               </div>
-              <div class="mv-title-share">
+              <div id="post_share_btn" class="mv-title-share">
                 <em></em>
                 <span>Chia sẻ</span>
               </div> 
-              <div class="mv-title-send" id="dropdownMenu3" data-toggle="dropdown">
+              <div id="post_send_btn" class="mv-title-send" id="dropdownMenu3" data-toggle="dropdown">
                 <em></em>
                 <span>Gửi</span>
               </div> 
@@ -110,7 +112,7 @@
             </div>
           </div>
           <div class="col-md-7 col-md-offset-1 mv-cmt">
-            
+            <p id="main-post-description"></p>
           </div>
           <div class="col-md-10 col-md-offset-1 mv-related-post">
               <div class="wf-box">
@@ -163,6 +165,14 @@
           draggable: true
       });
     }
-
+    $("#post_like_btn").click(function(){
+        span_text = $(this).find('span:first');
+        if(span_text.text()=="Thích"){
+            span_text.text("Đã thích");
+        }
+        else {
+            span_text.text("Thích")
+        }
+    });
   </script>
 {{-- @stop  --}}

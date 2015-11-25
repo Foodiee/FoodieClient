@@ -173,6 +173,7 @@
                 // console.log(data);
                 modal.find("#owner-post").text(data.owner);
                 modal.find("#main-photo-post").attr("src","{{URL::to('api/photo')}}"+"/"+data.photo_link);
+                modal.find("#main-post-description").text(data.description);
                 modal.modal('show');
             }
         });

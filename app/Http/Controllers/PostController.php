@@ -108,6 +108,19 @@ class PostController extends Controller
     {
         //
     }
+    public function getLiker($id)
+    {
+        $result = Post::getLikerByPostId($id);
+        return response()->json($result);
+    }
+    public function getComments($id)
+    {
+        $result = Post::getCommentsByPostId($id);
+        return response()->json($result);
+    }
+    public function likePost($post_id,$user_id){
+
+    }
 //    public function getPostById($post_id)
 //    {
 //        return view('layout.view');

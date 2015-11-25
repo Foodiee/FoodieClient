@@ -3,6 +3,8 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use App\Models\LikeEvent;
+use App\Models\CommentEvent;
 class Post extends Model{
 	protected $table = 'posts';
 	public function board()
@@ -46,5 +48,15 @@ class Post extends Model{
     public static function countPostsByUserId($user_id){
         $posts = Post::where('user_id',$user_id)->count();
         return $posts;
+    }
+    public static function getLikerByPostId($post_id){
+        $list_id = LikeEvent::where('post_id',$post_id)->get(['post_id']);
+        $result = User::whereIn('user_id',$list_id)->get(['username','name','user_id']);
+        return $result;
+    }
+    public static function getCommentsByPostId($post_id){
+        $list_id = CommentEvent::where('post_id',$post_id)->get(['post_id']);
+        $result = User::whereIn('user_id',$list_id)->get(['username','name','user_id']);
+        return $result;
     }
 }
