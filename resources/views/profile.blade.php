@@ -2,14 +2,19 @@
 @include('layout.modal-profile')
 @include('layout.modal-login')
 @section('grid-layout')
-    <div class="container" style="width:100%;margin-top:100px;">
-        <div class="left-side col-md-5">
-            <img src="{{URL::to('/api/photo/')."/".$user["avatar_link"]}}" class="logo-profile">
+    <div class="container" style="width:100%;margin-top:30px;padding-left:0 !important; padding-right:0 !important;">
+        <div class="left-side col-md-12">
+            <div class="cover-profile"></div>
+            <div class="dark-cover"></div>
+            <div class='cover-content'>
+                <img src="{{URL::to('/api/photo/')."/".$user["avatar_link"]}}" class="logo-profile">
+                <h1 id="user-span" data-user="{{$user["user_id"]}}">{{$user["name"]}}</h1>
+                <div class="cover-caption">Thịt nướng yum yum</div>
+            </div>
         </div>
-        <div class="right-side col-md-7">
-            <div class="row">
+        <div class="right-side col-md-12">
+            <div class="row" style="max-width: 29%;padding-top:18px;">
             <h3>
-                <span id="user-span" data-user="{{$user["user_id"]}}">{{$user["name"]}}</span>
                 @if(Auth::user()!=null)
                     @if($user["user_id"]==Auth::user()->user_id)
                         <button id="btn-edit" class="btn follow_btn">
@@ -40,25 +45,57 @@
             <h4>{{$user["description"]}}</h4>
             </div>
             <ul class="user-info" id="user-profile-list">
-                <li id="post-list" class="user-profile-info"><span>{{$profile["number_of_posts"]}}</span> Bài viết</li>
-                <li id="board-count-list"class="user-profile-info"><span>{{$profile["number_of_boards"]}}</span> Album</li>
-                <li id="follower-list" class="user-profile-info"><span>{{$profile["number_of_follower"]}}</span> Người theo dõi</li>
-                <li id="following-list" class="user-profile-info"><span>{{$profile["number_of_following"]}}</span> Người đang theo dõi</li>
+                <li id="post-list" class="user-profile-info active">
+                    <a href="#user-container" data-toggle="tab"><span>{{$profile["number_of_posts"]}}</span> Bài viết</a>
+                </li>
+                <li id="board-count-list"class="user-profile-info">
+                    <a href="#tab2" data-toggle="tab"><span>{{$profile["number_of_boards"]}}</span> Album</a>
+                </li>
+                <li id="follower-list" class="user-profile-info">
+                    <a href="#tab3" data-toggle="tab"><span>{{$profile["number_of_follower"]}}</span> Người theo dõi</a>
+                </li>
+                <li id="following-list" class="user-profile-info">
+                    <a href="#tab4" data-toggle="tab"><span>{{$profile["number_of_following"]}}</span> Người đang theo dõi</a>
+                </li>
             </ul>
         </div>
     </div>
-    <div id="user-container" class="wf-container" style="margin-top:40px;width:60%;">
-        @foreach($posts as $post)
-            <div class="wf-box" data-id="{{$post["post_id"]}}">
-                <img src="{{URL::to('api/photo').'/'.$post["photo_link"]}}" class="box-img" data-id="{{$post["post_id"]}}"/>
-                <div class="content">
-                    <h3>{{$post["owner"]}}</h3>
-                    <p>{{$post["description"]}}</p>
+    <div class="tab-content">
+        <div id="user-container" class="wf-container tab-pane active" style="margin: 40 auto;width: 90%;">
+            @foreach($posts as $post)
+                <div class="wf-box" data-id="{{$post["post_id"]}}">
+                    <img src="{{URL::to('api/photo').'/'.$post["photo_link"]}}" class="box-img" data-id="{{$post["post_id"]}}"/>
+                    <div class="content">
+                        <h3 class="box-img-des">{{$post["description"]}}</h3>
+                        <div class="box-img-card">
+                            <img src="{{URL::asset("img/logo.png")}}" width="30" height="30" class="logo-profile">
+                            <div>
+                                <p class="card-owner">{{$post["owner"]}}</p>
+                                <h4 class="card-title">{{$post['board_title']}}</h4>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        @endforeach
-    </div> 
-   
+            @endforeach
+        </div>
+        <div id="tab2" class="wf-container tab-pane" style="margin: 40 auto;width: 90%;">
+            @foreach($posts as $post)
+                <div class="wf-box" data-id="{{$post["post_id"]}}">
+                    <img src="{{URL::to('api/photo').'/'.$post["photo_link"]}}" class="box-img" data-id="{{$post["post_id"]}}"/>
+                    <div class="content">
+                        <h3 class="box-img-des">{{$post["description"]}}</h3>
+                        <div class="box-img-card">
+                            <img src="{{URL::asset("img/logo.png")}}" width="30" height="30" class="logo-profile">
+                            <div>
+                                <p class="card-owner">{{$post["owner"]}}</p>
+                                <h4 class="card-title">{{$post['board_title']}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div> 
+    </div>   
     <script type="text/javascript">
     
         menu = $("#user-profile-list");

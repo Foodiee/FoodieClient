@@ -69,6 +69,7 @@
               </div>  
             </div>
             <div class="fluid-container mv-img-footer">
+              <p id="main-post-description"></p>
               <p>
                  Upload bởi <span id="owner-post"></span>
               </p>
@@ -112,7 +113,41 @@
             </div>
           </div>
           <div class="col-md-7 col-md-offset-1 mv-cmt">
-            <p id="main-post-description"></p>
+            <div class="mv-cmt-item">
+              <img src="img/5.jpg" class="logo-profile cmt-avatar">
+              <div class="cmt-chat cmt-name">
+                <a href="">Tung</a>
+              </div>
+              <div class="cmt-chat">dáđfsdfsdfd</div>
+            </div>
+            <div class="mv-cmt-item">
+              <img src="img/5.jpg" class="logo-profile cmt-avatar">
+              <div class="cmt-chat cmt-name">
+                <a href="">Tung</a>
+              </div>
+              <div class="cmt-chat">dáđfsdfsdfd</div>
+            </div>
+            <div class="mv-cmt-item">
+              <img src="img/5.jpg" class="logo-profile cmt-avatar">
+              <div class="cmt-chat cmt-name">
+                <a href="">Tung</a>
+              </div>
+              <div class="cmt-chat">dáđfsdfsdfd</div>
+            </div>
+            <div class="mv-cmt-item">
+              <img src="img/5.jpg" class="logo-profile cmt-avatar">
+              <div class="cmt-chat cmt-name">
+                <a href="">Tung</a>
+              </div>
+              <div class="cmt-chat">dáđfsdfsdfd</div>
+            </div>
+            <div class="mv-cmt-owner">
+              <img src="img/5.jpg" class="logo-profile cmt-avatar-owner">
+              <div class="cmt-chat-owner">
+                <a href="">Tung</a>
+                <textarea class="cmt-boxchat" placeholder="Thêm bình luận"></textarea>
+              </div>
+            </div>
           </div>
           <div class="col-md-10 col-md-offset-1 mv-related-post">
               <div class="wf-box">

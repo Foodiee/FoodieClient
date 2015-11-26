@@ -72,7 +72,7 @@
 <script>
     $(document).ready(function(){
         var waterfall = new Waterfall({ 
-            minBoxWidth: 250 
+            minBoxWidth: 250
         });
 
         var chek = false;

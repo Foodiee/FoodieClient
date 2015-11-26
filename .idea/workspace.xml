@@ -1,31 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3bce63b8-7f3e-407e-bd0f-c990160f144d" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\wamp\www\FoodieWeb\storage\framework\sessions\266d2b1292ba5da7a968d1d51e2d9af9f287cc29" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\FoodieWeb\storage\framework\sessions\9abb6dd7bf334fef214ff334fb61fbc1155f12d7" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\FoodieWeb\storage\framework\sessions\a92503c2930b142402df125ae77e7405dad38960" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\FoodieWeb\storage\framework\sessions\a9f46943c847aaeb9c81f7d4345553173d0fe61c" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\FoodieWeb\storage\framework\sessions\aafe72c38852f1801c01bc98216d6c649e9dcdea" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\FoodieWeb\storage\framework\sessions\bb1728fc2073340e16c9daae1feba93c36020575" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\FoodieWeb\storage\framework\sessions\ce89c1fa5264eeb75fd401fcb97247ddadfc7744" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\FoodieWeb\storage\framework\sessions\d26f80c83bf00c3e21d566da24d82b275b8dbc06" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\FoodieWeb\storage\framework\views\e86614a31e38094d8acd0911a890de62" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/framework/views/0aee63a03d486c138db69053de4a41ff" afterPath="$PROJECT_DIR$/storage/framework/views/0aee63a03d486c138db69053de4a41ff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/framework/views/1017463995ff7f723edb30b7d85cc199" afterPath="$PROJECT_DIR$/storage/framework/views/1017463995ff7f723edb30b7d85cc199" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/framework/views/2ba5bf1c9fce81e90fdcdab496307265" afterPath="$PROJECT_DIR$/storage/framework/views/2ba5bf1c9fce81e90fdcdab496307265" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/CommentEvent.php" afterPath="$PROJECT_DIR$/app/Models/CommentEvent.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/LikeEvent.php" afterPath="$PROJECT_DIR$/app/Models/LikeEvent.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Post.php" afterPath="$PROJECT_DIR$/app/Models/Post.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/PostController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/PostController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/framework/views/bd034faa51a8b83ca6bb111da623a7e1" afterPath="$PROJECT_DIR$/storage/framework/views/bd034faa51a8b83ca6bb111da623a7e1" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layout/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/layout/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/logs/laravel.log" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/mainpage.blade.php" afterPath="$PROJECT_DIR$/resources/views/mainpage.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layout/modal-view.blade.php" afterPath="$PROJECT_DIR$/resources/views/layout/modal-view.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/profile.blade.php" afterPath="$PROJECT_DIR$/resources/views/profile.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="3bce63b8-7f3e-407e-bd0f-c990160f144d" name="Default" comment="" />
     <ignored path="FoodieWeb.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />

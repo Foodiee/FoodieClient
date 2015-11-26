@@ -4,6 +4,10 @@ Route::get('/profile', function () {
     return view('profile');
 });
 
+Route::get('/board', function () {
+    return view('board');
+});
+
 Route::get('/modal', function () {
     return view('modal');
 });
@@ -19,6 +23,7 @@ Route::group(['prefix'=>'search'],function()
 
 });
 Route::get('/{user_name}','UserController@getUser');
+
 Route::get('post/{post_id}','PostController@getPostById');
 Route::group(['prefix'=>'api'],function()
 {

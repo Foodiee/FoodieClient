@@ -11,11 +11,15 @@
     
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300italic,300,100' rel='stylesheet' type='text/css'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="{{URL::asset('css/jquery.hashtags.css')}}">
     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/style.css')}}">
     <!-- Latest compiled and minified CSS -->
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="{{URL::asset('js/jquery.min.js')}}"></script>
+    <script src="{{URL::asset('js/autosize.min.js')}}"></script>
+    <script src="{{URL::asset('js/jquery.hashtags.js')}}"></script>
     <script src="{{URL::asset('js/bootstrap.min.js')}}"></script>
     <script src="vendors/js/responsive_waterfall.js"></script>
     <title>Fresh Food</title>
@@ -42,14 +46,25 @@
                 
                 <ul class="nav navbar-nav navbar-right" style="margin-top:15px; margin-left:65px;">
                     <li>
-                        <input type="file" name="image" id="imgInp" data-id = "" class="file" accept="image/*">
-                        <a href="#" id="upload">Upload</a>
+                        <input type="file" name="image" id="imgInp" data-id = "" class="file" accept="image/*" style="display:none;">
+                        <a href="#" id="upload">
+                            <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+                            Upload
+                        </a>
                     </li>
                     <li>
-                        <a href="{{URL::to('home')}}">Home</a>
+                        <a href="{{URL::to('home')}}">
+                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                            Home
+                        </a>
                     </li>
                     @if(Auth::user()!=null)
-                    <li><a id="user-id-info" data-id="{{Auth::user()->user_id}}" href="{{URL::to(Auth::user()->username)}}">{{Auth::user()->username}}</a></li>
+                    <li>
+                        <a id="user-id-info" data-id="{{Auth::user()->user_id}}" href="{{URL::to(Auth::user()->username)}}">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            {{Auth::user()->username}}
+                        </a>
+                    </li>
                     @endif
                     <li class="dropdown" style="margin-top:10px;">
                          @if(Auth::user()!=null)
@@ -108,8 +123,9 @@
             minBoxWidth: 250 
         });
 
+        $(".cmt-boxchat").hashtags();
+
         //sự kiện upload ảnh
-        $('#imgInp').hide();
         $('#upload').on('click', function(){
 
             document.getElementById("imgInp").click();
@@ -165,7 +181,7 @@
     }); 
 
     function getPostById(modal,id){
-        var url ="http://localhost/FoodieWeb/public/api/post/"+id;
+        var url ="http://foodieweb.com/api/post/"+id;
         $.ajax({
             url: url,
             type:"GET",
