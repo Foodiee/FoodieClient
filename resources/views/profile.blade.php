@@ -4,16 +4,16 @@
 @section('grid-layout')
     <div class="container" style="width:100%;margin-top:30px;padding-left:0 !important; padding-right:0 !important;">
         <div class="left-side col-md-12">
-            <div class="cover-profile"></div>
+            <div class="cover-profile" style="background-image: url('{{URL::to('/api/photo/')."/".$user["cover_link"]}}')"></div>
             <div class="dark-cover"></div>
             <div class='cover-content'>
                 <img src="{{URL::to('/api/photo/')."/".$user["avatar_link"]}}" class="logo-profile">
                 <h1 id="user-span" data-user="{{$user["user_id"]}}">{{$user["name"]}}</h1>
-                <div class="cover-caption">Thịt nướng yum yum</div>
+                <div class="cover-caption"><h4>{{$user["description"]}}</h4></div>
             </div>
         </div>
         <div class="right-side col-md-12">
-            <div class="row" style="max-width: 29%;padding-top:18px;">
+            <div class="row" style="padding-top:18px;">
             <h3>
                 @if(Auth::user()!=null)
                     @if($user["user_id"]==Auth::user()->user_id)
@@ -40,11 +40,11 @@
                         <span>Theo dõi</span>
                     </button>
                 @endif
-                   
+                 
             </h3>
-            <h4>{{$user["description"]}}</h4>
+
             </div>
-            <ul class="user-info" id="user-profile-list">
+            <ul class="user-info nav nav-pills" id="user-profile-list">
                 <li id="post-list" class="user-profile-info active">
                     <a href="#user-container" data-toggle="tab"><span>{{$profile["number_of_posts"]}}</span> Bài viết</a>
                 </li>
@@ -100,73 +100,73 @@
     
         menu = $("#user-profile-list");
         $("#post-list").addClass('active-profile-li');
-        $("#post-list").click(function()
-            {
-                menu.find('.active-profile-li').removeClass('active-profile-li');
-                $(this).addClass('active-profile-li');
-                var user_id = $('#user-span').data("user");
-                var photoUrl = "{{URL::to('api/photo/')}}"; 
-                var url = "{{URL::to('api/user/')}}"+"/"+user_id+"/posts";
-                listContainer = $("#user-container");
-                listContainer.empty();
-                createListBox = function(data)
-                {
-                    for (var i = 0;i<data.length;i++)
-                    {
-                        var postBox = createPostBox(photoUrl+"/"+data[i].photo_link,
-                            data[i].description,data[i].board_title,data[i].owner);
-                        listContainer.append(postBox);
-                    }   
-                    var waterfall = new Waterfall({
-                             containerSelector: '.wf-container',
-                             boxSelector: '.wf-box'
-                            });
-                }
-                $.get(url,function(data){createListBox(data)},'json');
-            });
+        {{--$("#post-list").click(function()--}}
+            {{--{--}}
+                {{--menu.find('.active-profile-li').removeClass('active-profile-li');--}}
+                {{--$(this).addClass('active-profile-li');--}}
+                {{--var user_id = $('#user-span').data("user");--}}
+                {{--var photoUrl = "{{URL::to('api/photo/')}}"; --}}
+                {{--var url = "{{URL::to('api/user/')}}"+"/"+user_id+"/posts";--}}
+                {{--listContainer = $("#user-container");--}}
+                {{--listContainer.empty();--}}
+                {{--createListBox = function(data)--}}
+                {{--{--}}
+                    {{--for (var i = 0;i<data.length;i++)--}}
+                    {{--{--}}
+                        {{--var postBox = createPostBox(photoUrl+"/"+data[i].photo_link,--}}
+                            {{--data[i].description,data[i].board_title,data[i].owner);--}}
+                        {{--listContainer.append(postBox);--}}
+                    {{--}   --}}
+                    {{--var waterfall = new Waterfall({--}}
+                             {{--containerSelector: '.wf-container',--}}
+                             {{--boxSelector: '.wf-box'--}}
+                            {{--});--}}
+                {{--}--}}
+                {{--$.get(url,function(data){createListBox(data)},'json');--}}
+            {{--});--}}
          $("#board-list").click(function()
             {
                  menu.find('.active-profile-li').removeClass('active-profile-li');
                 $(this).addClass('active-profile-li');
             });
-        function createUserBox(imgSrc,title,content)
-        {
-            img = $("<img/>",{src:imgSrc,class:"user-box"});
-            divContent = jQuery("<div/>",{class:"content"}).append(
-                $("<h3/>").text(title),
-                $("<p/>").text(content)
-                );
-            return jQuery("<div/>",{
-                class:"wf-box"
-            }).append(img,divContent);
-        }
-        function createPostBox(imgSrc,title,content,owner)
-        {
-            img = $("<img/>",{src:imgSrc});
-            divContent = jQuery("<div/>",{class:"content"}).append(
-                $("<h3/>").text(title),
-                $("<p/>").text(content),
-                $("<p/>").text(owner)
-                );
-            return jQuery("<div/>",{
-                class:"wf-box"
-            }).append(img,divContent);
-            // var box = document.createElement('div');
-            // box.className = 'wf-box';
-            // var image = document.createElement('img');
-            // image.src = imgSrc;
-            // box.appendChild(image);
-            // var content = document.createElement('div');
-            // content.className = 'content';
-            // var title = document.createElement('h3');
-            // title.appendChild(document.createTextNode(title));
-            // content.appendChild(title);
-            // var p = document.createElement('p');
-            // p.appendChild(document.createTextNode(content));
-            // content.appendChild(p);
-            // box.appendChild(content);
-            // return box;
-        }
+//        function createUserBox(imgSrc,title,content)
+//        {
+//            img = $("<img/>",{src:imgSrc,class:"user-box"});
+//            divContent = jQuery("<div/>",{class:"content"}).append(
+//                $("<h3/>").text(title),
+//                $("<p/>").text(content)
+//                );
+//            return jQuery("<div/>",{
+//                class:"wf-box"
+//            }).append(img,divContent);
+//        }
+//        function createPostBox(imgSrc,title,content,owner)
+//        {
+//            img = $("<img/>",{src:imgSrc});
+//            divContent = jQuery("<div/>",{class:"content"}).append(
+//                $("<h3/>").text(title),
+//                $("<p/>").text(content),
+//                $("<p/>").text(owner)
+//                );
+//            return jQuery("<div/>",{
+//                class:"wf-box"
+//            }).append(img,divContent);
+//            // var box = document.createElement('div');
+//            // box.className = 'wf-box';
+//            // var image = document.createElement('img');
+//            // image.src = imgSrc;
+//            // box.appendChild(image);
+//            // var content = document.createElement('div');
+//            // content.className = 'content';
+//            // var title = document.createElement('h3');
+//            // title.appendChild(document.createTextNode(title));
+//            // content.appendChild(title);
+//            // var p = document.createElement('p');
+//            // p.appendChild(document.createTextNode(content));
+//            // content.appendChild(p);
+//            // box.appendChild(content);
+//            // return box;
+//        }
         $("#btn-edit").click(function(){
             $('.modal-profile').modal('show');
             showProfile($("#user-span").data("user"));

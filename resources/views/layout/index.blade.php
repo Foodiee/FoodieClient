@@ -62,13 +62,13 @@
                     <li>
                         <a id="user-id-info" data-id="{{Auth::user()->user_id}}" href="{{URL::to(Auth::user()->username)}}">
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                            {{Auth::user()->username}}
+                            {{Auth::user()->name}}
                         </a>
                     </li>
                     @endif
                     <li class="dropdown" style="margin-top:10px;">
                          @if(Auth::user()!=null)
-                        <img src="{{URL::to('/api/photo/')."/".Auth::user()["avatar_link"]."_75"}}" height="30" width="30" class="logo-profile" id="dropdownMenu2" data-toggle="dropdown" style='cursor:pointer;'>
+                        <img src="{{URL::to('/api/photo/')."/".Auth::user()["avatar_link"]}}" height="30" width="30" class="logo-profile" id="dropdownMenu2" data-toggle="dropdown" style='cursor:pointer;'>
                         @endif
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2" style="margin-top:26px;">
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sửa thông tin</a></li>
@@ -180,20 +180,6 @@
         });
     }); 
 
-    function getPostById(modal,id){
-        var url ="http://foodieweb.com/api/post/"+id;
-        $.ajax({
-            url: url,
-            type:"GET",
-            success:function(data){
-                // console.log(data);
-                modal.find("#owner-post").text(data.owner);
-                modal.find("#main-photo-post").attr("src","{{URL::to('api/photo')}}"+"/"+data.photo_link);
-                modal.find("#main-post-description").text(data.description);
-                modal.modal('show');
-            }
-        });
-    }
     function readURL(input) {
         if (input.files && input.files[0]) {
             if(input.files[0].size > 5*1024*1024)

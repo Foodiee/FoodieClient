@@ -105,6 +105,15 @@ class SearchController extends Controller
         $kw = $request->input('q');
         return $kw;
     }
+    public function insertPost($post_id,$description){
+
+    }
+    public function insertBoard($board_id,$board_title){
+
+    }
+    public function insertUser($user_id,$name){
+
+    }
     public function searchUser(){
         return 1;
     }

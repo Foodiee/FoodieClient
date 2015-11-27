@@ -95,6 +95,7 @@
             data:data,
             success:function(){
                 console.log(data.result);
+                $(".modal-profile").modal('close');
             }
         });
     }

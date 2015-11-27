@@ -38,6 +38,7 @@ Route::group(['prefix'=>'api'],function()
 	Route::get('user/{user_id}/follower','UserController@getFollower');
     Route::get('user/{user_id}/profile','UserController@getProfile');
 	Route::get('user/{user_id}/timeline','UserController@getPostsByFollowingUserId');
+    Route::get('post/{post_id}/like','LikeController@likePost');
 });
 Route::post('facebook/login', 'FrontEndController@login');
 Route::post('/upload-img', 'FrontEndController@uploadimg');
@@ -60,3 +61,4 @@ Route::post('register',['as'=>'sendRegister', 'uses'=>'LoginController@register'
 Route::post('login',['as'=>'postLogin', 'uses'=>'UserController@login']);
 // Route::post('postLogin','LoginController@login');
 Route::get('user/logout','UserController@logout');
+Route::post('login-fb','LoginController@registerfb');

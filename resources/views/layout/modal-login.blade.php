@@ -8,7 +8,7 @@
             <div class="container ml-fblogin">
               <div class="ml-fblogin-icon">
                 <i class="fa fa-facebook-official fa-3x"></i>
-                <div class="ml-fblogin-text">Tiếp tục với FaceBook</div>
+                <div class="ml-fblogin-text" style="cursor:pointer;">Tiếp tục với FaceBook</div>
               </div>  
             </div>
             <div class="ml-line-text">hoặc</div>
@@ -27,4 +27,29 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
+   <script type="text/javascript">
+      $('.ml-fblogin').on('click', function(){
+        FB.login(function(response) {
+          if (response.authResponse) {
+            FB.api('/me?fields=id,name,email,picture.width(720).height(720),cover,quotes', function(response){
+              console.log(response);
+              $.ajax({
+                  type: "POST",
+                  url: "{{url('/login-fb')}}",
+                  cache: false,
+                  data: {response : response},
+                  success: function(data){
+                    console.log(data);
+                    if(data.result == "success"){
+                      window.location = "{{url('/home')}}";
+                    }
+                  }
+              });
+            });
+          } else {
+            console.log('User cancelled login or did not fully authorize.');
+          }
+        }, {scope: ('email','user_about_me','user_likes')});
+      });
+    </script>
 {{-- @stop  --}}

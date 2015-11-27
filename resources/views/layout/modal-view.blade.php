@@ -7,7 +7,7 @@
               <i class="fa fa-chevron-left fa-2x"></i>
             </div>
           </div>
-          <div class="col-md-7 center-right-side" style="border-radius:6px;margin-right:15px;">
+          <div class="col-md-7 center-right-side" id="main-post-id" style="border-radius:6px;margin-right:15px;">
             <div class="mv-title keep-open">
               <div class="mv-title-pinit" id="post_pin_btn">
                 <span>Đánh dấu</span>
@@ -201,13 +201,39 @@
       });
     }
     $("#post_like_btn").click(function(){
-        span_text = $(this).find('span:first');
-        if(span_text.text()=="Thích"){
-            span_text.text("Đã thích");
-        }
-        else {
-            span_text.text("Thích")
-        }
+        likePost($("#main-post-id").data("id"));
     });
+    function likePost(post_id){
+        var url ="{{URL::to('/api/post')}}"+'/'+post_id+'/'+"like";
+        $.ajax({
+            url: url,
+            type:"GET",
+            success:function(data){
+                span_text = $("#post_like_btn").find('span:first');
+                if(span_text.text()=="Thích"){
+                    span_text.text("Đã thích");
+                }
+                else {
+                    span_text.text("Thích")
+                }
+         }});
+    }
+    function getPostById(modal,id){
+        var url ="{{URL::to('/api/post')}}"+'/'+id;
+        $.ajax({
+            url: url,
+            type:"GET",
+            success:function(data){
+                console.log(data);
+                modal.find("#owner-post").text(data.owner);
+                modal.find("#main-post-id").data("id",data.post_id);
+                modal.find("#main-photo-post").attr("src","{{URL::to('api/photo')}}"+"/"+data.photo_link);
+                modal.find("#main-post-description").text(data.description);
+                if(data.liked==true)
+                     modal.find("#post_like_btn").find('span:first').text("Đã thích");
+                modal.modal('show');
+            }
+        });
+    }
   </script>
 {{-- @stop  --}}

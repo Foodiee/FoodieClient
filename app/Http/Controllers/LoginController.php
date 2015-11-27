@@ -11,6 +11,7 @@ use Auth;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Storage;
+use App\Http\Controllers\StorageController;
 class LoginController extends Controller {
 
     /**
@@ -109,5 +110,31 @@ class LoginController extends Controller {
         }
         
     }
-
+    public function registerfb(Request $request) {
+        $res = $request->input("response");
+        $identifier = isset($res['email'])?$res['email']:$res['id'];
+        $auth = array(
+            'email' => $res['id'],
+            'password'=>'password'
+        );
+        $result = "success";
+        if (!Auth::attempt($auth,true)) {
+            $member = new User;
+            $user_id = DB::table('users')->max('user_id')+1;
+            $member->user_id = $user_id;
+            $member->username =  $res['id'];
+            $member->email = $identifier;
+            $member->name = $res["name"];
+            $member->password = Hash::make("password");
+            $member->description = $res['quotes'];
+            Storage::makeDirectory($member->user_id);
+            $member->avatar_link = StorageController::getFile($user_id,$res['picture']['data']['url']);
+            $member->cover_link = StorageController::getFile($user_id,$res['cover']['source']);
+            if($member->save()) {
+                Auth::attempt($auth,true);
+            }
+//            return response()->json(["result"=>$result,'user'=>$member,]);
+        }
+        return response()->json(["result"=>$result,'success'=>Auth::check()]);
+    }
 }

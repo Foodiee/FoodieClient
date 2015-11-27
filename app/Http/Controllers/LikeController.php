@@ -4,15 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Illuminate\Http\Response;
-
 use App\Http\Requests;
-// use App\Http\Response;
 use App\Http\Controllers\Controller;
-use Storage;
+use App\Models\LikeEvent;
 use Auth;
-use Image;
-class StorageController extends Controller
+class LikeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -43,19 +39,8 @@ class StorageController extends Controller
     public function store(Request $request)
     {
         //
-        if(!Auth::check() )
-            return response()->json("Please login");
-        //convert string to integer, N2 is unsigned long, big-endian
-        $input_name = unpack('N2',hash("md5",$request->file('src')->getClientOriginalName()))[1]&0xFFFFFFFF;
-        Storage::put(
-           $input_name,
-            file_get_contents($request->file('src')->getRealPath())
-        );
-        $image = Image::make(storage_path('app').'/'.$input_name);
-        $image->resize(75,75);
-        $image->save(storage_path('app')."/".$input_name.'_75');
-        return response()->json($input_name);
     }
+
     /**
      * Display the specified resource.
      *
@@ -65,16 +50,6 @@ class StorageController extends Controller
     public function show($id)
     {
         //
-//        $file_name = Auth::user()->user_id."/".$id;
-        try {
-            $file = Storage::get($id);
-            $file_type = Storage::mimeType($id);
-            // $file_extension = Storage::extension($file_name);
-            return (new Response($file,200))->header('Content-Type',$file_type);
-        } catch (Exception $ex)
-        {
-            return response()->json($ex->getMessage());
-        }
     }
 
     /**
@@ -110,10 +85,16 @@ class StorageController extends Controller
     {
         //
     }
-    public static function getFile($id,$url){
-        $file_name = unpack('N2',hash("md5",$url))[1]&0xFFFFFFFF;
-        $file = file_get_contents($url);
-        Storage::put($file_name,$file);
-        return $file_name;
+    public function likePost($post_id)
+    {
+        if(!Auth::check())
+            return response()->json('Please login');
+        $current_id = Auth::user()->user_id;
+        $post= LikeEvent::checkLiked($post_id,$current_id);
+        if(!$post)
+            $result = LikeEvent::createLikeEvent($post_id,$current_id);
+        else
+            $result = LikeEvent::removeLikeEvent($post["like_event_id"]);
+        return response()->json(["result"=>$result]);
     }
 }

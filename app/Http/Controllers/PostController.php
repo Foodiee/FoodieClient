@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LikeEvent;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests;
@@ -72,6 +73,8 @@ class PostController extends Controller
     {
         //
         $post = UserPosts::getPostById($post_id);
+        if(Auth::check())
+            $post["liked"]=LikeEvent::checkLiked($post["post_id"],Auth::user()->user_id);
         return response()->json($post);
     }
 
