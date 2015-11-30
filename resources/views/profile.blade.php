@@ -40,16 +40,16 @@
                         <span>Theo dõi</span>
                     </button>
                 @endif
-                 
+
             </h3>
 
             </div>
-            <ul class="user-info nav nav-pills" id="user-profile-list">
+            <ul class="user-info nav nav-pills user-profile-list">
                 <li id="post-list" class="user-profile-info active">
                     <a href="#user-container" data-toggle="tab"><span>{{$profile["number_of_posts"]}}</span> Bài viết</a>
                 </li>
                 <li id="board-count-list"class="user-profile-info">
-                    <a href="#tab2" data-toggle="tab"><span>{{$profile["number_of_boards"]}}</span> Album</a>
+                    <a href="#tab2" data-toggle="tab"><span>{{$profile["number_of_boards"]}}</span> Bảng </a>
                 </li>
                 <li id="follower-list" class="user-profile-info">
                     <a href="#tab3" data-toggle="tab"><span>{{$profile["number_of_follower"]}}</span> Người theo dõi</a>
@@ -79,21 +79,124 @@
             @endforeach
         </div>
         <div id="tab2" class="wf-container tab-pane" style="margin: 40 auto;width: 90%;">
-            @foreach($posts as $post)
-                <div class="wf-box" data-id="{{$post["post_id"]}}">
-                    <img src="{{URL::to('api/photo').'/'.$post["photo_link"]}}" class="box-img" data-id="{{$post["post_id"]}}"/>
-                    <div class="content">
-                        <h3 class="box-img-des">{{$post["description"]}}</h3>
-                        <div class="box-img-card">
-                            <img src="{{URL::asset("img/logo.png")}}" width="30" height="30" class="logo-profile">
-                            <div>
-                                <p class="card-owner">{{$post["owner"]}}</p>
-                                <h4 class="card-title">{{$post['board_title']}}</h4>
-                            </div>
-                        </div>
+            @foreach($boards as $board)
+            <div class="wf-box col-sm-3" data-id="11">
+                <div class="grid-board">
+                    <h3 class="box-img-des">{{$board["title"]}}</h3>
+                    <img class="board-cover" src="{{$board["preview"][0]}}" style="height: 152px; width: 246px;" class="box-img" data-id="11"/>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <img src="{{$board["preview"][1]}}" class="box-img" style="height: 30px;width:63px" data-id="11"/>
+                        </li>
+                        <li class="list-group-item">
+                            <img src="{{$board["preview"][2]}}" class="box-img" style="height: 30px;width:63px" data-id="11"/>
+                        </li>
+                        <li class="list-group-item">
+                            <img src="{{$board["preview"][3]}}" class="box-img"  style="height: 30px;width:63px"data-id="11"/>
+                        </li>
+                    </ul>
+                </div>    
+                <div class="content">
+                    <div class="box-img-card">
+                        <button>
+                            @if(Auth::user()!=null)
+                                @if($user["user_id"]==Auth::user()->user_id)
+                                    <button id="btn-edit-board" class="btn edit_btn">
+                                        <em></em>
+                                        <span>Chỉnh sửa </span>
+                                    </button>
+                                @else
+                                    @if(!isset($user["follow"]))
+                                        <button id="btn-follow" class="btn edit_btn" data-id="1">
+                                            <em></em>
+                                            <span>Theo dõi</span>
+                                        </button>
+                                    @else
+                                        <button id="btn-follow" class="btn edit_btn" data-id="1">
+                                            <em></em>
+                                            <span>Đang theo dõi</span>
+                                        </button>
+                                    @endif
+                                @endif
+                            @else
+                                <button id="btn-follow" class="btn edit_btn" data-id="0">
+                                    <em></em>
+                                    <span>Theo dõi</span>
+                                </button>
+                            @endif
+                        </button>
                     </div>
                 </div>
+            </div>
             @endforeach
+        </div> 
+        <div id="tab3" class="wf-container tab-pane" style="margin: 40 auto;width: 90%;">
+            <div class="wf-box col-sm-3" data-id="11">
+                <ul class="grid-board-fl list-group">
+                    <li class="list-group-item">
+                        <img src="img/5.jpg" class="box-img" data-id="11"/>
+                    </li>
+                    <li class="list-group-item">
+                        <img src="img/5.jpg" class="box-img" data-id="11"/>
+                    </li>
+                    <li class="list-group-item">
+                        <img src="img/5.jpg" class="box-img" data-id="11"/>
+                    </li>
+                    <li class="list-group-item">
+                        <img src="img/5.jpg" class="box-img" data-id="11"/>
+                    </li>
+                </ul>   
+            </div>
+            <div class="wf-box col-sm-3" data-id="11">
+                <ul class="grid-board-fl list-group">
+                    <li class="list-group-item">
+                        <img src="img/5.jpg" class="box-img" data-id="11"/>
+                    </li>
+                    <li class="list-group-item">
+                        <img src="img/5.jpg" class="box-img" data-id="11"/>
+                    </li>
+                    <li class="list-group-item">
+                        <img src="img/5.jpg" class="box-img" data-id="11"/>
+                    </li>
+                    <li class="list-group-item">
+                        <img src="img/5.jpg" class="box-img" data-id="11"/>
+                    </li>
+                </ul>   
+            </div>
+        </div>
+        <div id="tab4" class="wf-container tab-pane" style="margin: 40 auto;width: 90%;">
+            <div class="wf-box col-sm-3" data-id="11">
+                <ul class="grid-board-fl list-group">
+                    <li class="list-group-item">
+                        <img src="img/6.jpg" class="box-img" data-id="11"/>
+                    </li>
+                    <li class="list-group-item">
+                        <img src="img/6.jpg" class="box-img" data-id="11"/>
+                    </li>
+                    <li class="list-group-item">
+                        <img src="img/6.jpg" class="box-img" data-id="11"/>
+                    </li>
+                    <li class="list-group-item">
+                        <img src="img/6.jpg" class="box-img" data-id="11"/>
+                    </li>
+                </ul>   
+            </div>
+            <div class="wf-box col-sm-3" data-id="11">
+                <ul class="grid-board-fl list-group">
+                    <li class="list-group-item">
+                        <img src="img/5.jpg" class="box-img" data-id="11"/>
+                    </li>
+                    <li class="list-group-item">
+                        <img src="img/5.jpg" class="box-img" data-id="11"/>
+                    </li>
+                    <li class="list-group-item">
+                        <img src="img/5.jpg" class="box-img" data-id="11"/>
+                    </li>
+                    <li class="list-group-item">
+                        <img src="img/5.jpg" class="box-img" data-id="11"/>
+                    </li>
+                </ul>   
+            </div>
         </div> 
     </div>   
     <script type="text/javascript">

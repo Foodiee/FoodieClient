@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Post;
+use Illuminate\Support\Facades\URL;
+
 class Board extends Model
 {
     //
@@ -39,16 +41,32 @@ class Board extends Model
 		}
 		return $board;
 	}
-	public static function getBoardByUserId($user_id)
+	public static function getPreviewBoardsByUserId($user_id)
 	{
 		if(!isset($user_id))
 			return;
 		$boards = Board::where('user_id',$user_id)->get();
+        foreach ($boards as $board){
+            $board["preview"] = Board::getPreviewBoard($board["board_id"]);
+        }
 		return $boards;
 	}
     public static function countBoardsByUserId($user_id){
         $boards = Board::where('user_id',$user_id)->count();
         return $boards;
+    }
+    public static function getBoardById($board_id){
+        $board = Board::where("board_id",$board_id)->first();
+        $board["preview"] = Board::getPreviewBoard($board_id);
+        return $board;
+    }
+    public static function getPreviewBoard($board_id){
+        $list = new \SplFixedArray(4);
+        $posts = Post::where('board_id',$board_id)->take(4)->get(['photo_link']);
+        for($i=0;$i<count($posts);$i++){
+            $list[$i]= url('api/photo'.'/'.$posts[$i]['photo_link']);
+        }
+        return $list;
     }
 
 }

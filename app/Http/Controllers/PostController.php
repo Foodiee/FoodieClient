@@ -75,6 +75,7 @@ class PostController extends Controller
         $post = UserPosts::getPostById($post_id);
         if(Auth::check())
             $post["liked"]=LikeEvent::checkLiked($post["post_id"],Auth::user()->user_id);
+        $post["comments"]=Post::getCommentsByPostId($post_id);
         return response()->json($post);
     }
 

@@ -5,6 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 use DB;
 use App\Models\LikeEvent;
 use App\Models\CommentEvent;
+use App\Models\PostComment;
+use App\Models\PostLiker;
 class Post extends Model{
 	protected $table = 'posts';
 	public function board()
@@ -24,7 +26,7 @@ class Post extends Model{
 	public static function getPostById($post_id)
 	{
 		if(isset($post_id))
-			return Post::where('post_id',$post_id)->get();
+			return Post::where('post_id',$post_id)->first();
 	}
 	public static function getPostByUserId($user_id)
 	{
@@ -50,13 +52,11 @@ class Post extends Model{
         return $posts;
     }
     public static function getLikerByPostId($post_id){
-        $list_id = LikeEvent::where('post_id',$post_id)->get(['post_id']);
-        $result = User::whereIn('user_id',$list_id)->get(['username','name','user_id']);
+        $result = PostLiker::where('post_id',$post_id)->get();
         return $result;
     }
     public static function getCommentsByPostId($post_id){
-        $list_id = CommentEvent::where('post_id',$post_id)->get(['post_id']);
-        $result = User::whereIn('user_id',$list_id)->get(['username','name','user_id']);
+        $result =  PostComment::where('post_id',$post_id)->get();
         return $result;
     }
 }

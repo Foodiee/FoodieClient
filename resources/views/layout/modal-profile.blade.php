@@ -19,7 +19,7 @@
            <label for="inputEmail3" class="col-sm-2 control-label">Avatar</label>
            <div class="col-sm-10">
              <div class="profileImageWrapper">
-                <img id="profile-avatarlink" src="https://s-media-cache-ak0.pinimg.com/avatars/elconductor3_1384696909_75.jpg" class="profileImage img-circle" data-load-state="pending">
+                <img id="profile-avatarlink" style="width:75;height: 75px" src="https://s-media-cache-ak0.pinimg.com/avatars/elconductor3_1384696909_75.jpg" class="profileImage img-circle" data-load-state="pending">
              </div>
              <input type="file" accept="image/*" id="profile-avatar"/>
            </div>
@@ -76,7 +76,7 @@
             username_val.val(data.username);
             description_val.val(data.description);
             email_val.val(data.email);
-            avatar_val.attr("src",("{{URL::to('/api/photo/')}}"+"/"+data.avatar_link+"_75"));
+            avatar_val.attr("src",("{{URL::to('/api/photo/')}}"+"/"+data.avatar_link));
         },'json');
     }
     function saveProfile(user_id)
@@ -94,8 +94,8 @@
             url:url,
             data:data,
             success:function(){
-                console.log(data.result);
-                $(".modal-profile").modal('close');
+                $(".modal-profile").modal('hide');
+                window.location.href="{{URL::to('/')}}"+"/"+data.username;
             }
         });
     }
@@ -105,6 +105,7 @@
      });
      $("#profile-save").click(function(){
          saveProfile($("#user-span").data("user"));
+
      });
     function changeAvatar(input)
     {

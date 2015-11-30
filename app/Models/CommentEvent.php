@@ -13,8 +13,9 @@ class CommentEvent extends Model
         $comment_event = new CommentEvent;
         $comment_event->post_id = $post_id;
         $comment_event->user_id = $user_id;
-        $comment_event->comment = $comment;
-        $comment_event->save();
+        $comment_event->text = $comment;
+        $result = $comment_event->save();
+        return $result;
     }
     public static function deleteCommentEvent($comment_event_id){
         $result = Comment::where('comment_event_id',$comment_event_id)->first();

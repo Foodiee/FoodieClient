@@ -20,11 +20,14 @@ Route::group(['prefix'=>'search'],function()
 	Route::get('user','SearchController@searchUser');
 	Route::get('board','SearchController@searchBoard');
 	Route::get('post','SearchController@searchPost');
+    Route::get('create','SearchController@createIndexMapping');
 
 });
 Route::get('/{user_name}','UserController@getUser');
+//Route::get('/{user_name}/{board_name}','UserController@getUserBoards');
 
 Route::get('post/{post_id}','PostController@getPostById');
+Route::get('board/{board_id','BoardController@getBoard');
 Route::group(['prefix'=>'api'],function()
 {
 	Route::resource('board','BoardController');
@@ -39,6 +42,8 @@ Route::group(['prefix'=>'api'],function()
     Route::get('user/{user_id}/profile','UserController@getProfile');
 	Route::get('user/{user_id}/timeline','UserController@getPostsByFollowingUserId');
     Route::get('post/{post_id}/like','LikeController@likePost');
+    Route::post('post/{post_id}/comment',['uses'=>'CommentController@commentPost','middleware'=>'auth']);
+    Route::get('post/{post_id}/recommend','RecommendController@getPost');
 });
 Route::post('facebook/login', 'FrontEndController@login');
 Route::post('/upload-img', 'FrontEndController@uploadimg');
@@ -62,3 +67,4 @@ Route::post('login',['as'=>'postLogin', 'uses'=>'UserController@login']);
 // Route::post('postLogin','LoginController@login');
 Route::get('user/logout','UserController@logout');
 Route::post('login-fb','LoginController@registerfb');
+Route::get('search/insert','SearchController@insert');

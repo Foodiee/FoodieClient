@@ -69,7 +69,7 @@ class DatabaseUserProvider implements UserProvider
     public function retrieveByToken($identifier, $token)
     {
         $user = $this->conn->table($this->table)
-            ->where('user_id', $identifier)
+            ->where('id', $identifier)
             ->where('remember_token', $token)
             ->first();
 
@@ -86,7 +86,7 @@ class DatabaseUserProvider implements UserProvider
     public function updateRememberToken(UserContract $user, $token)
     {
         $this->conn->table($this->table)
-            ->where('user_id', $user->getAuthIdentifier())
+            ->where('id', $user->getAuthIdentifier())
             ->update(['remember_token' => $token]);
     }
 

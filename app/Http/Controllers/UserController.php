@@ -182,8 +182,9 @@ class UserController extends Controller
         $id = $user->user_id;
         $list = UserPosts::getPostByUserId($id);
         $profile = User::getProfile($id);
+        $boards = Board::getPreviewBoardsByUserId($id);
         if($user)
-            return response()->view('profile',["user"=>$user,"posts"=>$list,"profile"=>$profile]);
+            return response()->view('profile',["user"=>$user,"posts"=>$list,"profile"=>$profile,"boards"=>$boards]);
         else 
             return response()->json("Not found");
     }
@@ -238,5 +239,19 @@ class UserController extends Controller
     {
         $result = User::getProfile($user_id);
         return response()->json($result);
+    }
+    public function getUserBoards($user_name,$board_name){
+        $user = User::getUserByName($user_name);
+        if(Auth::check())
+        {
+            $current_user_id = Auth::user()->user_id;
+            $bool = FollowEvent::checkFollowed($current_user_id,$user["user_id"]);
+            if($bool==true)
+            {
+                $user["follow"]="true";
+            }
+        }
+        $id = $user->user_id;
+        return response()->view("board");
     }
 }

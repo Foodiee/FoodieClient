@@ -23,7 +23,7 @@ class BoardController extends Controller
         {
             return response()->json('Please login');
         }
-        $allBoards = Board::getBoardByUserId(Auth::user()->user_id);
+        $allBoards = Board::getBoardsByUserId(Auth::user()->user_id);
         return response()->json($allBoards);
     }
 
@@ -67,6 +67,8 @@ class BoardController extends Controller
     public function show($id)
     {
         //
+        $result = Board::getBoardById($id);
+        return response()->json($result);
     }
 
     /**

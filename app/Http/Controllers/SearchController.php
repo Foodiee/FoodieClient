@@ -7,6 +7,13 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Es;
 use Elasticsearch\Client;
+define("INDEX_NAME","foodiee");
+define("USER_TYPE","user");
+define("POST_TYPE","post");
+define("BOARD_TYPE","board");
+use App\Models\User;
+use App\Models\Post;
+use App\Models\Board;
 class SearchController extends Controller
 {
     /**
@@ -14,34 +21,9 @@ class SearchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function init($index_name,$mappings){
-    //     $client = new Client();
-    //     $indexParams['index'] = $index_name;
-    //     // Index Settings
-    //     $indexParams['body']['settings']['number_of_shards']   = 3;
-    //     $indexParams['body']['settings']['number_of_replicas'] = 2;
-    //     // $myTypeMapping = array (
-    //     //     '_source' => array(
-    //     //         'enabled'=>true
-    //     //         ),
-    //     //      'properties' => array(
-    //     //         'first_name' => array(
-    //     //             'type' => 'string',
-    //     //             'analyzer' => 'vi_analyzer'
-    //     //         ),
-    //     //         'age' => array(
-    //     //             'type' => 'integer'
-    //     //         )
-    //     //     )
-    //     // );
-    //     $myTypeMapping = $mappings;
-    //     $indexParams['body']['mappings']['my_type'] = $myTypeMapping;
-    //     // Create the index
-    //     $result = $client->indices()->create($indexParams);
-    // }
     public function createIndexMapping()
     {
-        //Bo sung them hash tag neu can
+//        //Bo sung them hash tag neu can
         $mappingPost = array(
             "_source"=>array(
                 'enabled'=>true
@@ -52,7 +34,7 @@ class SearchController extends Controller
                     ),
                 'description'=>array(
                     'type'=>'string',
-                    'analyzer'=>'vi_analyzer',
+                    'analyzer'=>'nGram_analyzer',
                     ),
                 )
             );
@@ -80,12 +62,43 @@ class SearchController extends Controller
                     ),
                 'username'=>array(
                     'type'=>'string',
-                    'analyzer'=>'whitespace',
+                    'analyzer'=>'nGram_analyzer',
+                    ),
+                'avatar_link'=>array(
+                    'type'=>'string'
                     ),
                 )
             );
+        $analysis = array(
+            "analysis"=>array(
+                "filter"=>array(
+                    "nGram_filter"=>array(
+                        "type"=>"edge_ngram",
+                        "min_gram"=>1,
+                        "max_gram"=>30,
+                        "token_chars"=> [
+                            "letter",
+                            "digit",
+                            "punctuation",
+                            "symbol"
+                        ]
+                    )
+                ),
+                "analyzer"=>array(
+                    "nGram_analyzer"=>array(
+                        'type'=>'custom',
+                        "tokenizer"=>'standard',
+                        "filter"=>[
+                            "lowercase",
+                            "nGram_filter"
+                        ],
+                    )
+                )
+            )
+        );
         $client = new Client();
-        $indexParams['index'] = "foodiee";
+        $indexParams['index'] = INDEX_NAME;
+        $indexParams['body']['settings']['index']=$analysis;
         // Index Settings
         $indexParams['body']['mappings']['post'] = $mappingPost;
         $indexParams['body']['mappings']['board'] = $mappingBoard;
@@ -98,25 +111,96 @@ class SearchController extends Controller
         $result = $this->createIndexMapping();
         return response()->json($result);
     }
-    public function searchBoard(){
-        return response()->json(UserProfile::all());
+    public  function search($type,$query){
+        $params = [
+            'index'=>INDEX_NAME,
+            'type'=>$type,
+            'body'=>[
+                'query'=>[
+                    'match'=> $query
+                ]
+            ]
+        ];
+        $client = new Client();
+        $result = $client->search($params);
+        return ["result"=>$result["hits"]["hits"]];
+    }
+    public function searchUser(Request $request){
+        $name = $request->input("q");
+        $query  = ["username"=>$name];
+        $result = $this->search(USER_TYPE,$query);
+        return $result;
+    }
+    public function searchBoard(Request $request){
+        $name = $request->input("q");
+        $query  = ["title"=>$name];
+        $result = $this->search(BOARD_TYPE,$query);
+        return $result;
     }
     public function searchPost(Request $request){
-        $kw = $request->input('q');
-        return $kw;
+        $name = $request->input('q');
+        $query  = ["description"=>$name];
+        $result = $this->search(POST_TYPE,$query);
+        return $result;
     }
-    public function insertPost($post_id,$description){
+    public static function insertPost($post){
+        $params = [
+            'index'=>INDEX_NAME,
+            'type'=>POST_TYPE,
+            'id'=>$post['post_id'],
+            'body'=>[
+                'description'=>$post["description"],
+                'hashtag'=>$post["hashtag"],
+            ]
+        ];
+        $client = new Client();
+        return $client->index($params);
+    }
+    public function insertBoard($board){
+        $params = [
+            'index'=>INDEX_NAME,
+            'type'=>BOARD_TYPE,
+            'id'=>$board['board_id'],
+            'body'=>[
+                'title'=>$board["board_title"],
+                'description'=>$board["description"]
+            ]
+        ];
+        $client = new Client();
+        return $client->index($params);
+    }
+    public function insertUser($user){
+        $params = [
+            'index'=>INDEX_NAME,
+            'type'=>USER_TYPE,
+            'id'=>$user['user_id'],
+            'body'=>[
+                'username'=>$user["name"],
+                'avatar_link'=>$user["avatar_link"]
+            ]
+        ];
+        $client = new Client();
+        return $client->index($params);
+    }
+    public function insert(){
 
+        $allUser = User::all();
+        $params = ['body' => []];
+        for($i=0;$i<count($allUser);$i++){
+            SearchController::insertUser($allUser[$i]);
+        }
+        $allUser = Post::all();
+        $params = ['body' => []];
+        for($i=0;$i<count($allUser);$i++){
+            SearchController::insertPost($allUser[$i]);
+        }
+        $allUser = Board::all();
+        $params = ['body' => []];
+        for($i=0;$i<count($allUser);$i++){
+            SearchController::insertBoard($allUser[$i]);
+        }
     }
-    public function insertBoard($board_id,$board_title){
 
-    }
-    public function insertUser($user_id,$name){
-
-    }
-    public function searchUser(){
-        return 1;
-    }
     public function indexBoard($boardName){
         return 1;
     }

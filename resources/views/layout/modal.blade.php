@@ -33,7 +33,7 @@
             <input type="text" class="form-control" placeholder="Search" style="margin-top:30px;">
             <div id="board-list" class="board-list-scrollable">
               <div class="row board_choose" style="margin-top:30px;border-radius:6px;">
-                <img id="board_cover_link" src=""{{URL::asset('img/5.jpg')}}"" width="50" height="50">
+                <img id="board_cover_link" src="{{URL::asset('img/5.jpg')}}" width="50" height="50">
                 <span id ="title" style='margin-left:10px;' data-id="">Album 1</span>
                 <button class="btn pinit_btn hidden">
                   <em></em>
@@ -47,7 +47,7 @@
               </div> -->
             </div>
             <div class="row board_create" id="create_div" style="margin-top:10px;border-radius:6px;cursor:pointer">
-                <img src="vendors/img/red-plus.png" width="50" height="50"> 
+                <img src="{{URL::to('img/red-plus.png')}}" width="50" height="50">
                 <span style='margin-left:10px;'>Tạo thêm 1 bảng</span>
             </div>
           </div>
@@ -57,7 +57,7 @@
              <div  class="row" style="margin-top:10px;">
               <h1>
                 <div class="col-md-10">Tạo bảng</div>
-                <div class="col-md-2">
+                <div class="col-md-2"></div>
               </h1>
               </div>
               <div class="row board-edit-name">
@@ -153,7 +153,6 @@
         zoom: 13,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       });
-             
       // Create the search box and link it to the UI element.
       var input = document.getElementById('pac-input');
       var searchBox = new google.maps.places.SearchBox(input);
@@ -206,6 +205,7 @@
           }
 
           console.log('ID: ' + place.place_id + ' <br> ' + 'LatLng' + place.geometry.location);
+          console.log(place.geometry.location);
 
           $('.locate-map').show();
           $('.locate-map').html('tại- '+place.name);
@@ -238,6 +238,13 @@
       }, function(){
         $(this).find("button:first").removeClass('pinit_btn').addClass('hidden');
     });
+    $(".modal-upload").on('show.bs.modal',function(e){
+        console.log("modal upload before view");
+    });
+    $(".modal-upload").on('shown.bs.modal',function(e){
+            console.log("modal upload view");
+    });
+    listBoardUser();
   </script>
  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFo1vaTwz6NILG9inO-5HOEQ14yYWSf9U&signed&libraries=places"
   async defer></script> 

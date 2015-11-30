@@ -87,6 +87,6 @@ class FrontEndController extends Controller{
 
 	//get view tìm kiem do an
 	public function searchfoodview(Request $request){
-		return view('search-food');
+		return view('map');
 	}
 }
