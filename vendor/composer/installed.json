@@ -3456,5 +3456,422 @@
             "testing",
             "tests"
         ]
+    },
+    {
+        "name": "mikemccabe/json-patch-php",
+        "version": "0.1.0",
+        "version_normalized": "0.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mikemccabe/json-patch-php.git",
+            "reference": "b3af30a6aec7f6467c773cd49b2d974a70f7c0d4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/mikemccabe/json-patch-php/zipball/b3af30a6aec7f6467c773cd49b2d974a70f7c0d4",
+            "reference": "b3af30a6aec7f6467c773cd49b2d974a70f7c0d4",
+            "shasum": ""
+        },
+        "time": "2015-01-05 21:19:54",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "mikemccabe\\JsonPatch\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL-3.0"
+        ],
+        "description": "Produce and apply json-patch objects"
+    },
+    {
+        "name": "treehouselabs/cache",
+        "version": "v1.3.1",
+        "version_normalized": "1.3.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/treehouselabs/cache.git",
+            "reference": "cea03cea3b213a90359c9e16de8b3a664c32f631"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/treehouselabs/cache/zipball/cea03cea3b213a90359c9e16de8b3a664c32f631",
+            "reference": "cea03cea3b213a90359c9e16de8b3a664c32f631",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5"
+        },
+        "require-dev": {
+            "doctrine/cache": "~1.0",
+            "guzzle/guzzle": "~3.7",
+            "phpunit/phpunit": "~4.0",
+            "predis/predis": "~0.8",
+            "scrutinizer/ocular": "~1.1"
+        },
+        "time": "2015-09-16 13:33:32",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "TreeHouse\\Cache\\": "src/TreeHouse/Cache/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Peter Kruithof",
+                "email": "peter@treehouse.nl"
+            }
+        ],
+        "description": "Library for quick and easy caching. Supports multiple drivers.",
+        "keywords": [
+            "cache"
+        ]
+    },
+    {
+        "name": "react/promise",
+        "version": "v2.2.1",
+        "version_normalized": "2.2.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/reactphp/promise.git",
+            "reference": "3b6fca09c7d56321057fa8867c8dbe1abf648627"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/reactphp/promise/zipball/3b6fca09c7d56321057fa8867c8dbe1abf648627",
+            "reference": "3b6fca09c7d56321057fa8867c8dbe1abf648627",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0"
+        },
+        "time": "2015-07-03 13:48:55",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "React\\Promise\\": "src/"
+            },
+            "files": [
+                "src/functions_include.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jan Sorgalla",
+                "email": "jsorgalla@gmail.com"
+            }
+        ],
+        "description": "A lightweight implementation of CommonJS Promises/A for PHP"
+    },
+    {
+        "name": "guzzlehttp/streams",
+        "version": "3.0.0",
+        "version_normalized": "3.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/guzzle/streams.git",
+            "reference": "47aaa48e27dae43d39fc1cea0ccf0d84ac1a2ba5"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/guzzle/streams/zipball/47aaa48e27dae43d39fc1cea0ccf0d84ac1a2ba5",
+            "reference": "47aaa48e27dae43d39fc1cea0ccf0d84ac1a2ba5",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.0"
+        },
+        "time": "2014-10-12 19:18:40",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "GuzzleHttp\\Stream\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Michael Dowling",
+                "email": "mtdowling@gmail.com",
+                "homepage": "https://github.com/mtdowling"
+            }
+        ],
+        "description": "Provides a simple abstraction over streams of data",
+        "homepage": "http://guzzlephp.org/",
+        "keywords": [
+            "Guzzle",
+            "stream"
+        ]
+    },
+    {
+        "name": "guzzlehttp/ringphp",
+        "version": "1.1.0",
+        "version_normalized": "1.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/guzzle/RingPHP.git",
+            "reference": "dbbb91d7f6c191e5e405e900e3102ac7f261bc0b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/guzzle/RingPHP/zipball/dbbb91d7f6c191e5e405e900e3102ac7f261bc0b",
+            "reference": "dbbb91d7f6c191e5e405e900e3102ac7f261bc0b",
+            "shasum": ""
+        },
+        "require": {
+            "guzzlehttp/streams": "~3.0",
+            "php": ">=5.4.0",
+            "react/promise": "~2.0"
+        },
+        "require-dev": {
+            "ext-curl": "*",
+            "phpunit/phpunit": "~4.0"
+        },
+        "suggest": {
+            "ext-curl": "Guzzle will use specific adapters if cURL is present"
+        },
+        "time": "2015-05-20 03:37:09",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.1-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "GuzzleHttp\\Ring\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Michael Dowling",
+                "email": "mtdowling@gmail.com",
+                "homepage": "https://github.com/mtdowling"
+            }
+        ],
+        "description": "Provides a simple API and specification that abstracts away the details of HTTP into a single PHP function."
+    },
+    {
+        "name": "guzzlehttp/guzzle",
+        "version": "5.3.0",
+        "version_normalized": "5.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/guzzle/guzzle.git",
+            "reference": "f3c8c22471cb55475105c14769644a49c3262b93"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/guzzle/guzzle/zipball/f3c8c22471cb55475105c14769644a49c3262b93",
+            "reference": "f3c8c22471cb55475105c14769644a49c3262b93",
+            "shasum": ""
+        },
+        "require": {
+            "guzzlehttp/ringphp": "^1.1",
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "ext-curl": "*",
+            "phpunit/phpunit": "^4.0",
+            "psr/log": "^1.0"
+        },
+        "time": "2015-05-20 03:47:55",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "GuzzleHttp\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Michael Dowling",
+                "email": "mtdowling@gmail.com",
+                "homepage": "https://github.com/mtdowling"
+            }
+        ],
+        "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
+        "homepage": "http://guzzlephp.org/",
+        "keywords": [
+            "client",
+            "curl",
+            "framework",
+            "http",
+            "http client",
+            "rest",
+            "web service"
+        ]
+    },
+    {
+        "name": "treehouselabs/keystone-client",
+        "version": "v2.1.0",
+        "version_normalized": "2.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/treehouselabs/keystone-client.git",
+            "reference": "bacb8c63335ff81211aaa504443624516d393eee"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/treehouselabs/keystone-client/zipball/bacb8c63335ff81211aaa504443624516d393eee",
+            "reference": "bacb8c63335ff81211aaa504443624516d393eee",
+            "shasum": ""
+        },
+        "require": {
+            "guzzlehttp/guzzle": "~5.0",
+            "php": ">=5.5",
+            "psr/log": "~1.0",
+            "treehouselabs/cache": "~1.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.0",
+            "phpunit/phpunit-mock-objects": "2.3.0",
+            "scrutinizer/ocular": "~1.1"
+        },
+        "suggest": {
+            "monolog/monolog": "For logging request information"
+        },
+        "time": "2015-05-13 12:32:16",
+        "type": "project",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "TreeHouse\\Keystone\\": "src/TreeHouse/Keystone/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Peter Kruithof",
+                "email": "peter@treehouse.nl"
+            },
+            {
+                "name": "Jeroen Fiege",
+                "email": "jeroen@treehouse.nl"
+            }
+        ],
+        "description": "An HTTP client with automatic authentication for an OpenStack Identity Service API a.k.a. Keystone",
+        "keywords": [
+            "Authentication",
+            "Openstack",
+            "identity",
+            "keystone",
+            "token"
+        ]
+    },
+    {
+        "name": "rackspace/php-opencloud",
+        "version": "v1.15.0",
+        "version_normalized": "1.15.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/rackspace/php-opencloud.git",
+            "reference": "6737f9e4580106fa7b690fdad4f8016c99e2f445"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/rackspace/php-opencloud/zipball/6737f9e4580106fa7b690fdad4f8016c99e2f445",
+            "reference": "6737f9e4580106fa7b690fdad4f8016c99e2f445",
+            "shasum": ""
+        },
+        "require": {
+            "guzzle/guzzle": "~3.8",
+            "mikemccabe/json-patch-php": "~0.1",
+            "php": ">=5.4",
+            "psr/log": "~1.0"
+        },
+        "require-dev": {
+            "apigen/apigen": "~4.0",
+            "fabpot/php-cs-fixer": "1.0.*@dev",
+            "jakub-onderka/php-parallel-lint": "0.*",
+            "phpspec/prophecy": "~1.4",
+            "phpunit/phpunit": "4.3.*",
+            "satooshi/php-coveralls": "0.6.*@dev"
+        },
+        "time": "2015-08-04 08:48:38",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "OpenCloud": [
+                    "lib/",
+                    "tests/"
+                ]
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache-2.0"
+        ],
+        "authors": [
+            {
+                "name": "Glen Campbell",
+                "email": "glen.campbell@rackspace.com"
+            },
+            {
+                "name": "Jamie Hannaford",
+                "email": "jamie.hannaford@rackspace.com",
+                "homepage": "https://github.com/jamiehannaford"
+            },
+            {
+                "name": "Shaunak Kashyap",
+                "email": "shaunak.kashyap@rackspace.com",
+                "homepage": "https://github.com/ycombinator"
+            }
+        ],
+        "description": "PHP SDK for Rackspace/OpenStack APIs",
+        "keywords": [
+            "Openstack",
+            "nova",
+            "opencloud",
+            "rackspace",
+            "swift"
+        ]
     }
 ]

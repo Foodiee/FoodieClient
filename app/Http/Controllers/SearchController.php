@@ -34,7 +34,7 @@ class SearchController extends Controller
                     ),
                 'description'=>array(
                     'type'=>'string',
-                    'analyzer'=>'nGram_analyzer',
+                    'analyzer'=>'vi_analyzer',
                     ),
                 )
             );

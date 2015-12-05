@@ -261,6 +261,14 @@
                         comment_box.insertBefore($(".mv-cmt-itembox")).fadeIn(1000);
                      }
                 }
+                if(data.pins=0){
+                 var val =  $("#post_pin_btn").find("span").text();
+                 $("#post_pin_btn").find("span").text(val +" "+data.pins);
+                 }
+                if(data.likes>0){
+                 var val = $("#post_like_btn").find("span").text();
+                 $("#post_like_btn").find("span").text(val + ""+data.likes);
+                }
                 modal.modal('show');
             }
         });
@@ -278,6 +286,13 @@
         });
         $(".modal-view").on('shown.bs.modal',function(e){
                 console.log("modal view viewed");
+        });
+      $("#post_share_btn").click(function(){
+            FB.ui(
+             {
+              method: 'share',
+              href: window.location.href
+            }, function(response){});
         });
   </script>
 {{-- @stop  --}}

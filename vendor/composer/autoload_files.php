@@ -7,9 +7,10 @@ $baseDir = dirname($vendorDir);
 
 return array(
     $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
-    $vendorDir . '/symfony/var-dumper/Resources/functions/dump.php',
     $vendorDir . '/swiftmailer/swiftmailer/lib/swift_required.php',
+    $vendorDir . '/symfony/var-dumper/Resources/functions/dump.php',
     $vendorDir . '/nikic/php-parser/lib/bootstrap.php',
+    $vendorDir . '/react/promise/src/functions_include.php',
     $vendorDir . '/danielstjules/stringy/src/Create.php',
     $vendorDir . '/guzzlehttp/psr7/src/functions_include.php',
     $vendorDir . '/paragonie/random_compat/lib/random.php',

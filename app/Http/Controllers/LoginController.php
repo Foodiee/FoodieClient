@@ -114,8 +114,8 @@ class LoginController extends Controller {
         $res = $request->input("response");
         $identifier = isset($res['email'])?$res['email']:$res['id'];
         $auth = array(
-            'email' => $res['id'],
-            'password'=>'password'
+            'fbid' => $res['id'],
+            'password'=>'nhuan'
         );
         $result = "success";
         if (!Auth::attempt($auth,true)) {
@@ -125,7 +125,8 @@ class LoginController extends Controller {
             $member->username =  $res['id'];
             $member->email = $identifier;
             $member->name = $res["name"];
-            $member->password = Hash::make("password");
+            $member->fbid = $res["id"];
+            $member->password = Hash::make("nhuan");
             $member->description = $res['quotes'];
             Storage::makeDirectory($member->user_id);
             $member->avatar_link = StorageController::getFile($user_id,$res['picture']['data']['url']);
