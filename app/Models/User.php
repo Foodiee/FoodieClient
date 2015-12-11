@@ -80,4 +80,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
             "number_of_following"=>$number_of_following
         );
     }
+    public static function getUserSuggest($username){
+        $q = "MATCH(name) AGAINST"."('*".$username."*'"."IN BOOLEAN MODE)";
+        $result = DB::table('users')->whereRaw($q)->get();
+        return $result;
+    }
+    public function notifications(){
+        return $this->hasMany("Notification","user_id");
+    }
 }
