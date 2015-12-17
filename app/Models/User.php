@@ -13,7 +13,7 @@ use App\Models\FollowEvent;
 use App\Models\Board;
 use App\Models\Post;
 use Psy\ExecutionLoop\ForkingLoop;
-
+use DB;
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract, AuthorizableContract
      {
     protected $table = 'users';
@@ -81,7 +81,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         );
     }
     public static function getUserSuggest($username){
-        $q = "MATCH(name) AGAINST"."('*".$username."*'"."IN BOOLEAN MODE)";
+//        $q = "MATCH(name) AGAINST"."('*".$username."*'"."IN BOOLEAN MODE)";
+        $q = "name LIKE '%".$username."%'";
         $result = DB::table('users')->whereRaw($q)->get();
         return $result;
     }

@@ -23,7 +23,7 @@ Route::group(['prefix'=>'search'],function()
     Route::get('create','SearchController@createIndexMapping');
 
 });
-Route::get('/{user_name}','UserController@getUser');
+Route::get('user/{user_name}','UserController@getUser');
 //Route::get('/{user_name}/{board_name}','UserController@getUserBoards');
 
 Route::get('post/{post_id}','PostController@getPostById');
@@ -45,6 +45,7 @@ Route::group(['prefix'=>'api'],function()
     Route::post('post/{post_id}/comment',['uses'=>'CommentController@commentPost','middleware'=>'auth']);
     Route::get('post/{post_id}/recommend','RecommendController@getPost');
     Route::get('/messages','MessageController@getInbox');
+    Route::post('/messages','MessageController@store');
     Route::get('genxml','FrontEndController@genXml');
     Route::get('demo-map','FrontEndController@demoMap');
 });

@@ -126,6 +126,9 @@
     $('.dropdown-menu li, .dropdown-menu textarea').click(function(e) {
       e.stopPropagation();
     });
+    /*
+        Ham share bai post len fb
+     */
     $("#fb_share").click(function(){
       FB.ui(
         {
@@ -142,6 +145,8 @@
         }
       );
     });
+    //Editor: Tunght
+    //Code gui tin nhan
     $(".mv-listfr li").click(function(){
       user_id = $(this).data('userid');
       avatar_link = $(this).data('userlink');

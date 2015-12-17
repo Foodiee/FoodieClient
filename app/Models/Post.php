@@ -65,4 +65,5 @@ class Post extends Model{
 		if(isset($place_id))
 			return Post::whereIn('place_id',$place_id)->get();
 	}
+
 }

@@ -1,0 +1,16 @@
+Index: resources/views/profile.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- resources/views/profile.blade.php	(revision )
++++ resources/views/profile.blade.php	(revision )
+@@ -131,7 +131,7 @@
+             </div>
+             @endforeach
+         </div> 
+-        <div id="tab3" class="wf-container tab-pane" style="margin: 40 auto;width: 90%;">
++        <div id="tab3" class="wf-container tab-pane" style="margin: 40 auto;width: 90%;display:none">
+             <div class="wf-box col-sm-3" data-id="11">
+                 <ul class="grid-board-fl list-group">
+                     <li class="list-group-item">
