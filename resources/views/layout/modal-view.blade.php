@@ -5,19 +5,19 @@
         <div class="col-xs-8 center-right-side" id="main-post-id" style="border-radius:6px;margin-right:15px;">
           <div class="mv-title keep-open">
             <div class="mv-title-pinit" id="post_pin_btn">
-              <span>Đánh dấu</span>
+              <span>Bookmark</span>
             </div>
             <div id="post_like_btn" class="mv-title-like">
                 <em></em>
-                <span>Thích</span>
+                <span>Like</span>
             </div>
             <div id="post_share_btn" class="mv-title-share">
               <em></em>
-              <span id="fb_share">Chia sẻ</span>
+              <span id="fb_share">Share</span>
             </div> 
             <div id="post_send_btn" class="mv-title-send" id="dropdownMenu3" data-toggle="dropdown">
               <em></em>
-              <span>Gửi</span>
+              <span>Send</span>
             </div> 
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3" style="margin-top:26px;">
                 <li class="mv-square"></li>
@@ -83,36 +83,27 @@
           </div>
           <div class="col-xs-12 mv-related-post">
           <p>Related Posts</p>
-              <div class="wf-box">
-                <img src="{{URL::asset('img/5.jpg')}}">
-                <div class="content">
-                  <h3>Title</h3>
-                  <p>Content Here</p>
-                  <p>Content Here</p>    
-                  <p>Content Here</p>
-                </div>
-              </div>
-              <div class="wf-box">
-                <img src="{{URL::asset('img/5.jpg')}}">
-                <div class="content">
-                    <h3>Title</h3>
-                    <p>Content aa asdfasdfjal</p>    
-                </div>
-              </div>
-              <div class="wf-box">
-                <img src="{{URL::asset('img/5.jpg')}}">
-                <div class="content">
-                    <h3>Heading</h3>
-                    <p>Content aa asdfasdfjal</p>    
-                </div>
-              </div>
-              <div class="wf-box">
-                <img src="{{URL::asset('img/5.jpg')}}">
-                <div class="content">
-                    <h3>Heading</h3>
-                    <p>Content aa asdfasdfjal</p>    
-                </div>
-              </div>   
+          <div id="recommend_lists">
+             <div class="wf-box" data-id="">
+             {{--Link ảnh--}}
+                 <img src="" class="box-img" data-id="" data-idnext="" data-idprev=""/>
+                 <div class="content">
+                 {{--Description--}}
+                     <h3 class="box-img-des"></h3>
+                     <div class="box-img-card">
+                         <img src="{{URL::asset("img/logo.png")}}" width="30" height="30" class="logo-profile">
+                         <div>
+                         {{--Ten owner--}}
+                             <p class="card-owner">
+                             {{--{{$post["owner"]}}--}}
+                             </p>
+                             {{--Ten board--}}
+                             <h4 class="card-title"></h4>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+          </div>
           </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -130,10 +121,11 @@
         Ham share bai post len fb
      */
     $("#fb_share").click(function(){
+        var id = $("#main-post-id").data('id')
       FB.ui(
         {
           method: 'share',
-          href: 'http://foodiee.mybluemix.net/explorer',
+          href: 'http://foodiee.mybluemix.net/post/'+id
         },
         // callback
         function(response) {
@@ -158,7 +150,7 @@
         data:{user_id:user_id, text:text, avatar_link:avatar_link, post_id:post_id},
           success:function(data){
             if(data){
-              
+
             }
         }});
     });
@@ -179,11 +171,11 @@
             type:"GET",
             success:function(data){
                 span_text = $("#post_like_btn").find('span:first');
-                if(span_text.text()=="Thích"){
-                    span_text.text("Đã thích");
+                if(span_text.text()=="Like"){
+                    span_text.text("Liked");
                 }
                 else {
-                    span_text.text("Thích")
+                    span_text.text("Like")
                 }
          }});
     }
@@ -242,11 +234,13 @@
                 for (i = 0; i < data.boards.length; i++) {
                   modal.find("#cls-album").append("<div class='wf-box'><img data-id='"+data.boards[i]['post_id']+"' src='{{URL::to('api/photo')}}"+"/"+data.boards[i]['photo_link']+"' class='box-img'/></div>");
                 };
-                
+
                 $(".mv-cmt-itembox img").attr("src",$("#user-avatar-link-profile").attr("src"));
                 $(".mv-cmt-itembox .cmt-chat-owner a").text($("#user-id-info").text().trim());
                 if(data.liked==true)
-                     modal.find("#post_like_btn").find('span:first').text("Đã thích");
+                     modal.find("#post_like_btn").find('span:first').text("Liked");
+                else
+                    modal.find("#post_like_btn").find('span:first').text("Like");
                 if(data.comments.length>0)
                 {
                     console.log("into");
