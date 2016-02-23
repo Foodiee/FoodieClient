@@ -11,7 +11,7 @@
 
 namespace Vinkla\Pusher;
 
-use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Container\Container;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Lumen\Application as LumenApplication;
@@ -31,24 +31,22 @@ class PusherServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->setupConfig($this->app);
+        $this->setupConfig();
     }
 
     /**
      * Setup the config.
      *
-     * @param \Illuminate\Contracts\Foundation\Application $app
-     *
      * @return void
      */
-    protected function setupConfig(Application $app)
+    protected function setupConfig()
     {
         $source = realpath(__DIR__.'/../config/pusher.php');
 
-        if ($app instanceof LaravelApplication && $app->runningInConsole()) {
+        if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
             $this->publishes([$source => config_path('pusher.php')]);
-        } elseif ($app instanceof LumenApplication) {
-            $app->configure('pusher');
+        } elseif ($this->app instanceof LumenApplication) {
+            $this->app->configure('pusher');
         }
 
         $this->mergeConfigFrom($source, 'pusher');
@@ -61,62 +59,56 @@ class PusherServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registerFactory($this->app);
-        $this->registerManager($this->app);
-        $this->registerBindings($this->app);
+        $this->registerFactory();
+        $this->registerManager();
+        $this->registerBindings();
     }
 
     /**
      * Register the factory class.
      *
-     * @param \Illuminate\Contracts\Foundation\Application $app
-     *
      * @return void
      */
-    protected function registerFactory(Application $app)
+    protected function registerFactory()
     {
-        $app->singleton('pusher.factory', function () {
+        $this->app->singleton('pusher.factory', function () {
             return new PusherFactory();
         });
 
-        $app->alias('pusher.factory', PusherFactory::class);
+        $this->app->alias('pusher.factory', PusherFactory::class);
     }
 
     /**
      * Register the manager class.
      *
-     * @param \Illuminate\Contracts\Foundation\Application $app
-     *
      * @return void
      */
-    protected function registerManager(Application $app)
+    protected function registerManager()
     {
-        $app->singleton('pusher', function ($app) {
+        $this->app->singleton('pusher', function (Container $app) {
             $config = $app['config'];
             $factory = $app['pusher.factory'];
 
             return new PusherManager($config, $factory);
         });
 
-        $app->alias('pusher', PusherManager::class);
+        $this->app->alias('pusher', PusherManager::class);
     }
 
     /**
      * Register the bindings.
      *
-     * @param \Illuminate\Contracts\Foundation\Application $app
-     *
      * @return void
      */
-    protected function registerBindings(Application $app)
+    protected function registerBindings()
     {
-        $app->bind('pusher.connection', function ($app) {
+        $this->app->bind('pusher.connection', function (Container $app) {
             $manager = $app['pusher'];
 
             return $manager->connection();
         });
 
-        $app->alias('pusher.connection', Pusher::class);
+        $this->app->alias('pusher.connection', Pusher::class);
     }
 
     /**

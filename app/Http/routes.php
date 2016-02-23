@@ -23,7 +23,7 @@ Route::group(['prefix'=>'search'],function()
     Route::get('create','SearchController@createIndexMapping');
 
 });
-Route::get('user/{user_name}','UserController@getUser');
+Route::get('{user_name}','UserController@getUser');
 //Route::get('/{user_name}/{board_name}','UserController@getUserBoards');
 
 Route::get('post/{post_id}','PostController@getPostById');
@@ -76,3 +76,4 @@ Route::get('search/insert','SearchController@insert');
 Route::post('create_noti','NotificationController@create');
 Route::post('create-box-chat','MessageController@create');
 Route::post('create-chat','MessageController@createchat');
+//Route::get('nav/store','StorageController@send_photo_to_storage');

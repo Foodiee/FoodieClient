@@ -76,7 +76,7 @@
                     </li>
                     @if(Auth::user()!=null)
                     <li>
-                        <a id="user-id-info" data-id="{{Auth::user()->user_id}}" href="{{URL::to('user/'.Auth::user()->username)}}">
+                        <a id="user-id-info" data-id="{{Auth::user()->user_id}}" href="{{URL::to(Auth::user()->username)}}">
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                             {{Auth::user()->name}}
                         </a>
